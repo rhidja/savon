@@ -1,1 +1,27 @@
-hello
+{# src/Ram/SavonBundle/Resources/views/Advert/index.html.twig #}
+
+{% extends "RamSavonBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block ocplatform_body %}
+
+  	<h2>Liste des produits</h2>
+
+ 	<ul>
+    	{% for produit in listProduits %}
+      	<li>
+        	<a href="{{ path('ram_savon_view', {'id': produit.id}) }}">
+          		{{ produit.nom }}
+        	</a>
+        	par {{ produit.type }},
+        	le {{ advert.date|date('d/m/Y') }}
+      	</li>
+    	{% else %}
+      		<li>Pas (encore !) de produits</li>
+    	{% endfor %}
+  	</ul>
+
+{% endblock %}

@@ -12,8 +12,8 @@ class ProduitController extends Controller
 		{
 			throw new NotFoundHttpException('Page "'.$page.'" inexistante.');
 		}
-		
-		return $this->render('RamSavonBundle:Produit:index.html.twig');
+
+		return $this->render('RamSavonBundle:Produit:index.html.twig', array( 'listAdverts' => array() ));
 	}
 
 	public function viewAction($id)
@@ -47,4 +47,16 @@ class ProduitController extends Controller
 	{
 		return $this->render('RamSavonBundle:Produit:delete.html.twig');
 	}
+
+
+	public function menuAction($limit)
+	{
+	  	$listProduits = array(
+	  		array('id' => 2, 'title' => 'Recherche développeur Symfony2'),
+	  		array('id' => 5, 'title' => 'Mission de webmaster'),
+	  		array('id' => 9, 'title' => 'Offre de stage webdesigner')
+	  		);
+
+	  	return $this->render('RamSavonBundle:Produit:menu.html.twig', array( 'listProduits' => $listProduits	));
+	  }
 }
