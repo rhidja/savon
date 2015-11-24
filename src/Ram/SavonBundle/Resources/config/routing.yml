@@ -1,3 +1,31 @@
-ram_savon_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: RamSavonBundle:Default:index }
+# src/Ram/SavonBundle/Resources/config/routing.yml
+
+ram_savon_home:
+    path:      /{page}
+    defaults:
+        _controller: RamSavonBundle:Produit:index
+        page:        1
+    requirements:
+        page: \d*
+
+ram_savon_view:
+    path:      /advert/{id}
+    defaults:  { _controller: RamSavonBundle:Produit:view }
+    requirements:
+        id: \d+
+
+ram_savon_add:
+    path:      /add
+    defaults:  { _controller: RamSavonBundle:Produit:add }
+
+ram_savon_edit:
+    path:      /edit/{id}
+    defaults:  { _controller: RamSavonBundle:Produit:edit }
+    requirements:
+        id: \d+
+
+ram_savon_delete:
+    path:      /delete/{id}
+    defaults:  { _controller: RamSavonBundle:Produit:delete }
+    requirements:
+        id: \d+
