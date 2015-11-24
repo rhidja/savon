@@ -2,9 +2,7 @@
 
 ram_savon_home:
     path:      /{page}
-    defaults:
-        _controller: RamSavonBundle:Produit:index
-        page:        1
+    defaults: { _controller: RamSavonBundle:Produit:index, page: 1}
     requirements:
         page: \d*
 
