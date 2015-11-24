@@ -1,3 +1,7 @@
+ram_savon:
+    resource: "@RamSavonBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

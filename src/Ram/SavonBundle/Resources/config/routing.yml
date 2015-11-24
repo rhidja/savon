@@ -1,0 +1,3 @@
+ram_savon_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: RamSavonBundle:Default:index }
