@@ -2,7 +2,11 @@
 
 namespace Ram\SavonBundle\Controller;
 
+use Ram\SavonBundle\Entity\Produit;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+
+
 
 class ProduitController extends Controller
 {
@@ -38,19 +42,41 @@ class ProduitController extends Controller
 	}
 
 	public function viewAction($id)
-	{
-		return $this->render('RamSavonBundle:Produit:view.html.twig', array('id' => $id	));
+	{	
+		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Produit');
+
+		$produit = $repository->find($id);
+
+		if (null === $produit) {
+			throw new NotFoundHttpException("Le savon d'id ".$id." n'existe pas.");
+		}
+
+		return $this->render('RamSavonBundle:Produit:view.html.twig', array( 'produit' => $produit ));
 	}
 
 	public function addAction(Request $request)
 	{
 		if ($request->isMethod('POST')) 
 		{
-			$request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+			$request->getSession()->getFlashBag()->add('notice', 'Le savon est bien enregistrée.');
 			return $this->redirectToRoute('ram_savon_view', array('id' => 5));
 		}
 
-		return $this->render('RamSavonBundle:Produit:add.html.twig');
+	    $produit = new Produit();
+	    $produit->setNom('Savon Marseille.');
+	    $produit->setType('Savon');
+	    $produit->setDescription("Savon de Marseille fait à l'ancienne...");
+	    
+	    $em = $this->getDoctrine()->getManager();
+	    $em->persist($produit);
+	    $em->flush();
+
+	    if ($request->isMethod('POST')) {
+	      $request->getSession()->getFlashBag()->add('notice', 'Le savon est bien enregistrée.');
+	      return $this->redirect($this->generateUrl('ram_savon_view', array('id' => $produit->getId())));
+	    }
+
+		return $this->render('RamSavonBundle:Produit:index.html.twig', array( 'listProduits' => array() ));
 	}
 
 	public function editAction($id, Request $request)
