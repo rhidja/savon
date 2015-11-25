@@ -83,11 +83,20 @@ class ProduitController extends Controller
 	{
 		if ($request->isMethod('POST')) 
 		{
-			$request->getSession()->getFlashBag()->add('notice', 'Annonce bien modifiée.');
+			$request->getSession()->getFlashBag()->add('notice', 'Savon bien modifiée.');
 			return $this->redirectToRoute('ram_savon_view', array('id' => 5));
 		}
 
-		return $this->render('RamSavonBundle:Produit:edit.html.twig');
+
+		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Produit');
+
+		$produit = $repository->find($id);
+
+		if (null === $produit) {
+			throw new NotFoundHttpException("Le savon d'id ".$id." n'existe pas.");
+		}
+
+	    return $this->render('RamSavonBundle:Produit:edit.html.twig', array('produit' => $produit));
 	}
 
 	public function deleteAction($id)
