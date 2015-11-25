@@ -17,26 +17,9 @@ class ProduitController extends Controller
 			throw new NotFoundHttpException('Page "'.$page.'" inexistante.');
 		}
 
-		$listProduits = array(
-			array(
-				'title'   => 'Recherche développpeur Symfony2',
-				'id'      => 1,
-				'author'  => 'Alexandre',
-				'content' => 'Nous recherchons un développeur Symfony2 débutant sur Lyon. Blabla…',
-				'date'    => new \Datetime()),
-			array(
-				'title'   => 'Mission de webmaster',
-				'id'      => 2,
-				'author'  => 'Hugo',
-				'content' => 'Nous recherchons un webmaster capable de maintenir notre site internet. Blabla…',
-				'date'    => new \Datetime()),
-			array(
-				'title'   => 'Offre de stage webdesigner',
-				'id'      => 3,
-				'author'  => 'Mathieu',
-				'content' => 'Nous proposons un poste pour webdesigner. Blabla…',
-				'date'    => new \Datetime())
-			);
+		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Produit');
+
+		$listProduits = $repository->findAll();
     
 		return $this->render('RamSavonBundle:Produit:index.html.twig', array( 'listProduits' => $listProduits ));
 	}
@@ -56,15 +39,6 @@ class ProduitController extends Controller
 
 	public function addAction(Request $request)
 	{
-	    $produit = new Produit();
-	    $produit->setNom('Savon Marseille.');
-	    $produit->setType('Savon');
-	    $produit->setDescription("Savon de Marseille fait à l'ancienne...");
-	    
-	    $em = $this->getDoctrine()->getManager();
-	    $em->persist($produit);
-	    $em->flush();
-
 	    if ($request->isMethod('POST')) {
 	      	$request->getSession()->getFlashBag()->add('notice', 'Le savon est bien enregistrée.');
 	      	return $this->redirect($this->generateUrl('ram_savon_view', array('id' => $produit->getId())));
@@ -80,7 +54,6 @@ class ProduitController extends Controller
 			$request->getSession()->getFlashBag()->add('notice', 'Savon bien modifiée.');
 			return $this->redirectToRoute('ram_savon_view', array('id' => 5));
 		}
-
 
 		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Produit');
 
@@ -102,9 +75,9 @@ class ProduitController extends Controller
 	public function menuAction($limit)
 	{
 	  	$listProduits = array(
-	  		array('id' => 2, 'title' => 'Recherche développeur Symfony2'),
-	  		array('id' => 5, 'title' => 'Mission de webmaster'),
-	  		array('id' => 9, 'title' => 'Offre de stage webdesigner')
+	  		array('id' => 2, 'title' => 'Savon Marseille'),
+	  		array('id' => 5, 'title' => 'Savon Palmolive'),
+	  		array('id' => 9, 'title' => 'Savon vaisselle')
 	  		);
 
 	  	return $this->render('RamSavonBundle:Produit:menu.html.twig', array( 'listProduits' => $listProduits	));
