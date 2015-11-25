@@ -7,7 +7,7 @@ ram_savon_home:
         page: \d*
 
 ram_savon_view:
-    path:      /advert/{id}
+    path:      /produit/{id}
     defaults:  { _controller: RamSavonBundle:Produit:view }
     requirements:
         id: \d+
