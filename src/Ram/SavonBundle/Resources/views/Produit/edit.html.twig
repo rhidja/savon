@@ -3,25 +3,25 @@
 {% extends "RamSavonBundle::layout.html.twig" %}
 
 {% block title %}
-  Modifier une annonce - {{ parent() }}
+  	Modifier une annonce - {{ parent() }}
 {% endblock %}
 
 {% block ram_savon_body %}
 
-  <h2>Modifier une annonce</h2>
+  	<h2>Modifier une annonce</h2>
 
-  {{ include("RamSavonBundle:Produit:form.html.twig") }}
+  	{{ include("RamSavonBundle:Produit:form.html.twig") }}
 
-  <p>
-    Vous éditez une annonce déjà existante, merci de ne pas changer
-    l'esprit générale de l'annonce déjà publiée.
-  </p>
+  	<p>
+    	Vous éditez une annonce déjà existante, merci de ne pas changer
+    	l'esprit générale de l'annonce déjà publiée.
+  	</p>
 
-  <p>
-    <a href="{{ path('ram_savon_view', {'id': produit.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour à l'annonce
-    </a>
-  </p>
+  	<p>
+    	<a href="{{ path('ram_savon_view', {'id': produit.id}) }}" class="btn btn-default">
+      		<i class="glyphicon glyphicon-chevron-left"></i>
+      		Retour à l'annonce
+    	</a>
+  	</p>
 
 {% endblock %}
