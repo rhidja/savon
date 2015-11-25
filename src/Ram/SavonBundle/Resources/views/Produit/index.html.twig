@@ -14,10 +14,10 @@
     	{% for produit in listProduits %}
       	<li>
         	<a href="{{ path('ram_savon_view', {'id': produit.id}) }}">
-          		{{ produit.title }}
+          		{{ produit.nom }}
         	</a>
-        	par {{ produit.author }},
-        	le {{ produit.date|date('d/m/Y') }}
+        	par {{ produit.type }},
+        	le {{ produit.dCre|date('d/m/Y') }}
       	</li>
     	{% else %}
       		<li>Pas (encore !) de produits</li>
