@@ -3,31 +3,31 @@
 {% extends "RamSavonBundle::layout.html.twig" %}
 
 {% block title %}
-  Lecture d'une annonce - {{ parent() }}
+  	Lecture d'une annonce - {{ parent() }}
 {% endblock %}
 
 {% block ram_savon_body %}
 
-  <h2>{{ produit.nom }}</h2>
-  <i>Par {{ produit.type }}, le {{ produit.dCre|date('d/m/Y') }}</i>
+  	<h2>{{ produit.nom }}</h2>
+  	<i>Par {{ produit.type }}, le {{ produit.dCre|date('d/m/Y') }}</i>
 
-  <div class="well">
-    {{ produit.description }}
-  </div>
+  	<div class="well">
+    	{{ produit.description }}
+  	</div>
 
-  <p>
-    <a href="{{ path('ram_savon_home') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour à la liste
-    </a>
-    <a href="{{ path('ram_savon_edit', {'id': produit.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
-      Modifier l'annonce
-    </a>
-    <a href="{{ path('ram_savon_delete', {'id': produit.id}) }}" class="btn btn-danger">
-      <i class="glyphicon glyphicon-trash"></i>
-      Supprimer l'annonce
-    </a>
-  </p>
+  	<p>
+	    <a href="{{ path('ram_savon_home') }}" class="btn btn-default">
+	      	<i class="glyphicon glyphicon-chevron-left"></i>
+	      	Retour à la liste
+	    </a>
+	    <a href="{{ path('ram_savon_edit', {'id': produit.id}) }}" class="btn btn-default">
+	      	<i class="glyphicon glyphicon-edit"></i>
+	      	Modifier l'annonce
+	    </a>
+	    <a href="{{ path('ram_savon_delete', {'id': produit.id}) }}" class="btn btn-danger">
+	      	<i class="glyphicon glyphicon-trash"></i>
+	      	Supprimer l'annonce
+	    </a>
+  	</p>
 
 {% endblock %}
