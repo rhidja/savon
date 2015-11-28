@@ -20,7 +20,7 @@ class ProduitController extends Controller
 		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Produit');
 
 		$listProduits = $repository->findAll();
-    
+	
 		return $this->render('RamSavonBundle:Produit:index.html.twig', array( 'listProduits' => $listProduits ));
 	}
 
@@ -39,32 +39,27 @@ class ProduitController extends Controller
 
 	public function addAction(Request $request)
 	{
-	    
-/* 	    if ($request->isMethod('POST')) {
-	      	$request->getSession()->getFlashBag()->add('notice', 'Le savon est bien enregistrée.');
-	      	return $this->redirect($this->generateUrl('ram_savon_view', array('id' => $produit->getId())));
-	    }*/
+		
+		$produit = new Produit();
 
-    	$produit = new Produit();
+		$form = $formBuilder = $this->get('form.factory')->createBuilder('form', $produit)
+			->add('nom',     'text')
+			->add('type',    'text')
+			->add('description',   'textarea')
+			->add('save',      'submit')
+			->getForm();
 
-    	$form = $formBuilder = $this->get('form.factory')->createBuilder('form', $produit)
-    		->add('nom',     'text')
-	      	->add('type',    'text')
-	      	->add('description',   'textarea')
-	      	->add('save',      'submit')
-	      	->getForm();
+			$form->handleRequest($request);
+			if ($form->isValid()) 
+			{
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($produit);
+				$em->flush();
 
-	      	$form->handleRequest($request);
-	      	if ($form->isValid()) 
-	      	{
-	      		$em = $this->getDoctrine()->getManager();
-	      		$em->persist($produit);
-	      		$em->flush();
+				$request->getSession()->getFlashBag()->add('notice', 'Produit bien enregistrée.');
 
-	      		$request->getSession()->getFlashBag()->add('notice', 'Produit bien enregistrée.');
-
-	      		return $this->redirect($this->generateUrl('ram_savon_view', array('id' => $produit->getId())));
-	      	}
+				return $this->redirect($this->generateUrl('ram_savon_view', array('id' => $produit->getId())));
+			}
 
 		return $this->render('RamSavonBundle:Produit:add.html.twig', array('form' => $form->createView()));
 	}
@@ -85,7 +80,7 @@ class ProduitController extends Controller
 			throw new NotFoundHttpException("Le savon d'id ".$id." n'existe pas.");
 		}
 
-	    return $this->render('RamSavonBundle:Produit:edit.html.twig', array('produit' => $produit));
+		return $this->render('RamSavonBundle:Produit:edit.html.twig', array('produit' => $produit));
 	}
 
 	public function deleteAction($id)
@@ -96,12 +91,12 @@ class ProduitController extends Controller
 
 	public function menuAction($limit)
 	{
-	  	$listProduits = array(
-	  		array('id' => 2, 'title' => 'Savon Marseille'),
-	  		array('id' => 5, 'title' => 'Savon Palmolive'),
-	  		array('id' => 9, 'title' => 'Savon vaisselle')
-	  		);
+		$listProduits = array(
+			array('id' => 2, 'title' => 'Savon Marseille'),
+			array('id' => 5, 'title' => 'Savon Palmolive'),
+			array('id' => 9, 'title' => 'Savon vaisselle')
+			);
 
-	  	return $this->render('RamSavonBundle:Produit:menu.html.twig', array( 'listProduits' => $listProduits	));
+		return $this->render('RamSavonBundle:Produit:menu.html.twig', array( 'listProduits' => $listProduits	));
 	  }
 }
