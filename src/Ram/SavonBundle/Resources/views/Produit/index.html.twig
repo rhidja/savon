@@ -3,25 +3,33 @@
 {% extends "RamSavonBundle::layout.html.twig" %}
 
 {% block title %}
-    Accueil - {{ parent() }}
+	Accueil - {{ parent() }}
 {% endblock %}
 
 {% block ram_savon_body %}
 
-  	<h2>Liste des produits</h2>
-    
- 	<ul>
-    	{% for produit in listProduits %}
-      	<li>
-        	<a href="{{ path('ram_savon_view', {'id': produit.id}) }}">
-          		{{ produit.nom }}
-        	</a>
-        	par {{ produit.type }},
-        	le {{ produit.dCre|date('d/m/Y') }}
-      	</li>
-    	{% else %}
-      		<li>Pas (encore !) de produits</li>
-    	{% endfor %}
-  	</ul>
+	<h3>Liste des produits</h3>
+
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr class="info"> <td>Id</td> <td>Nom du produit</td> <td>Type</td> <td>Date</td></tr>
+		</thead>
+		<tbody>
+			{% for produit in listProduits %}
+				<tr> 
+					<td>{{ produit.id }}</td>
+					<td> 
+						<a href="{{ path('ram_savon_view', {'id': produit.id}) }}"> 
+							{{ produit.nom }}
+						</a>
+					</td>
+					<td>{{ produit.type }}</td>
+					<td>{{ produit.dCre|date('d/m/Y') }}</td>
+				</tr>
+			{% else %}
+				<tr>Pas (encore !) de produits</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
 {% endblock %}
