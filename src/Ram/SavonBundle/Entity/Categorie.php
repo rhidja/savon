@@ -31,7 +31,7 @@ class Categorie
     /**
      * @var integer
      *
-     * @ORM\Column(name="idCategorie", type="integer")
+     * @ORM\Column(name="id_categorie", type="integer")
      */
     private $idCategorie;
 
