@@ -1,0 +1,26 @@
+{# src/Ram/SavonBundle/Resources/views/Produit/add.html.twig #}
+
+{% extends "RamSavonBundle::layout.html.twig" %}
+
+{% block title %}
+    Ajouter un nouveau prduit - {{ parent() }}
+{% endblock %}
+
+{% block ram_savon_body %}
+
+    <h2>Ajouter un nouveau produit</h2>
+
+    {{ include("RamSavonBundle:Produit:form.html.twig") }}
+
+    <p>
+        Vous aller ajouter un nouveau savon.
+    </p>
+
+    <p>
+        <a href="{{ path('ram_savon_home') }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour à l'annonce
+        </a>
+    </p>
+
+{% endblock %}
