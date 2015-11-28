@@ -39,12 +39,34 @@ class ProduitController extends Controller
 
 	public function addAction(Request $request)
 	{
-	    if ($request->isMethod('POST')) {
+	    
+/* 	    if ($request->isMethod('POST')) {
 	      	$request->getSession()->getFlashBag()->add('notice', 'Le savon est bien enregistrée.');
 	      	return $this->redirect($this->generateUrl('ram_savon_view', array('id' => $produit->getId())));
-	    }
+	    }*/
 
-		return $this->render('RamSavonBundle:Produit:add.html.twig');
+    	$produit = new Produit();
+
+    	$form = $formBuilder = $this->get('form.factory')->createBuilder('form', $produit)
+    		->add('nom',     'text')
+	      	->add('type',    'text')
+	      	->add('description',   'textarea')
+	      	->add('save',      'submit')
+	      	->getForm();
+
+	      	$form->handleRequest($request);
+	      	if ($form->isValid()) 
+	      	{
+	      		$em = $this->getDoctrine()->getManager();
+	      		$em->persist($produit);
+	      		$em->flush();
+
+	      		$request->getSession()->getFlashBag()->add('notice', 'Produit bien enregistrée.');
+
+	      		return $this->redirect($this->generateUrl('ram_savon_view', array('id' => $produit->getId())));
+	      	}
+
+		return $this->render('RamSavonBundle:Produit:add.html.twig', array('form' => $form->createView()));
 	}
 
 	public function editAction($id, Request $request)
