@@ -6,8 +6,6 @@ use Ram\SavonBundle\Entity\Produit;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-
-
 class ProduitController extends Controller
 {
 	public function indexAction($page)
@@ -20,7 +18,7 @@ class ProduitController extends Controller
 		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Produit');
 
 		$listProduits = $repository->findAll();
-	
+		
 		return $this->render('RamSavonBundle:Produit:index.html.twig', array( 'listProduits' => $listProduits ));
 	}
 
@@ -43,35 +41,29 @@ class ProduitController extends Controller
 		$produit = new Produit();
 
 		$form = $formBuilder = $this->get('form.factory')->createBuilder('form', $produit)
-			->add('nom',     'text')
-			->add('type',    'text')
-			->add('description',   'textarea')
-			->add('save',      'submit')
-			->getForm();
+		->add('nom',     'text')
+		->add('type',    'text')
+		->add('description',   'textarea')
+		->add('save',      'submit')
+		->getForm();
 
-			$form->handleRequest($request);
-			if ($form->isValid()) 
-			{
-				$em = $this->getDoctrine()->getManager();
-				$em->persist($produit);
-				$em->flush();
+		$form->handleRequest($request);
+		if ($form->isValid()) 
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($produit);
+			$em->flush();
 
-				$request->getSession()->getFlashBag()->add('notice', 'Produit bien enregistrée.');
+			$request->getSession()->getFlashBag()->add('notice', 'Produit bien enregistrée.');
 
-				return $this->redirect($this->generateUrl('ram_savon_view', array('id' => $produit->getId())));
-			}
+			return $this->redirect($this->generateUrl('ram_produit_view', array('id' => $produit->getId())));
+		}
 
 		return $this->render('RamSavonBundle:Produit:add.html.twig', array('form' => $form->createView()));
 	}
 
 	public function editAction($id, Request $request)
 	{
-		if ($request->isMethod('POST')) 
-		{
-			$request->getSession()->getFlashBag()->add('notice', 'Savon bien modifiée.');
-			return $this->redirectToRoute('ram_savon_view', array('id' => 5));
-		}
-
 		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Produit');
 
 		$produit = $repository->find($id);
@@ -98,5 +90,5 @@ class ProduitController extends Controller
 			);
 
 		return $this->render('RamSavonBundle:Produit:menu.html.twig', array( 'listProduits' => $listProduits	));
-	  }
+	}
 }

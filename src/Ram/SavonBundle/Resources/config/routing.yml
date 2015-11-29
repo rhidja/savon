@@ -1,29 +1,59 @@
 # src/Ram/SavonBundle/Resources/config/routing.yml
 
-ram_savon_home:
-    path:      /{page}
+ram_produit_home:
+    path:      /produit/{page}
     defaults: { _controller: RamSavonBundle:Produit:index, page: 1}
     requirements:
         page: \d*
 
-ram_savon_view:
+ram_produit_view:
     path:      /produit/{id}
     defaults:  { _controller: RamSavonBundle:Produit:view }
     requirements:
         id: \d+
 
-ram_savon_add:
-    path:      /add
+ram_produit_add:
+    path:      /produit/add
     defaults:  { _controller: RamSavonBundle:Produit:add }
 
-ram_savon_edit:
-    path:      /edit/{id}
+ram_produit_edit:
+    path:      /produit/edit/{id}
     defaults:  { _controller: RamSavonBundle:Produit:edit }
     requirements:
         id: \d+
 
-ram_savon_delete:
-    path:      /delete/{id}
+ram_produit_delete:
+    path:      /produit/delete/{id}
     defaults:  { _controller: RamSavonBundle:Produit:delete }
+    requirements:
+        id: \d+
+
+# ===========================================================
+
+ram_ingredient_home:
+    path:      /ingredient/{page}
+    defaults: { _controller: RamSavonBundle:Ingredient:index, page: 1}
+    requirements:
+        page: \d*
+
+ram_ingredient_view:
+    path:      /ingredient/{id}
+    defaults:  { _controller: RamSavonBundle:Ingredient:view }
+    requirements:
+        id: \d+
+
+ram_ingredient_add:
+    path:      /ingredient/add
+    defaults:  { _controller: RamSavonBundle:Ingredient:add }
+
+ram_ingredient_edit:
+    path:      /ingredient/edit/{id}
+    defaults:  { _controller: RamSavonBundle:Ingredient:edit }
+    requirements:
+        id: \d+
+
+ram_ingredient_delete:
+    path:      /ingredient/delete/{id}
+    defaults:  { _controller: RamSavonBundle:Ingredient:delete }
     requirements:
         id: \d+
