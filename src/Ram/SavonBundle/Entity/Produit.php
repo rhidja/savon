@@ -50,6 +50,11 @@ class Produit
     private $description;
 
     /**
+     * @ORM\OneToMany(targetEntity="Ram\SavonBundle\Entity\Recette", mappedBy="produit")
+     */
+    private $recettes;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="d_cre", type="datetimetz")
@@ -75,6 +80,7 @@ class Produit
     {
         // Par défaut, la date de l'annonce est la date d'aujourd'hui
         $this->dCre = new \Datetime();
+        $this->recettes = new ArrayCollection();
     }
 
 
@@ -254,5 +260,39 @@ class Produit
     public function getDSup()
     {
         return $this->dSup;
+    }
+
+    /**
+     * Add recette
+     *
+     * @param \Ram\SavonBundle\Entity\Recette $recette
+     *
+     * @return Produit
+     */
+    public function addRecette(\Ram\SavonBundle\Entity\Recette $recette)
+    {
+        $this->recettes[] = $recette;
+
+        return $this;
+    }
+
+    /**
+     * Remove recette
+     *
+     * @param \Ram\SavonBundle\Entity\Recette $recette
+     */
+    public function removeRecette(\Ram\SavonBundle\Entity\Recette $recette)
+    {
+        $this->recettes->removeElement($recette);
+    }
+
+    /**
+     * Get recettes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRecettes()
+    {
+        return $this->recettes;
     }
 }
