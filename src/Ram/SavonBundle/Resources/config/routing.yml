@@ -1,5 +1,9 @@
 # src/Ram/SavonBundle/Resources/config/routing.yml
 
+ram_accueil:
+    path:      /accueil
+    defaults: { _controller: RamSavonBundle:Accueil:index}
+
 ram_produit_home:
     path:      /produit/{page}
     defaults: { _controller: RamSavonBundle:Produit:index, page: 1}
