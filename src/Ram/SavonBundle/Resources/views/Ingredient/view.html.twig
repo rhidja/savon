@@ -8,23 +8,22 @@
 
 {% block ram_savon_body %}
 
-  	<h2>{{ produit.nom }}</h2>
-  	<i>Par {{ produit.type }}, le {{ produit.dCre|date('d/m/Y') }}</i>
+  	<h2>{{ ingredient.nom }}</h2>
 
   	<div class="well">
-    	{{ produit.description }}
+    	{{ ingredient.unite }}
   	</div>
 
   	<p>
-	    <a href="{{ path('ram_savon_home') }}" class="btn btn-default">
+	    <a href="{{ path('ram_ingredient_home') }}" class="btn btn-default">
 	      	<i class="glyphicon glyphicon-chevron-left"></i>
 	      	Retour à la liste
 	    </a>
-	    <a href="{{ path('ram_savon_edit', {'id': produit.id}) }}" class="btn btn-default">
+	    <a href="{{ path('ram_ingredient_edit', {'id': ingredient.id}) }}" class="btn btn-default">
 	      	<i class="glyphicon glyphicon-edit"></i>
 	      	Modifier l'annonce
 	    </a>
-	    <a href="{{ path('ram_savon_delete', {'id': produit.id}) }}" class="btn btn-danger">
+	    <a href="{{ path('ram_ingredient_delete', {'id': ingredient.id}) }}" class="btn btn-danger">
 	      	<i class="glyphicon glyphicon-trash"></i>
 	      	Supprimer l'annonce
 	    </a>
