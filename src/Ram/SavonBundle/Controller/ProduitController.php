@@ -73,7 +73,30 @@ class ProduitController extends Controller
 			throw new NotFoundHttpException("Le savon d'id ".$id." n'existe pas.");
 		}
 
-		return $this->render('RamSavonBundle:Produit:edit.html.twig', array('produit' => $produit));
+		//$produit = new Produit();
+
+		$form = $formBuilder = $this->get('form.factory')->createBuilder('form', $produit)
+		->add('nom',     'text')
+		->add('type',    'text')
+		->add('typePeaux',    'text')
+		->add('description',   'textarea')
+		->add('save',      'submit')
+		->getForm();
+
+		$form->handleRequest($request);
+
+		if ($form->isValid()) 
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($produit);
+			$em->flush();
+
+			$request->getSession()->getFlashBag()->add('notice', 'Produit bien enregistrée.');
+
+			return $this->redirect($this->generateUrl('ram_produit_view', array('id' => $produit->getId())));
+		}
+
+		return $this->render('RamSavonBundle:Produit:edit.html.twig', array('produit' => $produit,'form' => $form->createView()));
 	}
 
 	public function deleteAction($id)

@@ -3,24 +3,19 @@
 {% extends "RamSavonBundle::layout.html.twig" %}
 
 {% block title %}
-  	Modifier un produit - {{ parent() }}
+	Modifier un produit - {{ parent() }}
 {% endblock %}
 
 {% block ram_savon_body %}
 
-  	<h2>Modifier un produit</h2>
+	<h2>Modifier un produit</h2>
+	{{ include("RamSavonBundle:Produit:form.html.twig") }}
+	<p> Vous éditez un produit déjà existant. </p>
 
-  	{{ include("RamSavonBundle:Produit:form.html.twig") }}
-
-  	<p>
-    	Vous éditez un produit déjà existant.
-  	</p>
-
-  	<p>
-    	<a  ="{{ path('ram_savon_view', {'id': produit.id}) }}" class="btn btn-default">
-      		<i class="glyphicon glyphicon-chevron-left"></i>
-      		Retour au produit
-    	</a>
-  	 </p>
+	<p>
+		<a  href="{{ path('ram_produit_view', {'id': produit.id}) }}" class="btn btn-default">
+			<i class="glyphicon glyphicon-chevron-left"></i> Retour au produit
+		</a>
+	</p>
 
 {% endblock %}
