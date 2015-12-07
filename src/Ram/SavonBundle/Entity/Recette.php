@@ -24,9 +24,30 @@ class Recette
     /**
      * @var string
      *
-     * @ORM\Column(name="quantite", type="decimal")
+     * @ORM\Column(name="nom", type="string", length=255)
      */
-    private $quantite;
+    private $nom;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="duree_sponification", type="integer")
+     */
+    private $dureeSponification;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="duree_cure", type="integer")
+     */
+    private $dureeCure;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
 
     /**
      * @ORM\ManyToOne(targetEntity="Ram\SavonBundle\Entity\Produit")
@@ -35,11 +56,32 @@ class Recette
     private $produit;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ram\SavonBundle\Entity\Ingredient")
-     * @ORM\JoinColumn(nullable=false)
+     * @var \DateTime
+     *
+     * @ORM\Column(name="d_cre", type="datetimetz")
      */
-    private $ingredient;
-    
+    private $dCre;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="d_mod", type="datetimetz")
+     */
+    private $dMod;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="d_sup", type="datetimetz")
+     */
+    private $dSup;
+
+    public function __construct()
+    {
+        // Par défaut, la date de l'annonce est la date d'aujourd'hui
+        $this->dCre = new \Datetime();
+    }
+
     /**
      * Get id
      *
@@ -51,27 +93,171 @@ class Recette
     }
 
     /**
-     * Set quantite
+     * Set nom
      *
-     * @param string $quantite
+     * @param string $nom
      *
      * @return Recette
      */
-    public function setQuantite($quantite)
+    public function setNom($nom)
     {
-        $this->quantite = $quantite;
+        $this->nom = $nom;
 
         return $this;
     }
 
     /**
-     * Get quantite
+     * Get nom
      *
      * @return string
      */
-    public function getQuantite()
+    public function getNom()
     {
-        return $this->quantite;
+        return $this->nom;
+    }
+
+    /**
+     * Set dureeSponification
+     *
+     * @param integer $dureeSponification
+     *
+     * @return Recette
+     */
+    public function setDureeSponification($dureeSponification)
+    {
+        $this->dureeSponification = $dureeSponification;
+
+        return $this;
+    }
+
+    /**
+     * Get dureeSponification
+     *
+     * @return integer
+     */
+    public function getDureeSponification()
+    {
+        return $this->dureeSponification;
+    }
+
+    /**
+     * Set dureeCure
+     *
+     * @param integer $dureeCure
+     *
+     * @return Recette
+     */
+    public function setDureeCure($dureeCure)
+    {
+        $this->dureeCure = $dureeCure;
+
+        return $this;
+    }
+
+    /**
+     * Get dureeCure
+     *
+     * @return integer
+     */
+    public function getDureeCure()
+    {
+        return $this->dureeCure;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Recette
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set dCre
+     *
+     * @param \DateTime $dCre
+     *
+     * @return Recette
+     */
+    public function setDCre($dCre)
+    {
+        $this->dCre = $dCre;
+
+        return $this;
+    }
+
+    /**
+     * Get dCre
+     *
+     * @return \DateTime
+     */
+    public function getDCre()
+    {
+        return $this->dCre;
+    }
+
+    /**
+     * Set dMod
+     *
+     * @param \DateTime $dMod
+     *
+     * @return Recette
+     */
+    public function setDMod($dMod)
+    {
+        $this->dMod = $dMod;
+
+        return $this;
+    }
+
+    /**
+     * Get dMod
+     *
+     * @return \DateTime
+     */
+    public function getDMod()
+    {
+        return $this->dMod;
+    }
+
+    /**
+     * Set dSup
+     *
+     * @param \DateTime $dSup
+     *
+     * @return Recette
+     */
+    public function setDSup($dSup)
+    {
+        $this->dSup = $dSup;
+
+        return $this;
+    }
+
+    /**
+     * Get dSup
+     *
+     * @return \DateTime
+     */
+    public function getDSup()
+    {
+        return $this->dSup;
     }
 
     /**
@@ -96,29 +282,5 @@ class Recette
     public function getProduit()
     {
         return $this->produit;
-    }
-
-    /**
-     * Set ingredient
-     *
-     * @param \Ram\SavonBundle\Entity\Ingredient $ingredient
-     *
-     * @return Recette
-     */
-    public function setIngredient(\Ram\SavonBundle\Entity\Ingredient $ingredient)
-    {
-        $this->ingredient = $ingredient;
-
-        return $this;
-    }
-
-    /**
-     * Get ingredient
-     *
-     * @return \Ram\SavonBundle\Entity\Ingredient
-     */
-    public function getIngredient()
-    {
-        return $this->ingredient;
     }
 }
