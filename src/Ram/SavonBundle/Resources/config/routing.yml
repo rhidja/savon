@@ -7,7 +7,7 @@ ram_produit_home:
         page: \d*
 
 ram_produit_view:
-    path:      /produit/{id}
+    path:      /produit/view/{id}
     defaults:  { _controller: RamSavonBundle:Produit:view }
     requirements:
         id: \d+
@@ -37,7 +37,7 @@ ram_ingredient_home:
         page: \d*
 
 ram_ingredient_view:
-    path:      /ingredient/{id}
+    path:      /ingredient/view/{id}
     defaults:  { _controller: RamSavonBundle:Ingredient:view }
     requirements:
         id: \d+
