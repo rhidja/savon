@@ -38,6 +38,13 @@ class Produit
     /**
      * @var string
      *
+     * @ORM\Column(name="type_peaux", type="string", length=30)
+     */
+    private $typePeaux;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
@@ -69,6 +76,7 @@ class Produit
         // Par défaut, la date de l'annonce est la date d'aujourd'hui
         $this->dCre = new \Datetime();
     }
+
 
     /**
      * Get id
@@ -126,6 +134,30 @@ class Produit
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set typePeaux
+     *
+     * @param string $typePeaux
+     *
+     * @return Produit
+     */
+    public function setTypePeaux($typePeaux)
+    {
+        $this->typePeaux = $typePeaux;
+
+        return $this;
+    }
+
+    /**
+     * Get typePeaux
+     *
+     * @return string
+     */
+    public function getTypePeaux()
+    {
+        return $this->typePeaux;
     }
 
     /**
@@ -224,4 +256,3 @@ class Produit
         return $this->dSup;
     }
 }
-

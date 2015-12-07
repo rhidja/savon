@@ -43,6 +43,7 @@ class ProduitController extends Controller
 		$form = $formBuilder = $this->get('form.factory')->createBuilder('form', $produit)
 		->add('nom',     'text')
 		->add('type',    'text')
+		->add('typePeaux',    'text')
 		->add('description',   'textarea')
 		->add('save',      'submit')
 		->getForm();

@@ -17,6 +17,7 @@ class ProduitType extends AbstractType
         $builder
             ->add('nom')
             ->add('type')
+            ->add('typePeaux')
             ->add('description')
             ->add('dCre')
             ->add('dMod')
