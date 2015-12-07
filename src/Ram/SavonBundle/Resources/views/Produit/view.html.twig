@@ -3,31 +3,63 @@
 {% extends "RamSavonBundle::layout.html.twig" %}
 
 {% block title %}
-  	Lecture d'une annonce - {{ parent() }}
+Lecture d'une annonce - {{ parent() }}
 {% endblock %}
 
 {% block ram_savon_body %}
+<div class="col-md-12">
+	<h2>{{ produit.nom }}</h2>
+	<i>Crée le {{ produit.dCre|date('d/m/Y') }}</i>
+	<hr>
+</div>
 
-  	<h2>{{ produit.nom }}</h2>
-  	<i>Par {{ produit.type }}, le {{ produit.dCre|date('d/m/Y') }}</i>
+<div class="col-md-12">	
+	<a href="{{ path('ram_produit_home') }}" class="btn btn-default">
+		<i class="glyphicon glyphicon-chevron-left"></i>
+		Retour à la liste
+	</a>
+	<a href="{{ path('ram_produit_edit', {'id': produit.id}) }}" class="btn btn-default">
+		<i class="glyphicon glyphicon-edit"></i>
+		Modifier le produit
+	</a>
+	<a href="{{ path('ram_produit_delete', {'id': produit.id}) }}" class="btn btn-danger">
+		<i class="glyphicon glyphicon-trash"></i>
+		Supprimer le produit
+	</a>
+	<hr>
+</div>
 
-  	<div class="well">
-    	{{ produit.description }}
-  	</div>
+<div class="col-md-12">
+	<div class="well  col-md-5">
+		<h4>Propriétés :</h4>
+		<hr>
+		<dl>
+			<dt>Type de produit : </dt><dd>{{ produit.type }}</dd>
+			<dt>Type de peaux : </dt><dd>{{ produit.typePeaux }}</dd>
+			<dt>Description : </dt><dd>{{ produit.description }}</dd>
+		</dl>
+	</div>
 
-  	<p>
-	    <a href="{{ path('ram_produit_home') }}" class="btn btn-default">
-	      	<i class="glyphicon glyphicon-chevron-left"></i>
-	      	Retour à la liste
-	    </a>
-	    <a href="{{ path('ram_produit_edit', {'id': produit.id}) }}" class="btn btn-default">
-	      	<i class="glyphicon glyphicon-edit"></i>
-	      	Modifier l'annonce
-	    </a>
-	    <a href="{{ path('ram_produit_delete', {'id': produit.id}) }}" class="btn btn-danger">
-	      	<i class="glyphicon glyphicon-trash"></i>
-	      	Supprimer l'annonce
-	    </a>
-  	</p>
+	<div class="well  col-md-7">
+		<h4>Liste de recettes :</h4>
+		<hr>
+		<table class="table">
+			<tr><td>Nom</td><td>Durée Sponif.</td><td>Durée Cure</td></tr>
+			{% for recette in listRecettes %}
+				<tr> 
+					<td> 
+						<a href="{{ path('ram_produit_view', {'id': recette.id}) }}"> 
+							{{ recette.nom }}
+						</a>
+					</td>
+					<td>{{ recette.dureeSponification }}</td>
+					<td>{{ recette.dureeCure }}</td>
+				</tr>
+			{% else %}
+				<tr>Pas (encore !) de recettes</tr>
+			{% endfor %}
+		</table>	
+	</div>
+</div>
 
 {% endblock %}

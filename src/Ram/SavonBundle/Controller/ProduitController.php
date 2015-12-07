@@ -3,6 +3,7 @@
 namespace Ram\SavonBundle\Controller;
 
 use Ram\SavonBundle\Entity\Produit;
+use Ram\SavonBundle\Entity\Recette;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -28,11 +29,15 @@ class ProduitController extends Controller
 
 		$produit = $repository->find($id);
 
+		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Recette');
+
+		$listRecettes =  $repository->findByProduit($produit);
+
 		if (null === $produit) {
 			throw new NotFoundHttpException("Le savon d'id ".$id." n'existe pas.");
 		}
 
-		return $this->render('RamSavonBundle:Produit:view.html.twig', array( 'produit' => $produit ));
+		return $this->render('RamSavonBundle:Produit:view.html.twig', array( 'produit' => $produit, 'listRecettes' => $listRecettes));
 	}
 
 	public function addAction(Request $request)
