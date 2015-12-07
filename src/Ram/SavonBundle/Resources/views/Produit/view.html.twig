@@ -45,7 +45,7 @@ Lecture d'une annonce - {{ parent() }}
 		<hr>
 		<table class="table">
 			<tr><td>Nom</td><td>Durée Sponif.</td><td>Durée Cure</td></tr>
-			{% for recette in listRecettes %}
+			{% for recette in produit.recettes %}
 				<tr> 
 					<td> 
 						<a href="{{ path('ram_produit_view', {'id': recette.id}) }}"> 

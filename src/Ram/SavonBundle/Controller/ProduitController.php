@@ -29,15 +29,11 @@ class ProduitController extends Controller
 
 		$produit = $repository->find($id);
 
-		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Recette');
-
-		$listRecettes =  $repository->findByProduit($produit);
-
 		if (null === $produit) {
 			throw new NotFoundHttpException("Le savon d'id ".$id." n'existe pas.");
 		}
 
-		return $this->render('RamSavonBundle:Produit:view.html.twig', array( 'produit' => $produit, 'listRecettes' => $listRecettes));
+		return $this->render('RamSavonBundle:Produit:view.html.twig', array( 'produit' => $produit));
 	}
 
 	public function addAction(Request $request)
