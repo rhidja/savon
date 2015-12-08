@@ -12,12 +12,10 @@
 
   	{{ include("RamSavonBundle:Ingredient:form.html.twig") }}
 
-  	<p>
-    	Vous éditez un ingredient déjà existant.
-  	</p>
+  	<p>Vous éditez un ingredient déjà existant.</p>
 
   	<p>
-    	<a  ="{{ path('ram_savon_view', {'id': ingredient.id}) }}" class="btn btn-default">
+    	<a  ="{{ path('ram_ingredient_view', {'id': ingredient.id}) }}" class="btn btn-default">
       		<i class="glyphicon glyphicon-chevron-left"></i>
       		Retour aux ingredients
     	</a>
