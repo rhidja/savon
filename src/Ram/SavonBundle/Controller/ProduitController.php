@@ -64,7 +64,7 @@ class ProduitController extends Controller
 		$produit = $repository->find($id);
 
 		if (null === $produit) {
-			throw new NotFoundHttpException("Le savon d'id ".$id." n'existe pas.");
+			throw new NotFoundHttpException("Le produit d'id ".$id." n'existe pas.");
 		}
 
 		$form = $this->get('form.factory')->create(new ProduitType(), $produit);
