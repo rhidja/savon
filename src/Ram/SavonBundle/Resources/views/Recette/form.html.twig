@@ -1,0 +1,49 @@
+{# src/Ram/SavonBundle/Resources/views/Produit/form.html.twig #}
+
+<div class="well">
+	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+	{{ form_errors(form) }}
+
+	<div class="form-group">
+		{{ form_label(form.nom, "Nom du recette", {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+		{{ form_errors(form.nom) }}
+		<div class="col-md-9">
+			{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+		</div>
+	</div>
+
+	<div class="form-group">
+		{{ form_label(form.dureeSponification, "Le type du recette", {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+		{{ form_errors(form.dureeSponification) }}
+		<div class="col-sm-9">
+			{{ form_widget(form.dureeSponification, {'attr': {'class': 'form-control'}}) }}
+		</div>
+	</div>
+
+	<div class="form-group">
+		{{ form_label(form.dureeCure, "Le type de peaux", {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+		{{ form_errors(form.dureeCure) }}
+		<div class="col-sm-9">
+			{{ form_widget(form.dureeCure, {'attr': {'class': 'form-control'}}) }}
+		</div>
+	</div>
+
+	<div class="form-group">
+		{{ form_label(form.description, "Description du Savon", {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+		{{ form_errors(form.description) }}
+		<div class="col-md-9">
+			{{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-12">
+			{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
+		</div>
+	</div>
+	
+	{{ form_rest(form) }}
+  
+	{{ form_end(form) }}
+</div>

@@ -4,6 +4,8 @@ ram_accueil:
     path:      /accueil
     defaults: { _controller: RamSavonBundle:Accueil:index}
 
+# ========================================================
+
 ram_produit_home:
     path:      /produit/{page}
     defaults: { _controller: RamSavonBundle:Produit:index, page: 1}
@@ -29,6 +31,36 @@ ram_produit_edit:
 ram_produit_delete:
     path:      /produit/delete/{id}
     defaults:  { _controller: RamSavonBundle:Produit:delete }
+    requirements:
+        id: \d+
+
+# ========================================================
+
+ram_recette_home:
+    path:      /recette/{page}
+    defaults: { _controller: RamSavonBundle:Recette:index, page: 1}
+    requirements:
+        page: \d*
+
+ram_recette_view:
+    path:      /recette/view/{id}
+    defaults:  { _controller: RamSavonBundle:Recette:view }
+    requirements:
+        id: \d+
+
+ram_recette_add:
+    path:      /recette/add
+    defaults:  { _controller: RamSavonBundle:Recette:add }
+
+ram_recette_edit:
+    path:      /recette/edit/{id}
+    defaults:  { _controller: RamSavonBundle:Recette:edit }
+    requirements:
+        id: \d+
+
+ram_recette_delete:
+    path:      /recette/delete/{id}
+    defaults:  { _controller: RamSavonBundle:Recette:delete }
     requirements:
         id: \d+
 

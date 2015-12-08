@@ -1,0 +1,21 @@
+{# src/Ram/SavonBundle/Resources/views/Recette/edit.html.twig #}
+
+{% extends "RamSavonBundle::layout.html.twig" %}
+
+{% block title %}
+	Modifier un recette - {{ parent() }}
+{% endblock %}
+
+{% block ram_savon_body %}
+
+	<h2>Modifier un recette</h2>
+	{{ include("RamSavonBundle:Recette:form.html.twig") }}
+	<p> Vous éditez un recette déjà existant. </p>
+
+	<p>
+		<a  href="{{ path('ram_recette_view', {'id': recette.id}) }}" class="btn btn-default">
+			<i class="glyphicon glyphicon-chevron-left"></i> Retour au recette
+		</a>
+	</p>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{# src/Ram/SavonBundle/Resources/view/Recette/view.html.twig #}
+
+{% extends "RamSavonBundle::layout.html.twig" %}
+
+{% block title %}
+Lecture d'une annonce - {{ parent() }}
+{% endblock %}
+
+{% block ram_savon_body %}
+<div class="col-md-12">
+	<h2>{{ recette.nom }}</h2>
+	<i>Crée le {{ recette.dCre|date('d/m/Y') }}</i>
+	<hr>
+</div>
+
+<div class="col-md-12">	
+	<a href="{{ path('ram_recette_home') }}" class="btn btn-default">
+		<i class="glyphicon glyphicon-chevron-left"></i>
+		Retour à la liste
+	</a>
+	<a href="{{ path('ram_recette_edit', {'id': recette.id}) }}" class="btn btn-default">
+		<i class="glyphicon glyphicon-edit"></i>
+		Modifier le recette
+	</a>
+	<a href="{{ path('ram_recette_delete', {'id': recette.id}) }}" class="btn btn-danger">
+		<i class="glyphicon glyphicon-trash"></i>
+		Supprimer le recette
+	</a>
+	<hr>
+</div>
+
+<div class="col-md-12">
+	<div class="well  col-md-5">
+		<h4>Propriétés :</h4>
+		<hr>
+		<dl>
+			<dt>Produit : </dt><dd>{{ recette.produit.nom }}</dd>
+			<dt>Durée de sponification : </dt><dd>{{ recette.dureeSponification }}</dd>
+			<dt>Durée de cure : </dt><dd>{{ recette.dureeCure }}</dd>
+		</dl>
+	</div>
+
+	<div class="well  col-md-7">
+		<h4>Liste de ingrédients :</h4>
+		<hr>
+		<table class="table">
+			<tr><td>Nom</td><td>Durée Sponif.</td><td>Durée Cure</td></tr>
+
+		</table>	
+	</div>
+</div>
+
+{% endblock %}

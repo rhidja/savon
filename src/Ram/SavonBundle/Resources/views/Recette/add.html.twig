@@ -1,0 +1,26 @@
+{# src/Ram/SavonBundle/Resources/views/Recette/add.html.twig #}
+
+{% extends "RamSavonBundle::layout.html.twig" %}
+
+{% block title %}
+    Ajouter un nouveau recette - {{ parent() }}
+{% endblock %}
+
+{% block ram_savon_body %}
+
+    <h2>Ajouter un nouveau recette</h2>
+
+    {{ include("RamSavonBundle:Recette:form.html.twig") }}
+
+    <p>
+        Vous aller ajouter un nouveau savon.
+    </p>
+
+    <p>
+        <a href="{{ path('ram_recette_home') }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour à la liste
+        </a>
+    </p>
+
+{% endblock %}
