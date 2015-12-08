@@ -74,8 +74,6 @@ class ProduitController extends Controller
 			throw new NotFoundHttpException("Le savon d'id ".$id." n'existe pas.");
 		}
 
-		//$produit = new Produit();
-
 		$form = $formBuilder = $this->get('form.factory')->createBuilder('form', $produit)
 		->add('nom',     'text')
 		->add('type',    'text')
