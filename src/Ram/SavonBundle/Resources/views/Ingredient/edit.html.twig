@@ -1,25 +1,25 @@
-{# src/Ram/SavonBundle/Resources/views/Produit/edit.html.twig #}
+{# src/Ram/SavonBundle/Resources/views/Ingredient/edit.html.twig #}
 
 {% extends "RamSavonBundle::layout.html.twig" %}
 
 {% block title %}
-  	Modifier un produit - {{ parent() }}
+  	Modifier un ingredient - {{ parent() }}
 {% endblock %}
 
 {% block ram_savon_body %}
 
-  	<h2>Modifier un produit</h2>
+  	<h2>Modifier un ingredient</h2>
 
-  	{{ include("RamSavonBundle:Produit:form.html.twig") }}
+  	{{ include("RamSavonBundle:Ingredient:form.html.twig") }}
 
   	<p>
-    	Vous éditez un produit déjà existant.
+    	Vous éditez un ingredient déjà existant.
   	</p>
 
   	<p>
-    	<a  ="{{ path('ram_savon_view', {'id': produit.id}) }}" class="btn btn-default">
+    	<a  ="{{ path('ram_savon_view', {'id': ingredient.id}) }}" class="btn btn-default">
       		<i class="glyphicon glyphicon-chevron-left"></i>
-      		Retour au produit
+      		Retour aux ingredients
     	</a>
   	 </p>
 

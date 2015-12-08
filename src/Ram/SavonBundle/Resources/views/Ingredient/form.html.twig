@@ -1,4 +1,4 @@
-{# src/Ram/SavonBundle/Resources/views/Produit/form.html.twig #}
+{# src/Ram/SavonBundle/Resources/views/Ingrédient/form.html.twig #}
 
 <div class="well">
 	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
@@ -6,7 +6,7 @@
 	{{ form_errors(form) }}
 
 	<div class="form-group">
-		{{ form_label(form.nom, "Nom du produit", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+		{{ form_label(form.nom, "Nom du ingredient", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
 		{{ form_errors(form.nom) }}
 		<div class="col-sm-4">
 			{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
@@ -14,7 +14,7 @@
 	</div>
 
 	<div class="form-group">
-		{{ form_label(form.type, "Le type du produit", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+		{{ form_label(form.type, "Le type du ingredient", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
 		{{ form_errors(form.type) }}
 		<div class="col-sm-4">
 			{{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
@@ -22,13 +22,12 @@
 	</div>
 
 	<div class="form-group">
-		{{ form_label(form.description, "Description du Savon", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-		{{ form_errors(form.description) }}
+		{{ form_label(form.unite, "Description de l'ingrédient", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+		{{ form_errors(form.unite) }}
 		<div class="col-sm-4">
-			{{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+			{{ form_widget(form.unite, {'attr': {'class': 'form-control'}}) }}
 		</div>
 	</div>
-
 
 	<div class="form-group">
 		<div class="col-sm-7">

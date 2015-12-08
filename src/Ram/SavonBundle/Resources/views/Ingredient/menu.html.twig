@@ -1,11 +1,11 @@
 
-{# src/Ram/SavonBundle/Resources/views/Produit/menu.html.twig #}
+{# src/Ram/SavonBundle/Resources/views/Ingredient/menu.html.twig #}
 
 <ul class="nav nav-pills nav-stacked">
-  	{% for produit in listProduits %}
+  	{% for ingredient in listIngredients %}
     	<li>
-      		<a href="{{ path('ram_savon_view', {'id': produit.id}) }}">
-        		{{ produit.title }}
+      		<a href="{{ path('ram_savon_view', {'id': ingredient.id}) }}">
+        		{{ ingredient.title }}
      		</a>
     	</li>
   	{% endfor %}
