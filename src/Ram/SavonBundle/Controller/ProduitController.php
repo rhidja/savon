@@ -3,7 +3,7 @@
 namespace Ram\SavonBundle\Controller;
 
 use Ram\SavonBundle\Entity\Produit;
-use Ram\SavonBundle\Entity\Recette;
+use Ram\SavonBundle\Form\ProduitType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -41,14 +41,7 @@ class ProduitController extends Controller
 		
 		$produit = new Produit();
 
-		$form = $formBuilder = $this->get('form.factory')->createBuilder('form', $produit)
-		->add('nom',     'text')
-		->add('type',    'text')
-		->add('typePeaux',    'text')
-		->add('description',   'textarea')
-		->add('save',      'submit')
-		->getForm();
-
+		$form = $this->get('form.factory')->create(new ProduitType(), $produit);
 		$form->handleRequest($request);
 		if ($form->isValid()) 
 		{
@@ -74,16 +67,8 @@ class ProduitController extends Controller
 			throw new NotFoundHttpException("Le savon d'id ".$id." n'existe pas.");
 		}
 
-		$form = $formBuilder = $this->get('form.factory')->createBuilder('form', $produit)
-		->add('nom',     'text')
-		->add('type',    'text')
-		->add('typePeaux',    'text')
-		->add('description',   'textarea')
-		->add('save',      'submit')
-		->getForm();
-
+		$form = $this->get('form.factory')->create(new ProduitType(), $produit);
 		$form->handleRequest($request);
-
 		if ($form->isValid()) 
 		{
 			$em = $this->getDoctrine()->getManager();
