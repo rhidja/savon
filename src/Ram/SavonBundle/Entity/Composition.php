@@ -36,17 +36,16 @@ class Composition
     private $unite;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ram\SavonBundle\Entity\Serie")
+     * @ORM\ManyToOne(targetEntity="Ram\SavonBundle\Entity\Recette")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $serie;
+    private $recette;
 
     /**
      * @ORM\ManyToOne(targetEntity="Ram\SavonBundle\Entity\Ingredient")
      * @ORM\JoinColumn(nullable=false)
      */
     private $ingredient;
-
 
     /**
      * Get id
@@ -106,30 +105,28 @@ class Composition
         return $this->unite;
     }
 
-
-
     /**
-     * Set serie
+     * Set recette
      *
-     * @param \Ram\SavonBundle\Entity\Serie $serie
+     * @param \Ram\SavonBundle\Entity\Recette $recette
      *
      * @return Composition
      */
-    public function setSerie(\Ram\SavonBundle\Entity\Serie $serie)
+    public function setRecette(\Ram\SavonBundle\Entity\Recette $recette)
     {
-        $this->serie = $serie;
+        $this->recette = $recette;
 
         return $this;
     }
 
     /**
-     * Get serie
+     * Get recette
      *
-     * @return \Ram\SavonBundle\Entity\Serie
+     * @return \Ram\SavonBundle\Entity\Recette
      */
-    public function getSerie()
+    public function getRecette()
     {
-        return $this->serie;
+        return $this->recette;
     }
 
     /**
