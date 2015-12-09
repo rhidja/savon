@@ -3,6 +3,8 @@
 namespace Ram\SavonBundle\Controller;
 
 use Ram\SavonBundle\Entity\Recette;
+use Ram\SavonBundle\Entity\Produit;
+use Ram\SavonBundle\Form\RecetteType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -39,15 +41,7 @@ class RecetteController extends Controller
 	{
 		
 		$recette = new Recette();
-
-		$form = $formBuilder = $this->get('form.factory')->createBuilder('form', $recette)
-		->add('nom',     'text')
-		->add('dureeSponification',    'text')
-		->add('dureeCure',   'text')
-		->add('description',   'textarea')
-		->add('save',      'submit')
-		->getForm();
-
+		$form = $this->get('form.factory')->create(new RecetteType(), $recette);
 		$form->handleRequest($request);
 		if ($form->isValid()) 
 		{
@@ -73,16 +67,8 @@ class RecetteController extends Controller
 			throw new NotFoundHttpException("Le savon d'id ".$id." n'existe pas.");
 		}
 
-		$form = $formBuilder = $this->get('form.factory')->createBuilder('form', $recette)
-		->add('nom',     'text')
-		->add('dureeSponification',    'text')
-		->add('dureeCure',    'text')
-		->add('description',   'textarea')
-		->add('save',      'submit')
-		->getForm();
-
+		$form = $this->get('form.factory')->create(new RecetteType(), $recette);
 		$form->handleRequest($request);
-
 		if ($form->isValid()) 
 		{
 			$em = $this->getDoctrine()->getManager();
