@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass="Ram\UserBundle\Entity\UserRepository")
  */
-class User
+class User implements UserInterface
 {
   /**
    * @ORM\Column(name="id", type="integer")
