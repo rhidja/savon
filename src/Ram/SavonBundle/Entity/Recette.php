@@ -65,14 +65,14 @@ class Recette
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="d_mod", type="datetimetz")
+     * @ORM\Column(name="d_mod", type="datetimetz", nullable=true)
      */
     private $dMod;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="d_sup", type="datetimetz")
+     * @ORM\Column(name="d_sup", type="datetimetz", nullable=true)
      */
     private $dSup;
 
