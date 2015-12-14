@@ -1,7 +1,3 @@
-ram_user:
-    resource: "@RamUserBundle/Resources/config/routing.yml"
-    prefix:   /
-
 ram_savon:
     resource: "@RamSavonBundle/Resources/config/routing.yml"
     prefix:   /
