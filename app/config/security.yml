@@ -30,4 +30,5 @@ security:
                 path:   logout
                 target: /accueil
     access_control:
+        - { path: ^/recette, roles: ROLE_ADMIN }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

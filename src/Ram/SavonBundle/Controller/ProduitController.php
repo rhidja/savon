@@ -6,6 +6,7 @@ use Ram\SavonBundle\Entity\Produit;
 use Ram\SavonBundle\Form\ProduitType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ProduitController extends Controller
 {
@@ -38,7 +39,10 @@ class ProduitController extends Controller
 
 	public function addAction(Request $request)
 	{
-		
+		if (!$this->get('security.context')->isGranted('ROLE_USER')) {
+			throw new AccessDeniedException('Accès limité aux auteurs.');
+		}
+
 		$produit = new Produit();
 
 		$form = $this->get('form.factory')->create(new ProduitType(), $produit);
