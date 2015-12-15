@@ -3,11 +3,11 @@
 namespace Ram\SavonBundle\Controller;
 
 use Ram\SavonBundle\Entity\Recette;
-use Ram\SavonBundle\Entity\Produit;
 use Ram\SavonBundle\Form\RecetteType;
 use Ram\SavonBundle\Form\RecetteEditType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RecetteController extends Controller
 {
@@ -84,11 +84,34 @@ class RecetteController extends Controller
 		return $this->render('RamSavonBundle:Recette:edit.html.twig', array('recette' => $recette,'form' => $form->createView()));
 	}
 
-	public function deleteAction($id)
+	public function deleteAction($id, Request $request)
 	{
-		return $this->render('RamSavonBundle:Recette:delete.html.twig');
-	}
+		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Recette');
 
+		$recette = $repository->find($id);
+
+		if (null === $recette) {
+			throw new NotFoundHttpException("La recette d'id ".$id." n'existe pas.");
+		}
+
+		$form = $this->createFormBuilder()->getForm();
+
+		if ($form->handleRequest($request)->isValid()) 
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->remove($recette);
+			$em->flush();
+
+			$request->getSession()->getFlashBag()->add('info', "La recette a bien été supprimée.");
+
+			return $this->redirect($this->generateUrl('ram_recette_home'));
+		}
+
+		return $this->render('RamSavonBundle:Recette:delete.html.twig', array(
+			'recette' => $recette,
+			'form'    => $form->createView()
+			));	
+	}
 
 	public function menuAction($limit)
 	{
@@ -98,6 +121,6 @@ class RecetteController extends Controller
 			array('id' => 9, 'title' => 'Savon vaisselle')
 			);
 
-		return $this->render('RamSavonBundle:Recette:menu.html.twig', array( 'listRecettes' => $listProduits	));
+		return $this->render('RamSavonBundle:Recette:menu.html.twig', array( 'listRecettes' => $listRecettes	));
 	}
 }
