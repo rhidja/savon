@@ -75,7 +75,7 @@ class IngredientController extends Controller
 			$em->persist($ingredient);
 			$em->flush();
 
-			$request->getSession()->getFlashBag()->add('notice', 'Produit bien enregistrée.');
+			$request->getSession()->getFlashBag()->add('notice', 'Ingredient bien enregistrée.');
 
 			return $this->redirect($this->generateUrl('ram_ingredient_view', array('id' => $ingredient->getId())));
 		}
@@ -83,9 +83,33 @@ class IngredientController extends Controller
 		return $this->render('RamSavonBundle:Ingredient:edit.html.twig', array('ingredient' => $ingredient,'form' => $form->createView()));
 	}
 
-	public function deleteAction($id)
+	public function deleteAction($id, Request $request)
 	{
-		return $this->render('RamSavonBundle:Ingredient:delete.html.twig');
+		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Ingredient');
+
+		$ingredient = $repository->find($id);
+
+		if (null === $ingredient) {
+			throw new NotFoundHttpException("L'ingredient d'id ".$id." n'existe pas.");
+		}
+
+		$form = $this->createFormBuilder()->getForm();
+
+		if ($form->handleRequest($request)->isValid()) 
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->remove($ingredient);
+			$em->flush();
+
+			$request->getSession()->getFlashBag()->add('info', "L'ingredient a bien été supprimée.");
+
+			return $this->redirect($this->generateUrl('ram_ingredient_home'));
+		}
+
+		return $this->render('RamSavonBundle:Ingredient:delete.html.twig', array(
+			'ingredient' => $ingredient,
+			'form'   => $form->createView()
+			));	
 	}
 
 
