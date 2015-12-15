@@ -7,6 +7,8 @@ use Ram\SavonBundle\Form\ProduitType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 
 class ProduitController extends Controller
 {
@@ -87,9 +89,33 @@ class ProduitController extends Controller
 		return $this->render('RamSavonBundle:Produit:edit.html.twig', array('produit' => $produit,'form' => $form->createView()));
 	}
 
-	public function deleteAction($id)
+	public function deleteAction($id, Request $request)
 	{
-		return $this->render('RamSavonBundle:Produit:delete.html.twig');
+		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Produit');
+
+		$produit = $repository->find($id);
+
+		if (null === $produit) {
+			throw new NotFoundHttpException("Le produit d'id ".$id." n'existe pas.");
+		}
+
+		$form = $this->createFormBuilder()->getForm();
+
+		if ($form->handleRequest($request)->isValid()) 
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->remove($produit);
+			$em->flush();
+
+			$request->getSession()->getFlashBag()->add('info', "Le produit a bien été supprimée.");
+
+			return $this->redirect($this->generateUrl('ram_produit_home'));
+		}
+
+		return $this->render('RamSavonBundle:Produit:delete.html.twig', array(
+			'produit' => $produit,
+			'form'   => $form->createView()
+			));	
 	}
 
 
