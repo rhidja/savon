@@ -39,7 +39,7 @@ class Produit
     /**
      * @var string
      *
-     * @ORM\Column(name="type_peaux", type="string", length=30)
+     * @ORM\Column(name="type_peaux", type="string", length=30, nullable = true)
      */
     private $typePeaux;
 
