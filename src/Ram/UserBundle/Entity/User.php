@@ -8,12 +8,12 @@ use FOS\UserBundle\Model\User as BaseUser;
 /**
  * @ORM\Entity
  */
-class User implements BaseUser
+class User extends BaseUser
 {
   	/**
    	 * @ORM\Column(name="id", type="integer")
    	 * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
    	 */
-  	private $id;
+  	protected $id;
 }
