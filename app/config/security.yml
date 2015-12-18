@@ -20,6 +20,10 @@ security:
             entity:
                 class:    Ram\UserBundle\Entity\User
                 property: username
+    providers:
+        main:
+            id: fos_user.user_provider.username
+
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
@@ -35,6 +39,8 @@ security:
             logout:
                 path:   logout
                 target: /accueil
+            remember_me:
+                key:        %secret% # %secret% est un paramètre de parameters.yml
     access_control:
         - { path: ^/\w+/(delete|edit), roles: ROLE_ADMIN }
         - { path: ^/\w+/add, roles: ROLE_USER }
