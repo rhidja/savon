@@ -16,12 +16,12 @@ security:
         #        users:
         #            user:  { password: userpass, roles: [ 'ROLE_USER' ] }
         #            admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
-        main:
-            entity:
-                class:    Ram\UserBundle\Entity\User
-                property: username
+        #main:
+        #    entity:
+        #        class:    Ram\UserBundle\Entity\User
+        #        property: username
     providers:
-        main:
+        fos_userbundle:
             id: fos_user.user_provider.username
 
     firewalls:
@@ -29,18 +29,17 @@ security:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            pattern:   ^/
-            anonymous: true
-            #provider:  in_memory
-            provider : main
+            pattern:        ^/
+            anonymous:      true
+            provider:       fos_userbundle
             form_login:
-                login_path: login
-                check_path: login_check
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
             logout:
-                path:   logout
-                target: /accueil
+                path:       fos_user_security_logout
+                target:     /accueil
             remember_me:
-                key:        %secret% # %secret% est un paramètre de parameters.yml
+                key:        %secret%
     access_control:
         - { path: ^/\w+/(delete|edit), roles: ROLE_ADMIN }
         - { path: ^/\w+/add, roles: ROLE_USER }
