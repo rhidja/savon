@@ -41,6 +41,6 @@ security:
             remember_me:
                 key:        %secret%
     access_control:
-        - { path: ^/\w+/(delete|edit), roles: ROLE_ADMIN }
-        - { path: ^/\w+/add, roles: ROLE_USER }
+        #- { path: ^/\w+/(delete|edit), roles: ROLE_ADMIN }
+        - { path: ^/\w+/(add|delete|edit), roles: ROLE_USER }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
