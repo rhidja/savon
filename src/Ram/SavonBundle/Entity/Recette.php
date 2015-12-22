@@ -2,6 +2,7 @@
 
 namespace Ram\SavonBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,6 +57,11 @@ class Recette
     private $produit;
 
     /**
+     * @ORM\OneToMany(targetEntity="Ram\SavonBundle\Entity\Composition", mappedBy="recette", cascade={"persist"})
+     */
+    private $composition;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="d_cre", type="datetimetz")
@@ -80,6 +86,7 @@ class Recette
     {
         // Par défaut, la date de l'annonce est la date d'aujourd'hui
         $this->dCre = new \Datetime();
+        $this->composition = new ArrayCollection();
     }
 
     /**
@@ -282,5 +289,39 @@ class Recette
     public function getProduit()
     {
         return $this->produit;
+    }
+
+    /**
+     * Add composition
+     *
+     * @param \Ram\SavonBundle\Entity\Composition $composition
+     *
+     * @return Recette
+     */
+    public function addComposition(\Ram\SavonBundle\Entity\Composition $composition)
+    {
+        $this->composition[] = $composition;
+
+        return $this;
+    }
+
+    /**
+     * Remove composition
+     *
+     * @param \Ram\SavonBundle\Entity\Composition $composition
+     */
+    public function removeComposition(\Ram\SavonBundle\Entity\Composition $composition)
+    {
+        $this->composition->removeElement($composition);
+    }
+
+    /**
+     * Get composition
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComposition()
+    {
+        return $this->composition;
     }
 }

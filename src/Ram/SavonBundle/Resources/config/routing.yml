@@ -93,3 +93,33 @@ ram_ingredient_delete:
     defaults:  { _controller: RamSavonBundle:Ingredient:delete }
     requirements:
         id: \d+
+
+# ===========================================================
+
+ram_composition_home:
+    path:      /composition/{page}
+    defaults: { _controller: RamSavonBundle:Composition:index, page: 1}
+    requirements:
+        page: \d*
+
+ram_composition_view:
+    path:      /composition/view/{id}
+    defaults:  { _controller: RamSavonBundle:Composition:view }
+    requirements:
+        id: \d+
+
+ram_composition_add:
+    path:      /composition/add
+    defaults:  { _controller: RamSavonBundle:Composition:add }
+
+ram_composition_edit:
+    path:      /composition/edit/{id}
+    defaults:  { _controller: RamSavonBundle:Composition:edit }
+    requirements:
+        id: \d+
+
+ram_composition_delete:
+    path:      /composition/delete/{id}
+    defaults:  { _controller: RamSavonBundle:Composition:delete }
+    requirements:
+        id: \d+

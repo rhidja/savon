@@ -1,0 +1,44 @@
+{# src/Ram/SavonBundle/Resources/view/Composition/view.html.twig #}
+
+{% extends "RamSavonBundle::layout.html.twig" %}
+
+{% block title %}
+Composition d'une composition - {{ parent() }}
+{% endblock %}
+
+{% block ram_savon_body %}
+<div class="col-md-12">
+	<h2>{{ composition.recette.nom }}</h2>
+	<hr>
+</div>
+
+<div class="col-md-12">
+	<a href="{{ path('ram_composition_home') }}" class="btn btn-default">
+		<i class="glyphicon glyphicon-chevron-left"></i>
+		Retour à la liste
+	</a>
+	<a href="{{ path('ram_composition_edit', {'id': composition.id}) }}" class="btn btn-default">
+		<i class="glyphicon glyphicon-edit"></i>
+		Modifier le composition
+	</a>
+	<a href="{{ path('ram_composition_delete', {'id': composition.id}) }}" class="btn btn-danger">
+		<i class="glyphicon glyphicon-trash"></i>
+		Supprimer le composition
+	</a>
+	<hr>
+</div>
+
+<div class="col-md-12">
+	<div class="well  col-md-12">
+		<h4>Propriétés :</h4>
+		<hr>
+		<dl>
+			<dt>Recette : </dt><dd>{{ composition.recette.nom }}</dd>
+			<dt>Ingrédient : </dt><dd>{{ composition.ingredient.nom }}</dd>
+			<dt>Qauntité : </dt><dd>{{ composition.quantite }}</dd>
+			<dt>Unité : </dt><dd>{{ composition.unite }}</dd>
+		</dl>
+	</div>
+</div>
+
+{% endblock %}

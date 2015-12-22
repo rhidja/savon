@@ -1,0 +1,26 @@
+{# src/Ram/SavonBundle/Resources/views/Composition/add.html.twig #}
+
+{% extends "RamSavonBundle::layout.html.twig" %}
+
+{% block title %}
+    Ajouter un nouveau ingrédient à une recette - {{ parent() }}
+{% endblock %}
+
+{% block ram_savon_body %}
+
+    <h2>Ajouter un nouveau ingrédient</h2>
+
+    {{ include("RamSavonBundle:Composition:form.html.twig") }}
+
+    <p>
+        Vous aller ajouter un nouveau savon.
+    </p>
+
+    <p>
+        <a href="{{ path('ram_composition_home') }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour à la liste
+        </a>
+    </p>
+
+{% endblock %}
