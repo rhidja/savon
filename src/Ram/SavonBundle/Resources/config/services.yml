@@ -15,3 +15,6 @@ services:
         class: Ram\SavonBundle\Form\Type\CkeditorType
         tags:
             - { name: form.type, alias: ckeditor }
+
+    ram_savon.beta.html:
+        class: Ram\SavonBundle\Beta\BetaHTML
