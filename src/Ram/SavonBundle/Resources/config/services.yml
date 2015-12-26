@@ -18,3 +18,10 @@ services:
 
     ram_savon.beta.html:
         class: Ram\SavonBundle\Beta\BetaHTML
+
+    ram_savon.beta.listener:
+        class: Ram\SavonBundle\Beta\BetaListener
+        arguments: [@ram_savon.beta.html, "2013-10-20"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: processBeta }
+            - { name: kernel.event_listener, event: kernel.controller, method: ignoreBeta }

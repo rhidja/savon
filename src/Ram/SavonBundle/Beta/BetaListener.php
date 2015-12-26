@@ -4,6 +4,7 @@
 namespace Ram\SavonBundle\Beta;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 
 class BetaListener
 {
@@ -17,15 +18,24 @@ class BetaListener
 		$this->endDate  = new \Datetime($endDate);
 	}
 
-	public function processBeta()
+	public function processBeta(FilterResponseEvent $event)
 	{
+		if (!$event->isMasterRequest()) {
+			return;
+		}
+
 		$remainingDays = $this->endDate->diff(new \Datetime())->format('%d');
 
 		if ($remainingDays <= 0) {
 			return;
 		}
 
-		// Ici on appelera la méthode
-		// $this->betaHTML->displayBeta()
+		$response = $this->betaHTML->displayBeta($event->getResponse(), $remainingDays);
+		$event->setResponse($response);
+	}
+	
+	public function ignoreBeta()
+	{
+		# TODO
 	}
 }

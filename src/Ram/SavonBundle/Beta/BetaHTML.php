@@ -1,7 +1,7 @@
 <?php
 // src/Ram/SavonBundle/Beta/BetaHTML.php
 
-namespace OC\PlatformBundle\Beta;
+namespace Ram\SavonBundle\Beta;
 
 use Symfony\Component\HttpFoundation\Response;
 
