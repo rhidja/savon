@@ -2,3 +2,16 @@ services:
 #    ram_savon.example:
 #        class: Ram\SavonBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+    ram_savon.antispam:
+        class: Ram\SavonBundle\Antispam\RamAntispam
+        arguments: [@mailer, 10]
+        tags:
+            -  { name: twig.extension }
+        calls:
+            - [ setLocale, [ %locale% ] ]
+
+    ram_savon.ckeditor:
+        class: Ram\SavonBundle\Form\Type\CkeditorType
+        tags:
+            - { name: form.type, alias: ckeditor }

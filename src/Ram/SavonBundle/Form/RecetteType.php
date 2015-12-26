@@ -16,10 +16,10 @@ class RecetteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('nom')
+        ->add('nom','text')
         ->add('dureeSponification')
         ->add('dureeCure')
-        ->add('description')
+        ->add('description','ckeditor')
         ->add('produit', 'entity', array(
             'class'    => 'RamSavonBundle:Produit',
             'property' => 'nom',
