@@ -25,3 +25,8 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.response, method: processBeta }
             - { name: kernel.event_listener, event: kernel.controller, method: ignoreBeta }
+
+    ram_savon.json_paramconverter:
+        class: Ram\SavonBundle\ParamConverter\JsonParamConverter
+        tags:
+            - { name: request.param_converter }

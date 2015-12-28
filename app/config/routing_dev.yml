@@ -16,6 +16,10 @@ _errors:
 
 _main:
     resource: routing.yml
-oc_platform_translation:
+ram_savon_translation:
     path:     /{_locale}/traduction/{name}
     defaults: { _controller: RamSavonBundle:Accueil:translation }
+
+ram_savon_paramconverter:
+    path: /test/{json}
+    defaults: { _controller: "RamSavonBundle:Accueil:ParamConverter" }

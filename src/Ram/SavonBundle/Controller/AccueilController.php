@@ -4,6 +4,8 @@ namespace Ram\SavonBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\Response;
 
 class AccueilController extends Controller
 {
@@ -28,5 +30,13 @@ class AccueilController extends Controller
 			'name' => $name
 			));
 	}
-	
+
+	/**
+     * @ParamConverter("json")
+     */
+	public function ParamConverterAction($json)
+	{
+		return new Response(print_r($json, true));
+	}	
+
 }
