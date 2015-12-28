@@ -20,4 +20,13 @@ class AccueilController extends Controller
 
 		return $this->render('RamSavonBundle:Accueil:index.html.twig');
 	}
+
+
+	public function translationAction($name)
+	{
+		return $this->render('RamSavonBundle:Accueil:translation.html.twig', array(
+			'name' => $name
+			));
+	}
+	
 }
