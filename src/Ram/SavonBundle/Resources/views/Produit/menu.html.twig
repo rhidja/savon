@@ -4,7 +4,7 @@
 <ul class="nav nav-pills nav-stacked">
   	{% for produit in listProduits %}
     	<li>
-      		<a href="{{ path('ram_produit_view', {'id': produit.id}) }}">
+      		<a href="{{ path('ram_produit_view', {'produit_id': produit.id}) }}">
         		{{ produit.title }}
      		</a>
     	</li>

@@ -18,11 +18,11 @@ Lecture d'une annonce - {{ parent() }}
 		<i class="glyphicon glyphicon-chevron-left"></i>
 		Retour à la liste
 	</a>
-	<a href="{{ path('ram_produit_edit', {'id': produit.id}) }}" class="btn btn-default">
+	<a href="{{ path('ram_produit_edit', {'produit_id': produit.id}) }}" class="btn btn-default">
 		<i class="glyphicon glyphicon-edit"></i>
 		Modifier le produit
 	</a>
-	<a href="{{ path('ram_produit_delete', {'id': produit.id}) }}" class="btn btn-danger">
+	<a href="{{ path('ram_produit_delete', {'produit_id': produit.id}) }}" class="btn btn-danger">
 		<i class="glyphicon glyphicon-trash"></i>
 		Supprimer le produit
 	</a>
@@ -48,7 +48,7 @@ Lecture d'une annonce - {{ parent() }}
 			{% for recette in produit.recettes %}
 				<tr> 
 					<td> 
-						<a href="{{ path('ram_produit_view', {'id': recette.id}) }}"> 
+						<a href="{{ path('ram_produit_view', {'produit_id': recette.id}) }}"> 
 							{{ recette.nom }}
 						</a>
 					</td>

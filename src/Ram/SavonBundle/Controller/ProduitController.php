@@ -5,10 +5,10 @@ namespace Ram\SavonBundle\Controller;
 use Ram\SavonBundle\Entity\Produit;
 use Ram\SavonBundle\Form\ProduitType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
 
 class ProduitController extends Controller
 {
@@ -26,16 +26,11 @@ class ProduitController extends Controller
 		return $this->render('RamSavonBundle:Produit:index.html.twig', array( 'listProduits' => $listProduits ));
 	}
 
-	public function viewAction($id)
+	/**
+ 	 * @ParamConverter("produit", options={"mapping": {"produit_id": "id"}})
+ 	 */
+	public function viewAction(Produit $produit)
 	{	
-		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Produit');
-
-		$produit = $repository->find($id);
-
-		if (null === $produit) {
-			throw new NotFoundHttpException("Le savon d'id ".$id." n'existe pas.");
-		}
-
 		return $this->render('RamSavonBundle:Produit:view.html.twig', array( 'produit' => $produit));
 	}
 
@@ -63,16 +58,11 @@ class ProduitController extends Controller
 		return $this->render('RamSavonBundle:Produit:add.html.twig', array('form' => $form->createView()));
 	}
 
-	public function editAction($id, Request $request)
+	/**
+ 	 * @ParamConverter("produit", options={"mapping": {"produit_id": "id"}})
+ 	 */
+	public function editAction(Produit $produit, Request $request)
 	{
-		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Produit');
-
-		$produit = $repository->find($id);
-
-		if (null === $produit) {
-			throw new NotFoundHttpException("Le produit d'id ".$id." n'existe pas.");
-		}
-
 		$form = $this->get('form.factory')->create(new ProduitType(), $produit);
 		$form->handleRequest($request);
 		if ($form->isValid()) 
@@ -89,16 +79,11 @@ class ProduitController extends Controller
 		return $this->render('RamSavonBundle:Produit:edit.html.twig', array('produit' => $produit,'form' => $form->createView()));
 	}
 
-	public function deleteAction($id, Request $request)
+	/**
+ 	 * @ParamConverter("produit", options={"mapping": {"produit_id": "id"}})
+ 	 */
+	public function deleteAction(Produit $produit, Request $request)
 	{
-		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Produit');
-
-		$produit = $repository->find($id);
-
-		if (null === $produit) {
-			throw new NotFoundHttpException("Le produit d'id ".$id." n'existe pas.");
-		}
-
 		$form = $this->createFormBuilder()->getForm();
 
 		if ($form->handleRequest($request)->isValid()) 

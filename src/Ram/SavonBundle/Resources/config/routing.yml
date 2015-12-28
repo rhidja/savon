@@ -13,26 +13,26 @@ ram_produit_home:
         page: \d*
 
 ram_produit_view:
-    path:      /produit/view/{id}
+    path:      /produit/view/{produit_id}
     defaults:  { _controller: RamSavonBundle:Produit:view }
     requirements:
-        id: \d+
+        produit_id: \d+
 
 ram_produit_add:
     path:      /produit/add
     defaults:  { _controller: RamSavonBundle:Produit:add }
 
 ram_produit_edit:
-    path:      /produit/edit/{id}
+    path:      /produit/edit/{produit_id}
     defaults:  { _controller: RamSavonBundle:Produit:edit }
     requirements:
-        id: \d+
+        produit_id: \d+
 
 ram_produit_delete:
-    path:      /produit/delete/{id}
+    path:      /produit/delete/{produit_id}
     defaults:  { _controller: RamSavonBundle:Produit:delete }
     requirements:
-        id: \d+
+        produit_id: \d+
 
 # ========================================================
 
