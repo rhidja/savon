@@ -3,22 +3,22 @@
 {% extends "RamSavonBundle::layout.html.twig" %}
 
 {% block title %}
-  	Modifier un ingredient - {{ parent() }}
+Modifier un ingredient - {{ parent() }}
 {% endblock %}
 
 {% block ram_savon_body %}
 
-  	<h2>Modifier un ingredient</h2>
+<h2>Modifier un ingredient</h2>
 
-  	{{ include("RamSavonBundle:Ingredient:form.html.twig") }}
+{{ include("RamSavonBundle:Ingredient:form.html.twig") }}
 
-  	<p>Vous éditez un ingredient déjà existant.</p>
+<p>Vous éditez un ingredient déjà existant.</p>
 
-  	<p>
-    	<a  ="{{ path('ram_ingredient_view', {'id': ingredient.id}) }}" class="btn btn-default">
-      		<i class="glyphicon glyphicon-chevron-left"></i>
-      		Retour aux ingredients
-    	</a>
-  	 </p>
+<p>
+	<a  ="{{ path('ram_ingredient_view', {'ingredient_id': ingredient.id}) }}" class="btn btn-default">
+		<i class="glyphicon glyphicon-chevron-left"></i>
+		Retour aux ingredients
+	</a>
+</p>
 
 {% endblock %}

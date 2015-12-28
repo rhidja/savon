@@ -3,24 +3,24 @@
 {% extends "RamSavonBundle::layout.html.twig" %}
 
 {% block title %}
-  Supprimer un ingredient - {{ parent() }}
+Supprimer un ingredient - {{ parent() }}
 {% endblock %}
 
 {% block ram_savon_body %}
 
-  <h2>Supprimer un ingredient</h2>
+<h2>Supprimer un ingredient</h2>
 
-  <p>
-    Etes-vous certain de vouloir supprimer le ingredient "{{ ingredient.nom }}" ?
-  </p>
+<p>
+	Etes-vous certain de vouloir supprimer le ingredient "{{ ingredient.nom }}" ?
+</p>
 
-  <form action="{{ path('ram_ingredient_delete', {'id': ingredient.id}) }}" method="post">
-    <a href="{{ path('ram_ingredient_view', {'id': ingredient.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour à l'ingrédient
-    </a>
-    <input type="submit" value="Supprimer" class="btn btn-danger" />
-    {{ form_rest(form) }}
-  </form>
+<form action="{{ path('ram_ingredient_delete', {'ingredient_id': ingredient.id}) }}" method="post">
+	<a href="{{ path('ram_ingredient_view', {'ingredient_id': ingredient.id}) }}" class="btn btn-default">
+		<i class="glyphicon glyphicon-chevron-left"></i>
+		Retour à l'ingrédient
+	</a>
+	<input type="submit" value="Supprimer" class="btn btn-danger" />
+	{{ form_rest(form) }}
+</form>
 
 {% endblock %}

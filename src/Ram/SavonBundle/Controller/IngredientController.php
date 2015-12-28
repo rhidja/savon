@@ -6,6 +6,7 @@ use Ram\SavonBundle\Entity\Ingredient;
 use Ram\SavonBundle\Form\IngredientType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class IngredientController extends Controller
 {
@@ -23,16 +24,11 @@ class IngredientController extends Controller
 		return $this->render('RamSavonBundle:Ingredient:index.html.twig', array( 'listIngredients' => $listIngredients ));
 	}
 
-	public function viewAction($id)
+	/**
+ 	 * @ParamConverter("ingredient", options={"mapping": {"ingredient_id": "id"}})
+ 	 */
+	public function viewAction(Ingredient $ingredient)
 	{	
-		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Ingredient');
-
-		$ingredient = $repository->find($id);
-
-		if (null === $ingredient) {
-			throw new NotFoundHttpException("Le savon d'id ".$id." n'existe pas.");
-		}
-
 		return $this->render('RamSavonBundle:Ingredient:view.html.twig', array( 'ingredient' => $ingredient ));
 	}
 
@@ -57,16 +53,11 @@ class IngredientController extends Controller
 		return $this->render('RamSavonBundle:Ingredient:add.html.twig', array('form' => $form->createView()));
 	}
 
-	public function editAction($id, Request $request)
+	/**
+ 	 * @ParamConverter("ingredient", options={"mapping": {"ingredient_id": "id"}})
+ 	 */
+	public function editAction(Ingredient $ingredient, Request $request)
 	{
-		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Ingredient');
-
-		$ingredient = $repository->find($id);
-
-		if (null === $ingredient) {
-			throw new NotFoundHttpException("L'ingredient d'id ".$id." n'existe pas.");
-		}
-
 		$form = $this->get('form.factory')->create(new IngredientType(), $ingredient);
 		$form->handleRequest($request);
 		if ($form->isValid()) 
@@ -83,16 +74,11 @@ class IngredientController extends Controller
 		return $this->render('RamSavonBundle:Ingredient:edit.html.twig', array('ingredient' => $ingredient,'form' => $form->createView()));
 	}
 
-	public function deleteAction($id, Request $request)
+	/**
+ 	 * @ParamConverter("ingredient", options={"mapping": {"ingredient_id": "id"}})
+ 	 */
+	public function deleteAction(Ingredient $ingredient, Request $request)
 	{
-		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Ingredient');
-
-		$ingredient = $repository->find($id);
-
-		if (null === $ingredient) {
-			throw new NotFoundHttpException("L'ingredient d'id ".$id." n'existe pas.");
-		}
-
 		$form = $this->createFormBuilder()->getForm();
 
 		if ($form->handleRequest($request)->isValid()) 

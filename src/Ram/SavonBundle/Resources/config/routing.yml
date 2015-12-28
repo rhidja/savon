@@ -73,26 +73,26 @@ ram_ingredient_home:
         page: \d*
 
 ram_ingredient_view:
-    path:      /ingredient/view/{id}
+    path:      /ingredient/view/{ingredient_id}
     defaults:  { _controller: RamSavonBundle:Ingredient:view }
     requirements:
-        id: \d+
+        ingredient_id: \d+
 
 ram_ingredient_add:
     path:      /ingredient/add
     defaults:  { _controller: RamSavonBundle:Ingredient:add }
 
 ram_ingredient_edit:
-    path:      /ingredient/edit/{id}
+    path:      /ingredient/edit/{ingredient_id}
     defaults:  { _controller: RamSavonBundle:Ingredient:edit }
     requirements:
-        id: \d+
+        ingredient_id: \d+
 
 ram_ingredient_delete:
-    path:      /ingredient/delete/{id}
+    path:      /ingredient/delete/{ingredient_id}
     defaults:  { _controller: RamSavonBundle:Ingredient:delete }
     requirements:
-        id: \d+
+        ingredient_id: \d+
 
 # ===========================================================
 
