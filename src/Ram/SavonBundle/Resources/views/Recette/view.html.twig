@@ -18,11 +18,11 @@ Lecture d'une annonce - {{ parent() }}
 		<i class="glyphicon glyphicon-chevron-left"></i>
 		Retour à la liste
 	</a>
-	<a href="{{ path('ram_recette_edit', {'id': recette.id}) }}" class="btn btn-default">
+	<a href="{{ path('ram_recette_edit', {'recette_id': recette.id}) }}" class="btn btn-default">
 		<i class="glyphicon glyphicon-edit"></i>
 		Modifier le recette
 	</a>
-	<a href="{{ path('ram_recette_delete', {'id': recette.id}) }}" class="btn btn-danger">
+	<a href="{{ path('ram_recette_delete', {'recette_id': recette.id}) }}" class="btn btn-danger">
 		<i class="glyphicon glyphicon-trash"></i>
 		Supprimer le recette
 	</a>

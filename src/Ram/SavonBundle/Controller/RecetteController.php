@@ -8,6 +8,8 @@ use Ram\SavonBundle\Form\RecetteEditType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
 
 class RecetteController extends Controller
 {
@@ -25,16 +27,11 @@ class RecetteController extends Controller
 		return $this->render('RamSavonBundle:Recette:index.html.twig', array( 'listRecettes' => $listRecettes ));
 	}
 
-	public function viewAction($id)
+	/**
+ 	 * @ParamConverter("recette", options={"mapping": {"recette_id": "id"}})
+ 	 */
+	public function viewAction(Recette $recette)
 	{	
-		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Recette');
-
-		$recette = $repository->find($id);
-
-		if (null === $recette) {
-			throw new NotFoundHttpException("Le savon d'id ".$id." n'existe pas.");
-		}
-
 		return $this->render('RamSavonBundle:Recette:view.html.twig', array( 'recette' => $recette));
 	}
 
@@ -58,16 +55,11 @@ class RecetteController extends Controller
 		return $this->render('RamSavonBundle:Recette:add.html.twig', array('form' => $form->createView()));
 	}
 
-	public function editAction($id, Request $request)
+	/**
+ 	 * @ParamConverter("recette", options={"mapping": {"recette_id": "id"}})
+ 	 */
+	public function editAction(Recette $recette, Request $request)
 	{
-		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Recette');
-
-		$recette = $repository->find($id);
-
-		if (null === $recette) {
-			throw new NotFoundHttpException("Le savon d'id ".$id." n'existe pas.");
-		}
-
 		$form = $this->get('form.factory')->create(new RecetteEditType(), $recette);
 		$form->handleRequest($request);
 		if ($form->isValid()) 
@@ -84,16 +76,11 @@ class RecetteController extends Controller
 		return $this->render('RamSavonBundle:Recette:edit.html.twig', array('recette' => $recette,'form' => $form->createView()));
 	}
 
-	public function deleteAction($id, Request $request)
+	/**
+ 	 * @ParamConverter("recette", options={"mapping": {"recette_id": "id"}})
+ 	 */
+	public function deleteAction(Recette $recette, Request $request)
 	{
-		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:Recette');
-
-		$recette = $repository->find($id);
-
-		if (null === $recette) {
-			throw new NotFoundHttpException("La recette d'id ".$id." n'existe pas.");
-		}
-
 		$form = $this->createFormBuilder()->getForm();
 
 		if ($form->handleRequest($request)->isValid()) 

@@ -43,26 +43,26 @@ ram_recette_home:
         page: \d*
 
 ram_recette_view:
-    path:      /recette/view/{id}
+    path:      /recette/view/{recette_id}
     defaults:  { _controller: RamSavonBundle:Recette:view }
     requirements:
-        id: \d+
+        recette_id: \d+
 
 ram_recette_add:
     path:      /recette/add
     defaults:  { _controller: RamSavonBundle:Recette:add }
 
 ram_recette_edit:
-    path:      /recette/edit/{id}
+    path:      /recette/edit/{recette_id}
     defaults:  { _controller: RamSavonBundle:Recette:edit }
     requirements:
-        id: \d+
+        recette_id: \d+
 
 ram_recette_delete:
-    path:      /recette/delete/{id}
+    path:      /recette/delete/{recette_id}
     defaults:  { _controller: RamSavonBundle:Recette:delete }
     requirements:
-        id: \d+
+        recette_id: \d+
 
 # ===========================================================
 
