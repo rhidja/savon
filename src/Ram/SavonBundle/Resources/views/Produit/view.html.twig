@@ -1,65 +1,200 @@
 {# src/Ram/SavonBundle/Resources/view/Produit/view.html.twig #}
 
-{% extends "RamSavonBundle::layout.html.twig" %}
+{% extends "::admin_layout.html.twig" %}
 
 {% block title %}
-Lecture d'une annonce - {{ parent() }}
+	Produits
 {% endblock %}
 
-{% block ram_savon_body %}
-<div class="col-md-12">
-	<h2>{{ produit.nom }}</h2>
-	<i>Crée le {{ produit.dCre|date('d/m/Y') }}</i>
-	<hr>
-</div>
+{% block stylesheets %}
+	<!-- Bootstrap Core CSS -->
+	<link href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+	<!-- MetisMenu CSS -->
+	<link href="{{ asset('assets/vendor/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
+	<!-- Custom Fonts -->
+    <link href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('assets/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/vendor/datatables-responsive/css/responsive.dataTables.css') }}" rel="stylesheet">
+	<!-- Custom CSS -->
+	<link href="{{ asset('assets/dist/css/sb-admin-2.css') }}" rel="stylesheet">
+{% endblock %}
 
-<div class="col-md-12">	
-	<a href="{{ path('ram_produit_home') }}" class="btn btn-default">
-		<i class="glyphicon glyphicon-chevron-left"></i>
-		Retour à la liste
-	</a>
-	<a href="{{ path('ram_produit_edit', {'produit_id': produit.id}) }}" class="btn btn-default">
-		<i class="glyphicon glyphicon-edit"></i>
-		Modifier le produit
-	</a>
-	<a href="{{ path('ram_produit_delete', {'produit_id': produit.id}) }}" class="btn btn-danger">
-		<i class="glyphicon glyphicon-trash"></i>
-		Supprimer le produit
-	</a>
-	<hr>
-</div>
 
-<div class="col-md-12">
-	<div class="well  col-md-5">
-		<h4>Propriétés :</h4>
-		<hr>
-		<dl>
-			<dt>Type de produit : </dt><dd>{{ produit.type }}</dd>
-			<dt>Type de peaux : </dt><dd>{{ produit.typePeaux }}</dd>
-			<dt>Description : </dt><dd>{{ produit.description }}</dd>
-		</dl>
+{% block section %}
+
+	<div id="page-wrapper">
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <h1 class="page-header">Produits</h1>
+	        </div>
+	        <!-- /.col-lg-12 -->
+	    </div>
+	    <!-- /.row -->
+	    <div class="row">
+	    	<div class="col-lg-12">
+	    		<div class="panel panel-default">
+	    			<div class="panel-heading">
+	    				Fiche produit
+	    				
+	    					<div class="btn-group col-md-offset-10" role="group" aria-label="...">
+	    						<a href="{{ path('ram_produit_home') }}" class="btn btn-default" title="Retour à la liste">
+	    							<i class="glyphicon glyphicon-list"></i>	
+	    						</a>
+	    						<a href="{{ path('ram_produit_edit', {'produit_id': produit.id}) }}" class="btn btn-default" title="Modifier le produit">
+	    							<i class="glyphicon glyphicon-edit"></i>
+	    						</a>
+	    						<a href="{{ path('ram_produit_delete', {'produit_id': produit.id}) }}" class="btn btn-danger" title="Supprimer le produit">
+	    							<i class="glyphicon glyphicon-trash"></i>
+	    						</a> 
+	    					</div>
+	    				
+
+	    			</div>
+	                <!-- /.panel-heading -->
+	                <div class="panel-body">
+	                    <!-- /.table-responsive -->
+	                    <div class="well">
+	                        <h3>{{ produit.nom }}</h3>
+	                        <dl>
+	                        	<dt><i>Crée le : {{ produit.dCre|date('d/m/Y') }}</dd>
+	                        	<dt>Type de produit : {{ produit.type }}</dd>
+	                        	<dt>Type de peaux : {{ produit.typePeaux }}</dd>
+	                        </dl>
+	                        
+	                        <h4>Description : </h4>
+	                        <p> {{ produit.description }}</p>
+	                        <p>DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a specialized version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font Awesome icons in place of images. For complete documentation on DataTables, visit their website at <a target="_blank" href="https://datatables.net/">https://datatables.net/</a>.</p>
+	                        <!-- <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">View DataTables Documentation</a> -->
+	                    </div>
+	                </div>
+	                <!-- /.panel-body -->
+	            </div>
+	            <!-- /.panel -->
+	        </div>
+	        <!-- /.col-lg-12 -->
+	    </div>
+	    <!-- /.row -->
+	    <div class="row">
+	        <div class="col-lg-6">
+	            <div class="panel panel-default">
+	                <div class="panel-heading">
+	                    Liste des recettes
+	                </div>
+	                <!-- /.panel-heading -->
+	                <div class="panel-body">
+	                    <div class="table-responsive">
+	                        <table class="table table-hover">
+	                            <thead>
+	                                <tr>
+	                                    <th>#</th>
+	                                    <th>Nom</th>
+	                                    <th>Durée Sponif.</th>
+	                                    <th>Durée Cure</th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>                              
+									{% for recette in produit.recettes %}
+										<tr> 
+											<td>{{ recette.id }}</td> 
+											<td> 
+												<a href="{{ path('ram_produit_view', {'produit_id': recette.id}) }}"> 
+													{{ recette.nom }}
+												</a>
+											</td>
+											<td>{{ recette.dureeSponification }}</td>
+											<td>{{ recette.dureeCure }}</td>
+										</tr>
+									{% else %}
+										<tr>Pas (encore !) de recettes</tr>
+									{% endfor %}
+	                            </tbody>
+	                        </table>
+	                    </div>
+	                    <!-- /.table-responsive -->
+	                </div>
+	                <!-- /.panel-body -->
+	            </div>
+	            <!-- /.panel -->
+	        </div>
+	        <!-- /.col-lg-6 -->
+	        <div class="col-lg-6">
+	            <div class="panel panel-default">
+	                <div class="panel-heading">
+	                    Liste des séries
+	                </div>
+	                <!-- /.panel-heading -->
+	                <div class="panel-body">
+	                    <div class="table-responsive">
+	                        <table class="table">
+	                            <thead>
+	                                <tr>
+	                                    <th>#</th>
+	                                    <th>First Name</th>
+	                                    <th>Last Name</th>
+	                                    <th>Username</th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                                <tr class="success">
+	                                    <td>1</td>
+	                                    <td>Mark</td>
+	                                    <td>Otto</td>
+	                                    <td>@mdo</td>
+	                                </tr>
+	                                <tr class="info">
+	                                    <td>2</td>
+	                                    <td>Jacob</td>
+	                                    <td>Thornton</td>
+	                                    <td>@fat</td>
+	                                </tr>
+	                                <tr class="warning">
+	                                    <td>3</td>
+	                                    <td>Larry</td>
+	                                    <td>the Bird</td>
+	                                    <td>@twitter</td>
+	                                </tr>
+	                                <tr class="danger">
+	                                    <td>4</td>
+	                                    <td>John</td>
+	                                    <td>Smith</td>
+	                                    <td>@jsmith</td>
+	                                </tr>
+	                            </tbody>
+	                        </table>
+	                    </div>
+	                    <!-- /.table-responsive -->
+	                </div>
+	                <!-- /.panel-body -->
+	            </div>
+	            <!-- /.panel -->
+	        </div>
+	        <!-- /.col-lg-6 -->
+	    </div>
+	    <!-- /.row -->
 	</div>
+	<!-- /#page-wrapper -->
+{% endblock %}
 
-	<div class="well  col-md-7">
-		<h4>Liste de recettes :</h4>
-		<hr>
-		<table class="table">
-			<tr><td>Nom</td><td>Durée Sponif.</td><td>Durée Cure</td></tr>
-			{% for recette in produit.recettes %}
-				<tr> 
-					<td> 
-						<a href="{{ path('ram_produit_view', {'produit_id': recette.id}) }}"> 
-							{{ recette.nom }}
-						</a>
-					</td>
-					<td>{{ recette.dureeSponification }}</td>
-					<td>{{ recette.dureeCure }}</td>
-				</tr>
-			{% else %}
-				<tr>Pas (encore !) de recettes</tr>
-			{% endfor %}
-		</table>	
-	</div>
-</div>
 
+{% block javascripts %}
+	<!-- jQuery -->
+	<script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="{{ asset('assets/vendor/metisMenu/dist/metisMenu.min.js') }}"></script>
+	<!-- Custom Theme JavaScript -->
+	<script src="{{ asset('assets/dist/js/sb-admin-2.js') }}"></script>
+	<!-- DataTables JavaScript -->
+	<script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('assets/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
+
+	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+	<script>
+		$(document).ready(function() {
+			$('#dataTables-example').DataTable({
+				responsive: true
+			});
+		});
+	</script>
 {% endblock %}
