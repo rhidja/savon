@@ -52,7 +52,7 @@ class ProduitController extends Controller
 
 			$request->getSession()->getFlashBag()->add('notice', 'Produit bien enregistrée.');
 
-			return $this->redirect($this->generateUrl('ram_produit_view', array('id' => $produit->getId())));
+			return $this->redirect($this->generateUrl('ram_produit_view', array('produit_id' => $produit->getId())));
 		}
 
 		return $this->render('RamSavonBundle:Produit:add.html.twig', array('form' => $form->createView()));
@@ -73,7 +73,7 @@ class ProduitController extends Controller
 
 			$request->getSession()->getFlashBag()->add('notice', 'Produit bien enregistrée.');
 
-			return $this->redirect($this->generateUrl('ram_produit_view', array('id' => $produit->getId())));
+			return $this->redirect($this->generateUrl('ram_produit_view', array('produit_id' => $produit->getId())));
 		}
 
 		return $this->render('RamSavonBundle:Produit:edit.html.twig', array('produit' => $produit,'form' => $form->createView()));
