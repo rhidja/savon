@@ -47,7 +47,7 @@ class IngredientController extends Controller
 
 			$request->getSession()->getFlashBag()->add('notice', 'Ingredient bien enregistrée.');
 
-			return $this->redirect($this->generateUrl('ram_ingredient_view', array('id' => $ingredient->getId())));
+			return $this->redirect($this->generateUrl('ram_ingredient_view', array('ingredient_id' => $ingredient->getId())));
 		}
 
 		return $this->render('RamSavonBundle:Ingredient:add.html.twig', array('form' => $form->createView()));
@@ -68,7 +68,7 @@ class IngredientController extends Controller
 
 			$request->getSession()->getFlashBag()->add('notice', 'Ingredient bien enregistrée.');
 
-			return $this->redirect($this->generateUrl('ram_ingredient_view', array('id' => $ingredient->getId())));
+			return $this->redirect($this->generateUrl('ram_ingredient_view', array('ingredient_id' => $ingredient->getId())));
 		}
 
 		return $this->render('RamSavonBundle:Ingredient:edit.html.twig', array('ingredient' => $ingredient,'form' => $form->createView()));

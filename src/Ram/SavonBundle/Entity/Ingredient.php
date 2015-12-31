@@ -42,6 +42,13 @@ class Ingredient
      */
     private $type;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
    /**
     * @ORM\ManyToOne(targetEntity="Ram\SavonBundle\Entity\Categorie", cascade={"persist"})
     */    
@@ -129,6 +136,30 @@ class Ingredient
         return $this->type;
     }
 
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Ingredient
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+    
     /**
      * Set categorie
      *
