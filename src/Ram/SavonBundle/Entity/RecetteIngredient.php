@@ -5,12 +5,12 @@ namespace Ram\SavonBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Composition
+ * RecetteIngredient
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Ram\SavonBundle\Entity\CompositionRepository")
+ * @ORM\Entity(repositoryClass="Ram\SavonBundle\Entity\RecetteIngredientRepository")
  */
-class Composition
+class RecetteIngredient
 {
     /**
      * @var integer
@@ -20,20 +20,6 @@ class Composition
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="quantite", type="decimal")
-     */
-    private $quantite;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="unite", type="string", length=10)
-     */
-    private $unite;
 
     /**
      * @ORM\ManyToOne(targetEntity="Ram\SavonBundle\Entity\Recette")
@@ -48,6 +34,20 @@ class Composition
     private $ingredient;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(name="Quantity", type="float")
+     */
+    private $quantity;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Unite", type="string", length=255)
+     */
+    private $unite;
+
+    /**
      * Get id
      *
      * @return integer
@@ -58,27 +58,27 @@ class Composition
     }
 
     /**
-     * Set quantite
+     * Set quantity
      *
-     * @param string $quantite
+     * @param float $quantity
      *
-     * @return Composition
+     * @return RecetteIngredient
      */
-    public function setQuantite($quantite)
+    public function setQuantity($quantity)
     {
-        $this->quantite = $quantite;
+        $this->quantity = $quantity;
 
         return $this;
     }
 
     /**
-     * Get quantite
+     * Get quantity
      *
-     * @return string
+     * @return float
      */
-    public function getQuantite()
+    public function getQuantity()
     {
-        return $this->quantite;
+        return $this->quantity;
     }
 
     /**
@@ -86,7 +86,7 @@ class Composition
      *
      * @param string $unite
      *
-     * @return Composition
+     * @return RecetteIngredient
      */
     public function setUnite($unite)
     {
@@ -110,7 +110,7 @@ class Composition
      *
      * @param \Ram\SavonBundle\Entity\Recette $recette
      *
-     * @return Composition
+     * @return RecetteIngredient
      */
     public function setRecette(\Ram\SavonBundle\Entity\Recette $recette)
     {
@@ -134,7 +134,7 @@ class Composition
      *
      * @param \Ram\SavonBundle\Entity\Ingredient $ingredient
      *
-     * @return Composition
+     * @return RecetteIngredient
      */
     public function setIngredient(\Ram\SavonBundle\Entity\Ingredient $ingredient)
     {
