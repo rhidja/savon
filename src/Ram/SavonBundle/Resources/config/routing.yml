@@ -96,30 +96,33 @@ ram_ingredient_delete:
 
 # ===========================================================
 
-ram_composition_home:
-    path:      /composition/{page}
-    defaults: { _controller: RamSavonBundle:Composition:index, page: 1}
+ram_recette_ingredient_home:
+    path:      /recette_ingredient/{page}
+    defaults: { _controller: RamSavonBundle:RecetteIngredient:index, page: 1}
     requirements:
         page: \d*
 
-ram_composition_view:
-    path:      /composition/view/{id}
-    defaults:  { _controller: RamSavonBundle:Composition:view }
+ram_recette_ingredient_view:
+    path:      /recette_ingredient/view/{recette_id}/{ingredient_id}
+    defaults:  { _controller: RamSavonBundle:RecetteIngredient:view }
     requirements:
-        id: \d+
+        recette_id: \d+
+        ingredient_id : \d+
 
-ram_composition_add:
-    path:      /composition/add
-    defaults:  { _controller: RamSavonBundle:Composition:add }
+ram_recette_ingredient_add:
+    path:      /recette_ingredient/add
+    defaults:  { _controller: RamSavonBundle:RecetteIngredient:add }
 
-ram_composition_edit:
-    path:      /composition/edit/{id}
-    defaults:  { _controller: RamSavonBundle:Composition:edit }
+ram_recette_ingredient_edit:
+    path:      /recette_ingredient/edit/{recette_id}/{ingredient_id}
+    defaults:  { _controller: RamSavonBundle:RecetteIngredient:edit }
     requirements:
-        id: \d+
+        recette_id: \d+
+        ingredient_id : \d+
 
-ram_composition_delete:
-    path:      /composition/delete/{id}
-    defaults:  { _controller: RamSavonBundle:Composition:delete }
+ram_recette_ingredient_delete:
+    path:      /recette_ingredient/delete/{recette_id}/{ingredient_id}
+    defaults:  { _controller: RamSavonBundle:RecetteIngredient:delete }
     requirements:
-        id: \d+
+        recette_id: \d+
+        ingredient_id : \d+
