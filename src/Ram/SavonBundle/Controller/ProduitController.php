@@ -4,6 +4,8 @@ namespace Ram\SavonBundle\Controller;
 
 use Ram\SavonBundle\Entity\Produit;
 use Ram\SavonBundle\Form\ProduitType;
+use Ram\SavonBundle\Entity\Recette;
+use Ram\SavonBundle\Form\RecetteType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +33,10 @@ class ProduitController extends Controller
  	 */
 	public function viewAction(Produit $produit)
 	{	
-		return $this->render('RamSavonBundle:Produit:view.html.twig', array( 'produit' => $produit));
+		$recette = new Recette();
+		$form = $this->get('form.factory')->create(new RecetteType(), $recette);
+
+		return $this->render('RamSavonBundle:Produit:view.html.twig', array( 'produit' => $produit, 'form' => $form->createView()));
 	}
 
 	public function addAction(Request $request)

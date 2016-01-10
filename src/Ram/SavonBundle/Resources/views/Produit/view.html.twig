@@ -15,8 +15,10 @@
     <link href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('assets/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
 	<link href="{{ asset('assets/vendor/datatables-responsive/css/responsive.dataTables.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/vendor/bootstrapValidator/css/bootstrapValidator.min.css') }}" rel="stylesheet">
 	<!-- Custom CSS -->
 	<link href="{{ asset('assets/dist/css/sb-admin-2.css') }}" rel="stylesheet">
+
 {% endblock %}
 
 
@@ -35,20 +37,17 @@
 	    		<div class="panel panel-default">
 	    			<div class="panel-heading">
 	    				Fiche produit
-	    				
-	    					<div class="btn-group col-md-offset-10" role="group" aria-label="...">
-	    						<a href="{{ path('ram_produit_home') }}" class="btn btn-default" title="Retour à la liste">
-	    							<i class="glyphicon glyphicon-list"></i>	
-	    						</a>
-	    						<a href="{{ path('ram_produit_edit', {'produit_id': produit.id}) }}" class="btn btn-default" title="Modifier le produit">
-	    							<i class="glyphicon glyphicon-edit"></i>
-	    						</a>
-	    						<a href="{{ path('ram_produit_delete', {'produit_id': produit.id}) }}" class="btn btn-danger" title="Supprimer le produit">
-	    							<i class="glyphicon glyphicon-trash"></i>
-	    						</a> 
-	    					</div>
-	    				
-
+	    				<div class="btn-group col-md-offset-10" role="group" aria-label="...">
+	    					<a href="{{ path('ram_produit_home') }}" class="btn btn-default" title="Retour à la liste">
+	    						<i class="glyphicon glyphicon-list"></i>	
+	    					</a>
+	    					<a href="{{ path('ram_produit_edit', {'produit_id': produit.id}) }}" class="btn btn-default" title="Modifier le produit">
+	    						<i class="glyphicon glyphicon-edit"></i>
+	    					</a>
+	    					<a href="{{ path('ram_produit_delete', {'produit_id': produit.id}) }}" class="btn btn-danger" title="Supprimer le produit">
+	    						<i class="glyphicon glyphicon-trash"></i>
+	    					</a> 
+	    				</div>			
 	    			</div>
 	                <!-- /.panel-heading -->
 	                <div class="panel-body">
@@ -75,10 +74,15 @@
 	    </div>
 	    <!-- /.row -->
 	    <div class="row">
-	        <div class="col-lg-6">
+	        <div class="col-md-6">
 	            <div class="panel panel-default">
 	                <div class="panel-heading">
 	                    Liste des recettes
+	    				<div class="btn-group col-md-offset-9" role="group" aria-label="...">
+	    					<a id="recetteAddButton" href="#" class="btn btn-primary" title="Ajouter une nouvelle recette">
+	    						<i class="glyphicon glyphicon-plus"></i>
+	    					</a>
+	    				</div>	
 	                </div>
 	                <!-- /.panel-heading -->
 	                <div class="panel-body">
@@ -97,7 +101,7 @@
 										<tr> 
 											<td>{{ recette.id }}</td> 
 											<td> 
-												<a href="{{ path('ram_produit_view', {'produit_id': recette.id}) }}"> 
+												<a href="{{ path('ram_recette_view', {'recette_id': recette.id}) }}"> 
 													{{ recette.nom }}
 												</a>
 											</td>
@@ -117,7 +121,7 @@
 	            <!-- /.panel -->
 	        </div>
 	        <!-- /.col-lg-6 -->
-	        <div class="col-lg-6">
+	        <div class="col-md-6">
 	            <div class="panel panel-default">
 	                <div class="panel-heading">
 	                    Liste des séries
@@ -171,6 +175,12 @@
 	        <!-- /.col-lg-6 -->
 	    </div>
 	    <!-- /.row -->
+
+    	<!-- Formulaire ajout nouvelle recette. -->
+    	<div id="loginForm" style="display: none;">
+			{{ include("RamSavonBundle:Recette:form.html.twig") }}
+    	</div>
+
 	</div>
 	<!-- /#page-wrapper -->
 {% endblock %}
@@ -183,11 +193,75 @@
 	<script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 	<!-- Metis Menu Plugin JavaScript -->
 	<script src="{{ asset('assets/vendor/metisMenu/dist/metisMenu.min.js') }}"></script>
-	<!-- Custom Theme JavaScript -->
-	<script src="{{ asset('assets/dist/js/sb-admin-2.js') }}"></script>
 	<!-- DataTables JavaScript -->
 	<script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
 	<script src="{{ asset('assets/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
+	<script src="{{ asset('assets/vendor/bootstrapValidator/js/bootstrapValidator.min.js') }}"></script>
+	<!-- Custom Theme JavaScript -->
+	<script src="{{ asset('assets/dist/js/sb-admin-2.js') }}"></script>
+	<!-- Include bootbox.js -->
+	<script src="//oss.maxcdn.com/bootbox/4.2.0/bootbox.min.js"></script>
+	<!-- Include FOS JS -->
+	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+	<script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+
+	<script>
+		$(document).ready(function() {
+			$('#recetteForm').bootstrapValidator({
+				feedbackIcons: {
+					valid: 'glyphicon glyphicon-ok',
+					invalid: 'glyphicon glyphicon-remove',
+					validating: 'glyphicon glyphicon-refresh'
+				},
+				fields: {
+					username: {
+						validators: {
+							notEmpty: {
+								message: 'The username is required'
+							}
+						}
+					},
+					password: {
+						validators: {
+							notEmpty: {
+								message: 'The password is required'
+							}
+						}
+					}
+				}
+			}).on('success.form.bv', function(e)
+			{
+				e.preventDefault();
+				var form = $("#recetteForm");
+				$.ajax({
+					url: "{{path('ram_recette_add')}}",
+					type: form.attr('method'),
+					data: form.serialize(),
+					success: function(html) { 
+						$('#loginForm').style('display','none');
+					}
+				});
+			});
+
+	    	// Login button click handler
+		    $('#recetteAddButton').on('click', function() {
+		    	bootbox
+		    	.dialog({
+		    		title: 'Ajouter une nouvelle recette',
+		    		message: $('#loginForm'),
+		            show: false
+		            })
+		    	.on('shown.bs.modal', function() {
+		    		$('#loginForm').show()
+		    		.bootstrapValidator('resetForm', true);
+		                })
+		    	.on('hide.bs.modal', function(e) {
+		                $('#loginForm').hide().appendTo('body');
+		            })
+		    	.modal('show');
+		    });
+		});
+	</script>
 
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	<script>
