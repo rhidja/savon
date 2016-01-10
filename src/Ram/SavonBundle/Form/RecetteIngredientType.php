@@ -6,8 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Ram\SavonBundle\Entity\Ingredient;
+use Ram\SavonBundle\Entity\Recette;
 
-class CompositionType extends AbstractType
+class RecetteIngredientType extends AbstractType
 {
 	/**
 	 * @param FormBuilderInterface $builder
@@ -24,7 +25,7 @@ class CompositionType extends AbstractType
 			'class'    => 'RamSavonBundle:Recette',
 			'property' => 'nom',
 			))
-		->add('quantite')
+		->add('quantity')
 		->add('unite')
 		->add('save',      'submit')
 		;
@@ -36,7 +37,7 @@ class CompositionType extends AbstractType
 	public function setDefaultOptions(OptionsResolverInterface $resolver)
 	{
 		$resolver->setDefaults(array(
-			'data_class' => 'Ram\SavonBundle\Entity\Composition'
+			'data_class' => 'Ram\SavonBundle\Entity\RecetteIngredient'
 			));
 	}
 

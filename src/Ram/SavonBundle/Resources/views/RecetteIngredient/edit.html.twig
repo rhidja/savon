@@ -1,21 +1,64 @@
 {# src/Ram/SavonBundle/Resources/views/Recette/edit.html.twig #}
 
-{% extends "RamSavonBundle::layout.html.twig" %}
+{% extends "::admin_layout.html.twig" %}
 
 {% block title %}
-	Modifier un recette - {{ parent() }}
+	Modifier un recette
 {% endblock %}
 
-{% block ram_savon_body %}
+{% block stylesheets %}
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="{{ asset('assets/vendor/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link href="{{ asset('assets/dist/css/sb-admin-2.css') }}" rel="stylesheet">
+{% endblock %}
 
-	<h2>Modifier un recette</h2>
-	{{ include("RamSavonBundle:Recette:form.html.twig") }}
-	<p> Vous éditez un recette déjà existant. </p>
+{% block section %}
 
-	<p>
-		<a  href="{{ path('ram_recette_view', {'id': recette.id}) }}" class="btn btn-default">
-			<i class="glyphicon glyphicon-chevron-left"></i> Retour au recette
-		</a>
-	</p>
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Recettes</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Ajouter un ingrédient à une recette
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+							{{ include("RamSavonBundle:Recette:form.html.twig") }}
+                        </div>
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
+{% endblock %}
 
+{% block javascripts %}
+    <!-- jQuery -->
+    <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="{{ asset('assets/vendor/metisMenu/dist/metisMenu.min.js') }}"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="{{ asset('assets/dist/js/sb-admin-2.js') }}"></script>
 {% endblock %}

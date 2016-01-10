@@ -1,7 +1,7 @@
 {# src/Ram/SavonBundle/Resources/views/Produit/form.html.twig #}
 
 <div class="well">
-	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+	{{ form_start(form, {'attr': {'class': 'form-horizontal', 'id' : 'recetteForm'}}) }}
 
 	{{ form_errors(form) }}
 
@@ -47,6 +47,7 @@
 
 	<div class="form-group">
 		<div class="col-sm-12">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
 		</div>
 	</div>

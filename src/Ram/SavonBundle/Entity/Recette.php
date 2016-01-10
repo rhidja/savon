@@ -57,9 +57,9 @@ class Recette
     private $produit;
 
     /**
-     * @ORM\OneToMany(targetEntity="Ram\SavonBundle\Entity\Composition", mappedBy="recette", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Ram\SavonBundle\Entity\RecetteIngredient", mappedBy="recette", cascade={"persist"})
      */
-    private $composition;
+    private $recetteIngredient;
 
     /**
      * @var \DateTime
@@ -88,6 +88,8 @@ class Recette
         $this->dCre = new \Datetime();
         $this->composition = new ArrayCollection();
     }
+
+
 
     /**
      * Get id
@@ -292,36 +294,36 @@ class Recette
     }
 
     /**
-     * Add composition
+     * Add recetteIngredient
      *
-     * @param \Ram\SavonBundle\Entity\Composition $composition
+     * @param \Ram\SavonBundle\Entity\RecetteIngredient $recetteIngredient
      *
      * @return Recette
      */
-    public function addComposition(\Ram\SavonBundle\Entity\Composition $composition)
+    public function addRecetteIngredient(\Ram\SavonBundle\Entity\RecetteIngredient $recetteIngredient)
     {
-        $this->composition[] = $composition;
+        $this->recetteIngredient[] = $recetteIngredient;
 
         return $this;
     }
 
     /**
-     * Remove composition
+     * Remove recetteIngredient
      *
-     * @param \Ram\SavonBundle\Entity\Composition $composition
+     * @param \Ram\SavonBundle\Entity\RecetteIngredient $recetteIngredient
      */
-    public function removeComposition(\Ram\SavonBundle\Entity\Composition $composition)
+    public function removeRecetteIngredient(\Ram\SavonBundle\Entity\RecetteIngredient $recetteIngredient)
     {
-        $this->composition->removeElement($composition);
+        $this->recetteIngredient->removeElement($recetteIngredient);
     }
 
     /**
-     * Get composition
+     * Get recetteIngredient
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getComposition()
+    public function getRecetteIngredient()
     {
-        return $this->composition;
+        return $this->recetteIngredient;
     }
 }

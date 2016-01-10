@@ -47,6 +47,7 @@ class RecetteIngredient
      */
     private $unite;
 
+
     /**
      * Get id
      *

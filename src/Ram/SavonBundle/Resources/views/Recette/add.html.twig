@@ -1,24 +1,64 @@
 {# src/Ram/SavonBundle/Resources/views/Recette/add.html.twig #}
 
-{% extends "RamSavonBundle::layout.html.twig" %}
+{% extends "::admin_layout.html.twig" %}
 
 {% block title %}
-    Ajouter un nouveau recette - {{ parent() }}
+    Ajouter une nouvelle recette
 {% endblock %}
 
-{% block ram_savon_body %}
+{% block stylesheets %}
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="{{ asset('assets/vendor/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link href="{{ asset('assets/dist/css/sb-admin-2.css') }}" rel="stylesheet">
+{% endblock %}
 
-    <h2>Ajouter un nouveau recette</h2>
+{% block section %}
 
-    {{ include("RamSavonBundle:Recette:form.html.twig") }}
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Produits</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Ajouter une nouvelle recette
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            {{ include("RamSavonBundle:Recette:form.html.twig") }}
+                        </div>
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
+{% endblock %}
 
-    <p> Vous aller ajouter un nouveau savon. </p>
-
-    <p>
-        <a href="{{ path('ram_recette_home') }}" class="btn btn-default">
-            <i class="glyphicon glyphicon-chevron-left"></i>
-            Retour à la liste
-        </a>
-    </p>
-
+{% block javascripts %}
+    <!-- jQuery -->
+    <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="{{ asset('assets/vendor/metisMenu/dist/metisMenu.min.js') }}"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="{{ asset('assets/dist/js/sb-admin-2.js') }}"></script>
 {% endblock %}
