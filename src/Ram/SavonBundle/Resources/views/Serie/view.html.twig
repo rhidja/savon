@@ -1,0 +1,230 @@
+{# src/Ram/SavonBundle/Resources/view/Serie/view.html.twig #}
+
+{% extends "::admin_layout.html.twig" %}
+
+{% block title %}
+	Fiche de la serie
+{% endblock %}
+
+
+{% block stylesheets %}
+	<!-- Bootstrap Core CSS -->
+	<link href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+	<!-- MetisMenu CSS -->
+	<link href="{{ asset('assets/vendor/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
+	<!-- Custom Fonts -->
+    <link href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('assets/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/vendor/datatables-responsive/css/responsive.dataTables.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/vendor/bootstrapValidator/css/bootstrapValidator.min.css') }}" rel="stylesheet">
+	<!-- Custom CSS -->
+	<link href="{{ asset('assets/dist/css/sb-admin-2.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+
+{% block section %}
+
+	<div id="page-wrapper">
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <h1 class="page-header">Séries</h1>
+	        </div>
+	        <!-- /.col-lg-12 -->
+	    </div>
+	    <!-- /.row -->
+	    <div class="row">
+	    	<div class="col-lg-12">
+	    		<div class="panel panel-default">
+	    			<div class="panel-heading">
+	    				Fiche serie
+	    				<div class="btn-group col-md-offset-9" role="group" aria-label="...">
+	    					<a href="{{ path('ram_serie_home') }}" class="btn btn-default" title="Retour à la liste">
+	    						<i class="glyphicon glyphicon-list"></i>	
+	    					</a>
+	    					<a href="{{ path('ram_serie_edit', {'serie_id': serie.id}) }}" class="btn btn-default" title="Modifier une serie">
+	    						<i class="glyphicon glyphicon-edit"></i>
+	    					</a>
+	    					<a href="{{ path('ram_serie_delete', {'serie_id': serie.id}) }}" class="btn btn-danger" title="Supprimer une serie">
+	    						<i class="glyphicon glyphicon-trash"></i>
+	    					</a>
+	    				</div>			
+	    			</div>
+
+	                <!-- /.panel-heading -->
+	                <div class="panel-body">
+	                    <!-- /.table-responsive -->
+	                    <div class="well">
+	                        <h3>{{ serie.numSerie }}</h3>
+	                        <dl>
+	                        	<dt><i>Crée le : {{ serie.dCre|date('d/m/Y') }}</dt>
+	                        	<dt>Le produit : {{ serie.produit.nom }}</dt>
+								<dt>La recette : {{ serie.recette.nom }}</dt>
+								<dt>La quantité : {{ serie.quantity }}</dt>
+	                        </dl>
+	                        
+	                        <h4>Description : </h4>
+	                        <p> {{ serie.description }} </p>
+	                    </div>
+	                </div>
+	                <!-- /.panel-body -->
+	            </div>
+	            <!-- /.panel -->
+	        </div>
+	        <!-- /.col-lg-12 -->
+	    </div>
+	    <!-- /.row -->
+	    <div class="row">
+	        <div class="col-md-6">
+	            <div class="panel panel-default">
+	                <div class="panel-heading">
+	                    Liste de ingrédients :
+	    				<div class="btn-group col-md-offset-9" role="group" aria-label="...">
+	    					<a id="serieAddButton" href="#" class="btn btn-primary" title="Ajouter une nouvelle serie">
+	    						<i class="glyphicon glyphicon-plus"></i>
+	    					</a>
+	    				</div>	
+	                </div>
+	                <!-- /.panel-heading -->
+	                <div class="panel-body">
+	                    <div class="table-responsive">
+	                        <table class="table table-hover">
+	                            <thead>
+	                                <tr>
+	                                    <th>#</th>
+	                                    <th>Ingrédient</th>
+	                                    <th>Quantité</th>
+	                                    <th>Unité</th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+
+	                            </tbody>
+	                        </table>
+	                    </div>
+	                    <!-- /.table-responsive -->
+	                </div>
+	                <!-- /.panel-body -->
+	            </div>
+	            <!-- /.panel -->
+	        </div>
+	        <!-- /.col-lg-6 -->
+	        <div class="col-md-6">
+	            <div class="panel panel-default">
+	                <div class="panel-heading">
+	                    Liste des séries
+	                </div>
+	                <!-- /.panel-heading -->
+	                <div class="panel-body">
+
+
+	                </div>
+	                <!-- /.panel-body -->
+	            </div>
+	            <!-- /.panel -->
+	        </div>
+	        <!-- /.col-lg-6 -->
+	    </div>
+	    <!-- /.row -->
+
+    	<!-- Formulaire ajout nouvelle serie. -->
+    	<div id="loginForm" style="display: none;">
+			
+    	</div>
+
+	</div>
+	<!-- /#page-wrapper -->
+{% endblock %}
+
+
+{% block javascripts %}
+	<!-- jQuery -->
+	<script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="{{ asset('assets/vendor/metisMenu/dist/metisMenu.min.js') }}"></script>
+	<!-- DataTables JavaScript -->
+	<script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('assets/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
+	<script src="{{ asset('assets/vendor/bootstrapValidator/js/bootstrapValidator.min.js') }}"></script>
+	<!-- Custom Theme JavaScript -->
+	<script src="{{ asset('assets/dist/js/sb-admin-2.js') }}"></script>
+	<!-- Include bootbox.js -->
+	<script src="//oss.maxcdn.com/bootbox/4.2.0/bootbox.min.js"></script>
+	<!-- Include FOS JS -->
+	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+	<script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+
+	<script>
+		$(document).ready(function() {
+			$('#serieForm').bootstrapValidator({
+				feedbackIcons: {
+					valid: 'glyphicon glyphicon-ok',
+					invalid: 'glyphicon glyphicon-remove',
+					validating: 'glyphicon glyphicon-refresh'
+				},
+				fields: {
+					username: {
+						validators: {
+							notEmpty: {
+								message: 'The username is required'
+							}
+						}
+					},
+					password: {
+						validators: {
+							notEmpty: {
+								message: 'The password is required'
+							}
+						}
+					}
+				}
+			}).on('success.form.bv', function(e) 
+			{
+				e.preventDefault();
+				var form = $("#serieForm");
+				$.ajax({
+					url: "{{path('ram_serie_add')}}",
+					type: form.attr('method'),
+					data: form.serialize(),
+					success: function(html) { 
+						$('#loginForm').style('display','none');
+						//$("#profil .alert").removeClass("hide"); 
+					}
+				});
+			});
+
+	    	// Login button click handler
+		    $('#serieAddButton').on('click', function() {
+		    	bootbox
+		    	.dialog({
+		    		title: 'Ajouter une nouvelle serie',
+		    		message: $('#loginForm'),
+		            show: false // We will show it manually later
+		            })
+		    	.on('shown.bs.modal', function() {
+		    		$('#loginForm')
+		                    .show()                             // Show the login form
+		                    .bootstrapValidator('resetForm', true); // Reset form
+		                })
+		    	.on('hide.bs.modal', function(e) {
+		                // Bootbox will remove the modal (including the body which contains the login form)
+		                // after hiding the modal
+		                // Therefor, we need to backup the form
+		                $('#loginForm').hide().appendTo('body');
+		            })
+		    	.modal('show');
+		    });
+		});
+	</script>
+
+	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+	<script>
+		$(document).ready(function() {
+			$('#dataTables-example').DataTable({
+				responsive: true
+			});
+		});
+	</script>
+{% endblock %}

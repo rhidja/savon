@@ -3,6 +3,7 @@
 namespace Ram\SavonBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Serie
@@ -29,12 +30,26 @@ class Serie
     private $numSerie;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="quantity", type="string")
+     */
+    private $quantity;
+
+    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="quantite", type="datetime")
+     * @ORM\Column(name="d_cre", type="datetimetz")
      */
-    private $quantite;
+    private $dCre;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+    
     /**
      * @ORM\ManyToOne(targetEntity="Ram\SavonBundle\Entity\Produit")
      * @ORM\JoinColumn(nullable=false)
@@ -47,6 +62,19 @@ class Serie
      */
     private $recette;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Ram\SavonBundle\Entity\SerieIngredient", mappedBy="serie")
+     */
+    private $ingredients;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->dCre = new \Datetime();
+        $this->ingredients = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -83,27 +111,75 @@ class Serie
     }
 
     /**
-     * Set quantite
+     * Set quantity
      *
-     * @param \DateTime $quantite
+     * @param string $quantity
      *
      * @return Serie
      */
-    public function setQuantite($quantite)
+    public function setQuantity($quantity)
     {
-        $this->quantite = $quantite;
+        $this->quantity = $quantity;
 
         return $this;
     }
 
     /**
-     * Get quantite
+     * Get quantity
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getQuantite()
+    public function getQuantity()
     {
-        return $this->quantite;
+        return $this->quantity;
+    }
+
+    /**
+     * Set dCre
+     *
+     * @param string $dCre
+     *
+     * @return Serie
+     */
+    public function setDCre($dCre)
+    {
+        $this->dCre = $dCre;
+
+        return $this;
+    }
+
+    /**
+     * Get dCre
+     *
+     * @return string
+     */
+    public function getDCre()
+    {
+        return $this->dCre;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Serie
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**
@@ -152,5 +228,39 @@ class Serie
     public function getRecette()
     {
         return $this->recette;
+    }
+
+    /**
+     * Add ingredient
+     *
+     * @param \Ram\SavonBundle\Entity\SerieIngredient $ingredient
+     *
+     * @return Serie
+     */
+    public function addIngredient(\Ram\SavonBundle\Entity\SerieIngredient $ingredient)
+    {
+        $this->ingredients[] = $ingredient;
+
+        return $this;
+    }
+
+    /**
+     * Remove ingredient
+     *
+     * @param \Ram\SavonBundle\Entity\SerieIngredient $ingredient
+     */
+    public function removeIngredient(\Ram\SavonBundle\Entity\SerieIngredient $ingredient)
+    {
+        $this->ingredients->removeElement($ingredient);
+    }
+
+    /**
+     * Get ingredients
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIngredients()
+    {
+        return $this->ingredients;
     }
 }

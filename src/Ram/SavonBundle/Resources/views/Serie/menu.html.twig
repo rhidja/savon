@@ -1,0 +1,12 @@
+
+{# src/Ram/SavonBundle/Resources/views/Produit/menu.html.twig #}
+
+<ul class="nav nav-pills nav-stacked">
+  	{% for produit in listProduits %}
+    	<li>
+      		<a href="{{ path('ram_produit_view', {'recette_id': produit.id}) }}">
+        		{{ produit.title }}
+     		</a>
+    	</li>
+  	{% endfor %}
+</ul>

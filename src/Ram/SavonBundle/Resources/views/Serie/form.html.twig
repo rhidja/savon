@@ -1,0 +1,57 @@
+{# src/Ram/SavonBundle/Resources/views/Serie/form.html.twig #}
+
+<div class="well">
+	{{ form_start(form, {'attr': {'class': 'form-horizontal', 'id' : 'recetteForm'}}) }}
+
+	{{ form_errors(form) }}
+
+	<div class="form-group">
+		{{ form_label(form.numSerie, "Num de la série", {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+		{{ form_errors(form.numSerie) }}
+		<div class="col-md-9">
+			{{ form_widget(form.numSerie, {'attr': {'class': 'form-control'}}) }}
+		</div>
+	</div>
+
+	<div class="form-group">
+		{{ form_label(form.produit, "Produit", {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+		{{ form_errors(form.produit) }}
+		<div class="col-md-9">
+			{{ form_widget(form.produit, {'attr': {'class': 'form-control'}}) }}
+		</div>
+	</div>
+
+	<div class="form-group">
+		{{ form_label(form.recette, "Recette", {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+		{{ form_errors(form.recette) }}
+		<div class="col-md-9">
+			{{ form_widget(form.recette, {'attr': {'class': 'form-control'}}) }}
+		</div>
+	</div>
+
+	<div class="form-group">
+		{{ form_label(form.quantity, "Quantité", {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+		{{ form_errors(form.quantity) }}
+		<div class="col-md-9">
+			{{ form_widget(form.quantity, {'attr': {'class': 'form-control'}}) }}
+		</div>
+	</div>
+
+	<div class="form-group">
+		{{ form_label(form.description, "Description de la recette", {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+		{{ form_errors(form.description) }}
+		<div class="col-md-9">
+			{{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="col-sm-12">
+			{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
+		</div>
+	</div>
+	
+	{{ form_rest(form) }}
+  
+	{{ form_end(form) }}
+</div>

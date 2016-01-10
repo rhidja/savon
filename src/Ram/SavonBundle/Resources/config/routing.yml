@@ -126,3 +126,33 @@ ram_recette_ingredient_delete:
     requirements:
         recette_id: \d+
         ingredient_id : \d+
+
+# ===========================================================
+
+ram_serie_home:
+    path:      /serie/{page}
+    defaults: { _controller: RamSavonBundle:Serie:index, page: 1}
+    requirements:
+        page: \d*
+
+ram_serie_view:
+    path:      /serie/view/{serie_id}
+    defaults:  { _controller: RamSavonBundle:Serie:view }
+    requirements:
+        serie_id: \d+
+
+ram_serie_add:
+    path:      /serie/add
+    defaults:  { _controller: RamSavonBundle:Serie:add }
+
+ram_serie_edit:
+    path:      /serie/edit/{serie_id}
+    defaults:  { _controller: RamSavonBundle:Serie:edit }
+    requirements:
+        serie_id: \d+
+
+ram_serie_delete:
+    path:      /serie/delete/{serie_id}
+    defaults:  { _controller: RamSavonBundle:Serie:delete }
+    requirements:
+        serie_id: \d+
