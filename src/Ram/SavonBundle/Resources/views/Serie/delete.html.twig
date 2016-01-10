@@ -3,7 +3,7 @@
 {% extends "::admin_layout.html.twig" %}
 
 {% block title %}
-  	Supprimer une recette
+  	Supprimer une série
 {% endblock %}
 
 {% block stylesheets %}
@@ -31,19 +31,19 @@
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Supprimmer une recette existante
+					Supprimmer une série existante
 				</div>
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-lg-12">
 							<p>
-								Etes-vous certain de vouloir supprimer la recette "{{ recette.nom }}" ?
+								Etes-vous certain de vouloir supprimer la série "{{ serie.numSerie }}" ?
 							</p>
 
-							<form action="{{ path('ram_recette_delete', {'recette_id': recette.id}) }}" method="post">
-								<a href="{{ path('ram_recette_view', {'recette_id': recette.id}) }}" class="btn btn-default">
+							<form action="{{ path('ram_serie_delete', {'serie_id': serie.id}) }}" method="post">
+								<a href="{{ path('ram_serie_view', {'serie_id': serie.id}) }}" class="btn btn-default">
 									<i class="glyphicon glyphicon-chevron-left"></i>
-									Retour à la recette
+									Retour à la serie
 								</a>
 								<input type="submit" value="Supprimer" class="btn btn-danger" />
 								{{ form_rest(form) }}
