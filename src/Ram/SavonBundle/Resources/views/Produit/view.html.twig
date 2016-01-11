@@ -12,7 +12,7 @@
 	<!-- MetisMenu CSS -->
 	<link href="{{ asset('assets/vendor/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
 	<!-- Custom Fonts -->
-    <link href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('assets/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
 	<link href="{{ asset('assets/vendor/datatables-responsive/css/responsive.dataTables.css') }}" rel="stylesheet">
 	<link href="{{ asset('assets/vendor/bootstrapValidator/css/bootstrapValidator.min.css') }}" rel="stylesheet">
@@ -25,78 +25,76 @@
 {% block section %}
 
 	<div id="page-wrapper">
-	    <div class="row">
-	        <div class="col-lg-12">
-	            <h1 class="page-header">Produits</h1>
-	        </div>
-	        <!-- /.col-lg-12 -->
-	    </div>
-	    <!-- /.row -->
-	    <div class="row">
-	    	<div class="col-lg-12">
-	    		<div class="panel panel-default">
-	    			<div class="panel-heading">
-	    				Fiche produit
-	    				<div class="btn-group col-md-offset-10" role="group" aria-label="...">
-	    					<a href="{{ path('ram_produit_home') }}" class="btn btn-default" title="Retour à la liste">
-	    						<i class="glyphicon glyphicon-list"></i>	
-	    					</a>
-	    					<a href="{{ path('ram_produit_edit', {'produit_id': produit.id}) }}" class="btn btn-default" title="Modifier le produit">
-	    						<i class="glyphicon glyphicon-edit"></i>
-	    					</a>
-	    					<a href="{{ path('ram_produit_delete', {'produit_id': produit.id}) }}" class="btn btn-danger" title="Supprimer le produit">
-	    						<i class="glyphicon glyphicon-trash"></i>
-	    					</a> 
-	    				</div>			
-	    			</div>
-	                <!-- /.panel-heading -->
-	                <div class="panel-body">
-	                    <!-- /.table-responsive -->
-	                    <div class="well">
-	                        <h3>{{ produit.nom }}</h3>
-	                        <dl>
-	                        	<dt><i>Crée le : {{ produit.dCre|date('d/m/Y') }}</dd>
-	                        	<dt>Type de produit : {{ produit.type }}</dd>
-	                        	<dt>Type de peaux : {{ produit.typePeaux }}</dd>
-	                        </dl>
-	                        
-	                        <h4>Description : </h4>
-	                        <p> {{ produit.description }}</p>
-	                        <p>DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a specialized version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font Awesome icons in place of images. For complete documentation on DataTables, visit their website at <a target="_blank" href="https://datatables.net/">https://datatables.net/</a>.</p>
-	                        <!-- <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">View DataTables Documentation</a> -->
-	                    </div>
-	                </div>
-	                <!-- /.panel-body -->
-	            </div>
-	            <!-- /.panel -->
-	        </div>
-	        <!-- /.col-lg-12 -->
-	    </div>
-	    <!-- /.row -->
-	    <div class="row">
-	        <div class="col-md-6">
-	            <div class="panel panel-default">
-	                <div class="panel-heading">
-	                    Liste des recettes
-	    				<div class="btn-group col-md-offset-9" role="group" aria-label="...">
-	    					<a id="recetteAddButton" href="#" class="btn btn-primary" title="Ajouter une nouvelle recette">
-	    						<i class="glyphicon glyphicon-plus"></i>
-	    					</a>
-	    				</div>	
-	                </div>
-	                <!-- /.panel-heading -->
-	                <div class="panel-body">
-	                    <div class="table-responsive">
-	                        <table class="table table-hover">
-	                            <thead>
-	                                <tr>
-	                                    <th>#</th>
-	                                    <th>Nom</th>
-	                                    <th>Durée Sponif.</th>
-	                                    <th>Durée Cure</th>
-	                                </tr>
-	                            </thead>
-	                            <tbody>                              
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Produits</h1>
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+		<!-- /.row -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Fiche produit
+						<div class="btn-group col-md-offset-10" role="group" aria-label="...">
+							<a href="{{ path('ram_produit_home') }}" class="btn btn-default" title="Retour à la liste">
+								<i class="glyphicon glyphicon-list"></i>	
+							</a>
+							<a href="{{ path('ram_produit_edit', {'produit_id': produit.id}) }}" class="btn btn-default" title="Modifier le produit">
+								<i class="glyphicon glyphicon-edit"></i>
+							</a>
+							<a href="{{ path('ram_produit_delete', {'produit_id': produit.id}) }}" class="btn btn-danger" title="Supprimer le produit">
+								<i class="glyphicon glyphicon-trash"></i>
+							</a> 
+						</div>			
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<!-- /.table-responsive -->
+						<div class="well">
+							<h3>{{ produit.nom }}</h3>
+							<dl>
+								<dt><i>Crée le : {{ produit.dCre|date('d/m/Y') }}</dd>
+								<dt>Type de produit : {{ produit.type }}</dd>
+								<dt>Type de peaux : {{ produit.typePeaux }}</dd>
+							</dl>
+							
+							<h4>Description : </h4>
+							<p> {{ produit.description }}</p>
+						</div>
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+		<!-- /.row -->
+		<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<i class="fa fa-list"> Liste des recettes</i>
+						<div class="pull-right">
+						<div class="btn-group" role="group" aria-label="...">
+							<a href="#" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal" title="Ajouter une nouvelle recette"><i class="glyphicon glyphicon-plus"></i></a>
+						</div>
+						</div>
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Nom</th>
+										<th>Durée Sponif.</th>
+										<th>Durée Cure</th>
+									</tr>
+								</thead>
+								<tbody>                              
 									{% for recette in produit.recettes %}
 										<tr> 
 											<td>{{ recette.id }}</td> 
@@ -111,76 +109,68 @@
 									{% else %}
 										<tr>Pas (encore !) de recettes</tr>
 									{% endfor %}
-	                            </tbody>
-	                        </table>
-	                    </div>
-	                    <!-- /.table-responsive -->
-	                </div>
-	                <!-- /.panel-body -->
-	            </div>
-	            <!-- /.panel -->
-	        </div>
-	        <!-- /.col-lg-6 -->
-	        <div class="col-md-6">
-	            <div class="panel panel-default">
-	                <div class="panel-heading">
-	                    Liste des séries
-	                </div>
-	                <!-- /.panel-heading -->
-	                <div class="panel-body">
-	                    <div class="table-responsive">
-	                        <table class="table">
-	                            <thead>
-	                                <tr>
-	                                    <th>#</th>
-	                                    <th>First Name</th>
-	                                    <th>Last Name</th>
-	                                    <th>Username</th>
-	                                </tr>
-	                            </thead>
-	                            <tbody>
-	                                <tr class="success">
-	                                    <td>1</td>
-	                                    <td>Mark</td>
-	                                    <td>Otto</td>
-	                                    <td>@mdo</td>
-	                                </tr>
-	                                <tr class="info">
-	                                    <td>2</td>
-	                                    <td>Jacob</td>
-	                                    <td>Thornton</td>
-	                                    <td>@fat</td>
-	                                </tr>
-	                                <tr class="warning">
-	                                    <td>3</td>
-	                                    <td>Larry</td>
-	                                    <td>the Bird</td>
-	                                    <td>@twitter</td>
-	                                </tr>
-	                                <tr class="danger">
-	                                    <td>4</td>
-	                                    <td>John</td>
-	                                    <td>Smith</td>
-	                                    <td>@jsmith</td>
-	                                </tr>
-	                            </tbody>
-	                        </table>
-	                    </div>
-	                    <!-- /.table-responsive -->
-	                </div>
-	                <!-- /.panel-body -->
-	            </div>
-	            <!-- /.panel -->
-	        </div>
-	        <!-- /.col-lg-6 -->
-	    </div>
-	    <!-- /.row -->
+								</tbody>
+							</table>
+						</div>
+						<!-- /.table-responsive -->
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+			<!-- /.col-lg-6 -->
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Liste des séries
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th>Username</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="success">
+										<td>1</td>
+										<td>Mark</td>
+										<td>Otto</td>
+										<td>@mdo</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- /.table-responsive -->
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
 
-    	<!-- Formulaire ajout nouvelle recette. -->
-    	<div id="loginForm" style="display: none;">
-			{{ include("RamSavonBundle:Recette:form.html.twig") }}
-    	</div>
-
+				<!-- Modal -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog" role="document">
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">Ajouter une recette</h4>
+					  </div>
+					  <div class="modal-body">
+							<!-- Formulaire ajout nouvelle recette. -->
+							{{ include("RamSavonBundle:Recette:form.html.twig") }}
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<!-- /.col-lg-6 -->
+		</div>
+		<!-- /.row -->
 	</div>
 	<!-- /#page-wrapper -->
 {% endblock %}
@@ -207,7 +197,8 @@
 
 	<script>
 		$(document).ready(function() {
-			$('#recetteForm').bootstrapValidator({
+
+/*			$('#recetteForm').bootstrapValidator({
 				feedbackIcons: {
 					valid: 'glyphicon glyphicon-ok',
 					invalid: 'glyphicon glyphicon-remove',
@@ -243,23 +234,23 @@
 				});
 			});
 
-	    	// Login button click handler
-		    $('#recetteAddButton').on('click', function() {
-		    	bootbox
-		    	.dialog({
-		    		title: 'Ajouter une nouvelle recette',
-		    		message: $('#loginForm'),
-		            show: false
-		            })
-		    	.on('shown.bs.modal', function() {
-		    		$('#loginForm').show()
-		    		.bootstrapValidator('resetForm', true);
-		                })
-		    	.on('hide.bs.modal', function(e) {
-		                $('#loginForm').hide().appendTo('body');
-		            })
-		    	.modal('show');
-		    });
+			// Login button click handler
+			$('#recetteAddButton').on('click', function() {
+				bootbox
+				.dialog({
+					title: 'Ajouter une nouvelle recette',
+					message: $('#loginForm'),
+					show: false
+					})
+				.on('shown.bs.modal', function() {
+					$('#loginForm').show()
+					.bootstrapValidator('resetForm', true);
+						})
+				.on('hide.bs.modal', function(e) {
+						$('#loginForm').hide().appendTo('body');
+					})
+				.modal('show');
+			});*/
 		});
 	</script>
 
