@@ -13,7 +13,7 @@
 	<!-- MetisMenu CSS -->
 	<link href="{{ asset('assets/vendor/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
 	<!-- Custom Fonts -->
-    <link href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('assets/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
 	<link href="{{ asset('assets/vendor/datatables-responsive/css/responsive.dataTables.css') }}" rel="stylesheet">
 	<link href="{{ asset('assets/vendor/bootstrapValidator/css/bootstrapValidator.min.css') }}" rel="stylesheet">
@@ -26,170 +26,115 @@
 {% block section %}
 
 	<div id="page-wrapper">
-	    <div class="row">
-	        <div class="col-lg-12">
-	            <h1 class="page-header">Recettes</h1>
-	        </div>
-	        <!-- /.col-lg-12 -->
-	    </div>
-	    <!-- /.row -->
-	    <div class="row">
-	    	<div class="col-lg-12">
-	    		<div class="panel panel-default">
-	    			<div class="panel-heading">
-	    				Fiche recette
-	    				<div class="btn-group col-md-offset-10" role="group" aria-label="...">
-	    					<a href="{{ path('ram_recette_home') }}" class="btn btn-default" title="Retour à la liste">
-	    						<i class="glyphicon glyphicon-list"></i>	
-	    					</a>
-	    					<a href="{{ path('ram_recette_edit', {'recette_id': recette.id}) }}" class="btn btn-default" title="Modifier une recette">
-	    						<i class="glyphicon glyphicon-edit"></i>
-	    					</a>
-	    					<a href="{{ path('ram_recette_delete', {'recette_id': recette.id}) }}" class="btn btn-danger" title="Supprimer une recette">
-	    						<i class="glyphicon glyphicon-trash"></i>
-	    					</a> 
-	    				</div>			
-	    			</div>
-
-	                <!-- /.panel-heading -->
-	                <div class="panel-body">
-	                    <!-- /.table-responsive -->
-	                    <div class="well">
-	                        <h3>{{ recette.nom }}</h3>
-	                        <dl>
-	                        	<dt><i>Crée le : {{ recette.dCre|date('d/m/Y') }}</dt>
-	                        	<dt>Le produit : {{ recette.produit.nom }}</dt>
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Recettes</h1>
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+		<!-- /.row -->
+		<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						<div class="col-md-6"><h4>Fiche recette</h4></div>
+						<div class="col-md-6">
+							<div class="pull-right">
+								<div class="btn-group" role="group" aria-label="...">
+									<a href="{{ path('ram_recette_home') }}" class="btn btn-default" title="Retour à la liste">
+										<i class="glyphicon glyphicon-list"></i>	
+									</a>
+									<a href="{{ path('ram_recette_edit', {'recette_id': recette.id}) }}" class="btn btn-default" title="Modifier une recette">
+										<i class="glyphicon glyphicon-edit"></i>
+									</a>
+									<a href="{{ path('ram_recette_delete', {'recette_id': recette.id}) }}" class="btn btn-danger" title="Supprimer une recette">
+										<i class="glyphicon glyphicon-trash"></i>
+									</a> 
+								</div>
+							</div>
+						</div>		
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<!-- /.table-responsive -->
+						<div class="well">
+							<h3>{{ recette.nom }}</h3>
+							<dl>
+								<dt><i>Crée le : {{ recette.dCre|date('d/m/Y') }}</dt>
+								<dt>
+									Le produit : <a href="{{ path('ram_produit_view', {'produit_id': recette.produit.id}) }}" title="Supprimer une recette">{{ recette.produit.nom }}</a>
+								</dt>
 								<dt>Durée de sponification : {{ recette.dureeSponification }}</dt>
 								<dt>Durée de cure : {{ recette.dureeCure }}</dt>
-	                        </dl>
-	                        
-	                        <h4>Description : </h4>
-	                        <p> {{ recette.description }}</p>
-	                        <p>DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a specialized version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font Awesome icons in place of images. For complete documentation on DataTables, visit their website at <a target="_blank" href="https://datatables.net/">https://datatables.net/</a>.</p>
-	                        <!-- <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">View DataTables Documentation</a> -->
-	                    </div>
-	                </div>
-	                <!-- /.panel-body -->
-	            </div>
-	            <!-- /.panel -->
-	        </div>
-	        <!-- /.col-lg-12 -->
-	    </div>
-	    <!-- /.row -->
-	    <div class="row">
-	        <div class="col-md-6">
-	            <div class="panel panel-default">
-	                <div class="panel-heading">
-	                    Liste de ingrédients :
-	    				<div class="btn-group col-md-offset-9" role="group" aria-label="...">
-	    					<a id="recetteAddButton" href="#" class="btn btn-primary" title="Ajouter une nouvelle recette">
-	    						<i class="glyphicon glyphicon-plus"></i>
-	    					</a>
-	    				</div>	
-	                </div>
-	                <!-- /.panel-heading -->
-	                <div class="panel-body">
-	                    <div class="table-responsive">
+							</dl>
+							<h4>Description : </h4>
+							<p> {{ recette.description }}</p>
+						</div>
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+			<!-- /.col-lg-16 -->
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						<div class="col-md-6"><h4>Liste de ingrédients</h4></div>
+						<div class="col-md-6">
+							<div class="pull-right">
+								<div class="btn-group" role="group" aria-label="...">
+									<a id="recetteAddButton" href="#" class="btn btn-primary" title="Ajouter une nouvelle recette">
+										<i class="glyphicon glyphicon-plus"></i>
+									</a>
+								</div>
+							</div>
+						</div>	
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Ingrédient</th>
+										<th>Quantité</th>
+										<th>Unité</th>
+									</tr>
+								</thead>
+								<tbody> 
+									{% for compo in recette.recetteIngredient %}
+									<tr> 
+										<td></td>
+										<td>
+											<a href="{{ path('ram_ingredient_view', {'ingredient_id': compo.ingredient.id}) }}"> 
+												{{ compo.ingredient.nom }}
+											</a>
+									
+										</td>
+										<td>{{ compo.quantity }}</td>
+										<td>{{ compo.unite }}</td>
+									</tr>
+									{% else %}
+									<tr>Pas (encore !) de recettes</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+						<!-- /.table-responsive -->
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+			<!-- /.col-lg-6 -->
+		</div>
+		<!-- /.row -->
 
-
-
-
-	                        <table class="table table-hover">
-	                            <thead>
-	                                <tr>
-	                                    <th>#</th>
-	                                    <th>Ingrédient</th>
-	                                    <th>Quantité</th>
-	                                    <th>Unité</th>
-	                                </tr>
-	                            </thead>
-	                            <tbody> 
-
-	                            	{% for compo in recette.recetteIngredient %}
-	                            	<tr> 
-	                            		<td></td>
-	                            		<td>
-	                            			<a href="{{ path('ram_ingredient_view', {'ingredient_id': compo.ingredient.id}) }}"> 
-	                            				{{ compo.ingredient.nom }}
-	                            			</a>
-                            		
-	                            		</td>
-	                            		<td>{{ compo.quantity }}</td>
-	                            		<td>{{ compo.unite }}</td>
-	                            	</tr>
-	                            	{% else %}
-	                            	<tr>Pas (encore !) de recettes</tr>
-	                            	{% endfor %}
-	                            </tbody>
-	                        </table>
-	                    </div>
-	                    <!-- /.table-responsive -->
-	                </div>
-	                <!-- /.panel-body -->
-	            </div>
-	            <!-- /.panel -->
-	        </div>
-	        <!-- /.col-lg-6 -->
-	        <div class="col-md-6">
-	            <div class="panel panel-default">
-	                <div class="panel-heading">
-	                    Liste des séries
-	                </div>
-	                <!-- /.panel-heading -->
-	                <div class="panel-body">
-	                    <div class="table-responsive">
-	                        <table class="table">
-	                            <thead>
-	                                <tr>
-	                                    <th>#</th>
-	                                    <th>First Name</th>
-	                                    <th>Last Name</th>
-	                                    <th>Username</th>
-	                                </tr>
-	                            </thead>
-	                            <tbody>
-	                                <tr class="success">
-	                                    <td>1</td>
-	                                    <td>Mark</td>
-	                                    <td>Otto</td>
-	                                    <td>@mdo</td>
-	                                </tr>
-	                                <tr class="info">
-	                                    <td>2</td>
-	                                    <td>Jacob</td>
-	                                    <td>Thornton</td>
-	                                    <td>@fat</td>
-	                                </tr>
-	                                <tr class="warning">
-	                                    <td>3</td>
-	                                    <td>Larry</td>
-	                                    <td>the Bird</td>
-	                                    <td>@twitter</td>
-	                                </tr>
-	                                <tr class="danger">
-	                                    <td>4</td>
-	                                    <td>John</td>
-	                                    <td>Smith</td>
-	                                    <td>@jsmith</td>
-	                                </tr>
-	                            </tbody>
-	                        </table>
-	                    </div>
-	                    <!-- /.table-responsive -->
-	                </div>
-	                <!-- /.panel-body -->
-	            </div>
-	            <!-- /.panel -->
-	        </div>
-	        <!-- /.col-lg-6 -->
-	    </div>
-	    <!-- /.row -->
-
-    	<!-- Formulaire ajout nouvelle recette. -->
-    	<div id="loginForm" style="display: none;">
+		<!-- Formulaire ajout nouvelle recette. -->
+		<div id="loginForm" style="display: none;">
 			{{ include("RamSavonBundle:RecetteIngredient:form.html.twig") }}
-    	</div>
-
+		</div>
 	</div>
 	<!-- /#page-wrapper -->
 {% endblock %}
@@ -253,27 +198,27 @@
 				});
 			});
 
-	    	// Login button click handler
-		    $('#recetteAddButton').on('click', function() {
-		    	bootbox
-		    	.dialog({
-		    		title: 'Ajouter une nouvelle recette',
-		    		message: $('#loginForm'),
-		            show: false // We will show it manually later
-		            })
-		    	.on('shown.bs.modal', function() {
-		    		$('#loginForm')
-		                    .show()                             // Show the login form
-		                    .bootstrapValidator('resetForm', true); // Reset form
-		                })
-		    	.on('hide.bs.modal', function(e) {
-		                // Bootbox will remove the modal (including the body which contains the login form)
-		                // after hiding the modal
-		                // Therefor, we need to backup the form
-		                $('#loginForm').hide().appendTo('body');
-		            })
-		    	.modal('show');
-		    });
+			// Login button click handler
+			$('#recetteAddButton').on('click', function() {
+				bootbox
+				.dialog({
+					title: 'Ajouter une nouvelle recette',
+					message: $('#loginForm'),
+					show: false // We will show it manually later
+					})
+				.on('shown.bs.modal', function() {
+					$('#loginForm')
+							.show()                             // Show the login form
+							.bootstrapValidator('resetForm', true); // Reset form
+						})
+				.on('hide.bs.modal', function(e) {
+						// Bootbox will remove the modal (including the body which contains the login form)
+						// after hiding the modal
+						// Therefor, we need to backup the form
+						$('#loginForm').hide().appendTo('body');
+					})
+				.modal('show');
+			});
 		});
 	</script>
 
