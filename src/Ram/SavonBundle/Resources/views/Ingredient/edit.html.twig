@@ -3,7 +3,7 @@
 {% extends "::admin_layout.html.twig" %}
 
 {% block title %}
-	Modifier un ingredient - {{ parent() }}
+	Modifier un ingrédient
 {% endblock %}
 
 {% block stylesheets %}
@@ -22,7 +22,7 @@
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Ingrédient</h1>
+            <h1 class="page-header">Ingrédients</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -30,8 +30,21 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    Modifier un ingrédient
+                <div class="panel-heading clearfix">
+                    <div class="col-md-6">
+                        <h4>Modifier un ingrédient</h4>
+                    </div>
+                    <div class="pull-right">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <a href="{{ path('ram_ingredient_view', {'ingredient_id': ingredient.id}) }}" class="btn btn-default" title="Retour à la fiche de l'ingrédient">
+                                <i class="glyphicon glyphicon-chevron-left"></i>
+                            </a>
+
+                            <a href="{{ path('ram_ingredient_delete', {'ingredient_id': ingredient.id}) }}" class="btn btn-danger" title="Supprimer l'ingrédient">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <div class="row">

@@ -1,5 +1,4 @@
-{# src/Ram/SavonBundle/Resources/views/Ingrédient/form.html.twig #}
-
+{# src/Ram/SavonBundle/Resources/views/Ingredient/form.html.twig #}
 
 {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
@@ -47,14 +46,9 @@
 
 <div class="form-group">
 	<div class="col-sm-12">
-		<a href="{{ path('ram_ingredient_home') }}" class="btn btn-default col-md-offset-10">
-			<i class="glyphicon glyphicon-chevron-left"></i>
-			Retour à la liste
-		</a>
 		{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
 	</div>
 </div>
-
 
 {{ form_rest(form) }}
 
