@@ -47,7 +47,7 @@ class RecetteController extends Controller
 			$em->persist($recette);
 			$em->flush();
 			$request->getSession()->getFlashBag()->add('notice', 'Recette bien enregistrée.');
-			return $this->redirect($this->generateUrl('ram_recette_view', array('id' => $recette->getId())));
+			return $this->redirect($this->generateUrl('ram_recette_view', array('recette_id' => $recette->getId())));
 		}
 
 		return $this->render('RamSavonBundle:Recette:add.html.twig', array('form' => $form->createView()));

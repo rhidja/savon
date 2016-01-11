@@ -57,7 +57,11 @@
 													{{ recette.nom }}
 												</a>
 											</td>
-											<td>{{ recette.produit.nom }}</td>
+											<td>
+												<a href="{{ path('ram_produit_view', {'produit_id': recette.produit.id}) }}"> 
+													{{ recette.produit.nom }}
+												</a>
+											</td>
 											<td>{{ recette.dureeSponification }}</td>
 											<td>{{ recette.dureeCure }}</td>
 											<td>{{ recette.dCre|date('d/m/Y') }}</td>
