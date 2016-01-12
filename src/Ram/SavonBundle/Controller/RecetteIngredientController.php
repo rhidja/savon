@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-
 class RecetteIngredientController extends Controller
 {
 	public function indexAction($page)
@@ -53,10 +52,8 @@ class RecetteIngredientController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($recetteIngredient);
 			$em->flush();
-
 			$request->getSession()->getFlashBag()->add('notice', 'RecetteIngredient bien enregistrée.');
-
-			return $this->redirect($this->generateUrl('ram_recette_ingredient_view', array('id' => $recetteIngredient->getId())));
+			return $this->redirect($this->generateUrl('ram_recette_view', array('recette_id' => $recetteIngredient->getRecette()->getId())));
 		}
 
 		return $this->render('RamSavonBundle:RecetteIngredient:add.html.twig', array('form' => $form->createView()));
@@ -65,7 +62,6 @@ class RecetteIngredientController extends Controller
 	public function editAction($id, Request $request)
 	{
 		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:RecetteIngredient');
-
 		$recetteIngredient = $repository->find($id);
 
 		if (null === $recetteIngredient) {
@@ -79,35 +75,27 @@ class RecetteIngredientController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($recetteIngredient);
 			$em->flush();
-
 			$request->getSession()->getFlashBag()->add('notice', 'RecetteIngredient bien enregistrée.');
-
 			return $this->redirect($this->generateUrl('ram_recette_ingredient_view', array('id' => $recetteIngredient->getId())));
 		}
-
 		return $this->render('RamSavonBundle:RecetteIngredient:edit.html.twig', array('recetteIngredient' => $recetteIngredient,'form' => $form->createView()));
 	}
 
 	public function deleteAction($id, Request $request)
 	{
 		$repository = $this->getDoctrine()->getManager()->getRepository('RamSavonBundle:RecetteIngredient');
-
 		$recetteIngredient = $repository->find($id);
-
 		if (null === $recetteIngredient) {
 			throw new NotFoundHttpException("Le recetteIngredient d'id ".$id." n'existe pas.");
 		}
 
 		$form = $this->createFormBuilder()->getForm();
-
 		if ($form->handleRequest($request)->isValid()) 
 		{
 			$em = $this->getDoctrine()->getManager();
 			$em->remove($recetteIngredient);
 			$em->flush();
-
 			$request->getSession()->getFlashBag()->add('info', "Le recetteIngredient a bien été supprimée.");
-
 			return $this->redirect($this->generateUrl('ram_recette_ingredient_home'));
 		}
 
@@ -116,7 +104,6 @@ class RecetteIngredientController extends Controller
 			'form'   => $form->createView()
 			));	
 	}
-
 
 	public function menuAction($limit)
 	{

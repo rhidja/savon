@@ -3,9 +3,8 @@
 {% extends "::admin_layout.html.twig" %}
 
 {% block title %}
-	Fiche de recette - {{ parent() }}
+	Fiche de recette
 {% endblock %}
-
 
 {% block stylesheets %}
 	<!-- Bootstrap Core CSS -->
@@ -19,9 +18,7 @@
 	<link href="{{ asset('assets/vendor/bootstrapValidator/css/bootstrapValidator.min.css') }}" rel="stylesheet">
 	<!-- Custom CSS -->
 	<link href="{{ asset('assets/dist/css/sb-admin-2.css') }}" rel="stylesheet">
-
 {% endblock %}
-
 
 {% block section %}
 
@@ -83,7 +80,7 @@
 						<div class="col-md-6">
 							<div class="pull-right">
 								<div class="btn-group" role="group" aria-label="...">
-									<a id="recetteAddButton" href="#" class="btn btn-primary" title="Ajouter une nouvelle recette">
+									<a id="recetteAddButton" href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal" title="Ajouter une nouvelle recette">
 										<i class="glyphicon glyphicon-plus"></i>
 									</a>
 								</div>
@@ -131,10 +128,22 @@
 		</div>
 		<!-- /.row -->
 
-		<!-- Formulaire ajout nouvelle recette. -->
-		<div id="loginForm" style="display: none;">
-			{{ include("RamSavonBundle:RecetteIngredient:form.html.twig") }}
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">Ajouter une recette</h4>
+					</div>
+					<div class="modal-body">
+						<!-- Formulaire ajout nouvelle recette. -->
+						{{ include("RamSavonBundle:RecetteIngredient:form.html.twig") }}
+					</div>
+				</div>
+			</div>
 		</div>
+		<!-- / Modal -->
 	</div>
 	<!-- /#page-wrapper -->
 {% endblock %}
@@ -158,69 +167,6 @@
 	<!-- Include FOS JS -->
 	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 	<script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
-
-	<script>
-		$(document).ready(function() {
-			$('#recetteForm').bootstrapValidator({
-				feedbackIcons: {
-					valid: 'glyphicon glyphicon-ok',
-					invalid: 'glyphicon glyphicon-remove',
-					validating: 'glyphicon glyphicon-refresh'
-				},
-				fields: {
-					username: {
-						validators: {
-							notEmpty: {
-								message: 'The username is required'
-							}
-						}
-					},
-					password: {
-						validators: {
-							notEmpty: {
-								message: 'The password is required'
-							}
-						}
-					}
-				}
-			}).on('success.form.bv', function(e) 
-			{
-				e.preventDefault();
-				var form = $("#recetteForm");
-				$.ajax({
-					url: "{{path('ram_recette_add')}}",
-					type: form.attr('method'),
-					data: form.serialize(),
-					success: function(html) { 
-						$('#loginForm').style('display','none');
-						//$("#profil .alert").removeClass("hide"); 
-					}
-				});
-			});
-
-			// Login button click handler
-			$('#recetteAddButton').on('click', function() {
-				bootbox
-				.dialog({
-					title: 'Ajouter une nouvelle recette',
-					message: $('#loginForm'),
-					show: false // We will show it manually later
-					})
-				.on('shown.bs.modal', function() {
-					$('#loginForm')
-							.show()                             // Show the login form
-							.bootstrapValidator('resetForm', true); // Reset form
-						})
-				.on('hide.bs.modal', function(e) {
-						// Bootbox will remove the modal (including the body which contains the login form)
-						// after hiding the modal
-						// Therefor, we need to backup the form
-						$('#loginForm').hide().appendTo('body');
-					})
-				.modal('show');
-			});
-		});
-	</script>
 
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	<script>

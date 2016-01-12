@@ -1,7 +1,7 @@
 {# src/Ram/SavonBundle/Resources/views/Recette/form.html.twig #}
 
 <div class="well">
-	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+	{{ form_start(form, {'action' : path('ram_recette_ingredient_add'), 'attr': {'class': 'form-horizontal'}}) }}
 
 	{{ form_errors(form) }}
 
