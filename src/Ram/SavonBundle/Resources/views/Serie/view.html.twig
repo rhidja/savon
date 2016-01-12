@@ -13,7 +13,7 @@
 	<!-- MetisMenu CSS -->
 	<link href="{{ asset('assets/vendor/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
 	<!-- Custom Fonts -->
-    <link href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('assets/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
 	<link href="{{ asset('assets/vendor/datatables-responsive/css/responsive.dataTables.css') }}" rel="stylesheet">
 	<link href="{{ asset('assets/vendor/bootstrapValidator/css/bootstrapValidator.min.css') }}" rel="stylesheet">
@@ -22,116 +22,116 @@
 
 {% endblock %}
 
-
 {% block section %}
-
 	<div id="page-wrapper">
-	    <div class="row">
-	        <div class="col-lg-12">
-	            <h1 class="page-header">Séries</h1>
-	        </div>
-	        <!-- /.col-lg-12 -->
-	    </div>
-	    <!-- /.row -->
-	    <div class="row">
-	    	<div class="col-lg-12">
-	    		<div class="panel panel-default">
-	    			<div class="panel-heading">
-	    				Fiche serie
-	    				<div class="btn-group col-md-offset-9" role="group" aria-label="...">
-	    					<a href="{{ path('ram_serie_home') }}" class="btn btn-default" title="Retour à la liste">
-	    						<i class="glyphicon glyphicon-list"></i>	
-	    					</a>
-	    					<a href="{{ path('ram_serie_edit', {'serie_id': serie.id}) }}" class="btn btn-default" title="Modifier une serie">
-	    						<i class="glyphicon glyphicon-edit"></i>
-	    					</a>
-	    					<a href="{{ path('ram_serie_delete', {'serie_id': serie.id}) }}" class="btn btn-danger" title="Supprimer une serie">
-	    						<i class="glyphicon glyphicon-trash"></i>
-	    					</a>
-	    				</div>			
-	    			</div>
-
-	                <!-- /.panel-heading -->
-	                <div class="panel-body">
-	                    <!-- /.table-responsive -->
-	                    <div class="well">
-	                        <h3>{{ serie.numSerie }}</h3>
-	                        <dl>
-	                        	<dt><i>Crée le : {{ serie.dCre|date('d/m/Y') }}</dt>
-	                        	<dt>Le produit : {{ serie.produit.nom }}</dt>
-								<dt>La recette : {{ serie.recette.nom }}</dt>
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Séries</h1>
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+		<!-- /.row -->
+		<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						<div class="col-md-6"><h4>Fiche serie</h4></div>
+						<div class="col-md-6">
+							<div class="pull-right">
+								<div class="btn-group" role="group" aria-label="...">
+									<a href="{{ path('ram_serie_home') }}" class="btn btn-default" title="Retour à la liste">
+										<i class="glyphicon glyphicon-list"></i>	
+									</a>
+									<a href="{{ path('ram_serie_edit', {'serie_id': serie.id}) }}" class="btn btn-default" title="Modifier une serie">
+										<i class="glyphicon glyphicon-edit"></i>
+									</a>
+									<a href="{{ path('ram_serie_delete', {'serie_id': serie.id}) }}" class="btn btn-danger" title="Supprimer une serie">
+										<i class="glyphicon glyphicon-trash"></i>
+									</a>
+								</div>
+							</div>
+						</div>				
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<!-- /.table-responsive -->
+						<div class="well">
+							<h3>{{ serie.numSerie }}</h3>
+							<dl>
+								<dt><i>Crée le : {{ serie.dCre|date('d/m/Y') }}</dt>
+								<dt>
+									Le produit : <a href="{{ path('ram_produit_view', {'produit_id': serie.produit.id}) }}">{{ serie.produit.nom }}</a>
+								</dt>
+								<dt>
+									La recette : <a href="{{ path('ram_recette_view', {'recette_id': serie.recette.id}) }}">{{ serie.recette.nom }}</a>
+								</dt>																
 								<dt>La quantité : {{ serie.quantity }}</dt>
-	                        </dl>
-	                        
-	                        <h4>Description : </h4>
-	                        <p> {{ serie.description }} </p>
-	                    </div>
-	                </div>
-	                <!-- /.panel-body -->
-	            </div>
-	            <!-- /.panel -->
-	        </div>
-	        <!-- /.col-lg-12 -->
-	    </div>
-	    <!-- /.row -->
-	    <div class="row">
-	        <div class="col-md-6">
-	            <div class="panel panel-default">
-	                <div class="panel-heading">
-	                    Liste de ingrédients :
-	    				<div class="btn-group col-md-offset-9" role="group" aria-label="...">
-	    					<a id="serieAddButton" href="#" class="btn btn-primary" title="Ajouter une nouvelle serie">
-	    						<i class="glyphicon glyphicon-plus"></i>
-	    					</a>
-	    				</div>	
-	                </div>
-	                <!-- /.panel-heading -->
-	                <div class="panel-body">
-	                    <div class="table-responsive">
-	                        <table class="table table-hover">
-	                            <thead>
-	                                <tr>
-	                                    <th>#</th>
-	                                    <th>Ingrédient</th>
-	                                    <th>Quantité</th>
-	                                    <th>Unité</th>
-	                                </tr>
-	                            </thead>
-	                            <tbody>
+							</dl>
+							<h4>Description : </h4>
+							<p> {{ serie.description }} </p>
+						</div>
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+			<!-- /.col-lg-6 -->
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						<div class="col-md-6"><h4>Liste de ingrédients</h4></div>
+						<div class="col-md-6">
+							<div class="pull-right">
+								<div class="btn-group" role="group" aria-label="...">
+									<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal" title="Ajouter un nouvel ingrédient">
+										<i class="glyphicon glyphicon-plus"></i>
+									</a>
+								</div>
+							</div>
+						</div>	
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Ingrédient</th>
+										<th>Quantité</th>
+										<th>Unité</th>
+									</tr>
+								</thead>
+								<tbody>
 
-	                            </tbody>
-	                        </table>
-	                    </div>
-	                    <!-- /.table-responsive -->
-	                </div>
-	                <!-- /.panel-body -->
-	            </div>
-	            <!-- /.panel -->
-	        </div>
-	        <!-- /.col-lg-6 -->
-	        <div class="col-md-6">
-	            <div class="panel panel-default">
-	                <div class="panel-heading">
-	                    Liste des séries
-	                </div>
-	                <!-- /.panel-heading -->
-	                <div class="panel-body">
-
-
-	                </div>
-	                <!-- /.panel-body -->
-	            </div>
-	            <!-- /.panel -->
-	        </div>
-	        <!-- /.col-lg-6 -->
-	    </div>
-	    <!-- /.row -->
-
-    	<!-- Formulaire ajout nouvelle serie. -->
-    	<div id="loginForm" style="display: none;">
-			
-    	</div>
-
+								</tbody>
+							</table>
+						</div>
+						<!-- /.table-responsive -->
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+			<!-- /.col-lg-6 -->
+		</div>
+		<!-- /.row -->
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">Ajouter un ingrédient</h4>
+					</div>
+					<div class="modal-body">
+						<!-- Formulaire ajout nouvelle recette. -->
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- / Modal -->
 	</div>
 	<!-- /#page-wrapper -->
 {% endblock %}
@@ -155,69 +155,6 @@
 	<!-- Include FOS JS -->
 	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 	<script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
-
-	<script>
-		$(document).ready(function() {
-			$('#serieForm').bootstrapValidator({
-				feedbackIcons: {
-					valid: 'glyphicon glyphicon-ok',
-					invalid: 'glyphicon glyphicon-remove',
-					validating: 'glyphicon glyphicon-refresh'
-				},
-				fields: {
-					username: {
-						validators: {
-							notEmpty: {
-								message: 'The username is required'
-							}
-						}
-					},
-					password: {
-						validators: {
-							notEmpty: {
-								message: 'The password is required'
-							}
-						}
-					}
-				}
-			}).on('success.form.bv', function(e) 
-			{
-				e.preventDefault();
-				var form = $("#serieForm");
-				$.ajax({
-					url: "{{path('ram_serie_add')}}",
-					type: form.attr('method'),
-					data: form.serialize(),
-					success: function(html) { 
-						$('#loginForm').style('display','none');
-						//$("#profil .alert").removeClass("hide"); 
-					}
-				});
-			});
-
-	    	// Login button click handler
-		    $('#serieAddButton').on('click', function() {
-		    	bootbox
-		    	.dialog({
-		    		title: 'Ajouter une nouvelle serie',
-		    		message: $('#loginForm'),
-		            show: false // We will show it manually later
-		            })
-		    	.on('shown.bs.modal', function() {
-		    		$('#loginForm')
-		                    .show()                             // Show the login form
-		                    .bootstrapValidator('resetForm', true); // Reset form
-		                })
-		    	.on('hide.bs.modal', function(e) {
-		                // Bootbox will remove the modal (including the body which contains the login form)
-		                // after hiding the modal
-		                // Therefor, we need to backup the form
-		                $('#loginForm').hide().appendTo('body');
-		            })
-		    	.modal('show');
-		    });
-		});
-	</script>
 
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	<script>
