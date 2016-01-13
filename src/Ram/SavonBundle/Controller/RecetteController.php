@@ -53,6 +53,23 @@ class RecetteController extends Controller
 		return $this->render('RamSavonBundle:Recette:add.html.twig', array('form' => $form->createView()));
 	}
 
+	public function addIngredientAction(Request $request)
+	{
+		$recetteIngredient = new RecetteIngredient();
+		$form = $this->get('form.factory')->create(new RecetteIngredientType(), $recetteIngredient);
+		$form->handleRequest($request);
+		if ($form->isValid()) 
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($recetteIngredient);
+			$em->flush();
+			$request->getSession()->getFlashBag()->add('notice', 'Recette bien enregistrée.');
+			return $this->redirect($this->generateUrl('ram_recette_view', array('recette_id' => $recetteIngredient->getRecette()->getId())));
+		}
+
+		return $this->render('RamSavonBundle:Recette:add.html.twig', array('form' => $form->createView()));
+	}
+
 	/**
  	 * @ParamConverter("recette", options={"mapping": {"recette_id": "id"}})
  	 */
