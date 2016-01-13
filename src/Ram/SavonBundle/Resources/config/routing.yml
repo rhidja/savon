@@ -64,6 +64,25 @@ ram_recette_delete:
     requirements:
         recette_id: \d+
 
+# Ingrédients
+ram_recette_ingredient_add:
+    path:      /recette/ingredient_add
+    defaults:  { _controller: RamSavonBundle:Recette:addIngredient }
+
+ram_recette_ingredient_edit:
+    path:      /recette/ingredient_edit/{recette_id}/{ingredient_id}
+    defaults:  { _controller: RamSavonBundle:Recette:editIngredient }
+    requirements:
+        recette_id: \d+
+        ingredient_id : \d+
+
+ram_recette_ingredient_delete:
+    path:      /recette/ingredient_delete/{recette_id}/{ingredient_id}
+    defaults:  { _controller: RamSavonBundle:Recette:deleteIngredient }
+    requirements:
+        recette_id: \d+
+        ingredient_id : \d+
+
 # ===========================================================
 
 ram_ingredient_home:
@@ -93,26 +112,6 @@ ram_ingredient_delete:
     defaults:  { _controller: RamSavonBundle:Ingredient:delete }
     requirements:
         ingredient_id: \d+
-
-ram_recette_ingredient_add:
-    path:      /recette_ingredient/add
-    defaults:  { _controller: RamSavonBundle:RecetteIngredient:add }
-
-# ===========================================================
-
-ram_recette_ingredient_edit:
-    path:      /recette_ingredient/edit/{recette_id}/{ingredient_id}
-    defaults:  { _controller: RamSavonBundle:RecetteIngredient:edit }
-    requirements:
-        recette_id: \d+
-        ingredient_id : \d+
-
-ram_recette_ingredient_delete:
-    path:      /recette_ingredient/delete/{recette_id}/{ingredient_id}
-    defaults:  { _controller: RamSavonBundle:RecetteIngredient:delete }
-    requirements:
-        recette_id: \d+
-        ingredient_id : \d+
 
 # ===========================================================
 
@@ -144,22 +143,21 @@ ram_serie_delete:
     requirements:
         serie_id: \d+
 
-# ===========================================================
-
+# Ingrédients
 ram_serie_ingredient_add:
-    path:      /serie_ingredient/add
-    defaults:  { _controller: RamSavonBundle:SerieIngredient:add }
+    path:      /serie/ingredient_add
+    defaults:  { _controller: RamSavonBundle:Serie:addIngredient }
 
 ram_serie_ingredient_edit:
-    path:      /serie_ingredient/edit/{serie_id}/{ingredient_id}
-    defaults:  { _controller: RamSavonBundle:SerieIngredient:edit }
+    path:      /serie/ingredient_edit/{serie_id}/{ingredient_id}
+    defaults:  { _controller: RamSavonBundle:Serie:editIngredient }
     requirements:
         serie_id: \d+
         ingredient_id : \d+
 
 ram_serie_ingredient_delete:
-    path:      /serie_ingredient/delete/{serie_id}/{ingredient_id}
-    defaults:  { _controller: RamSavonBundle:SerieIngredient:delete }
+    path:      /serie/ingredient_delete/{serie_id}/{ingredient_id}
+    defaults:  { _controller: RamSavonBundle:Serie:deleteIngredient }
     requirements:
         serie_id: \d+
         ingredient_id : \d+
