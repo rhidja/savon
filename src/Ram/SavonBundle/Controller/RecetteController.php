@@ -2,6 +2,7 @@
 
 namespace Ram\SavonBundle\Controller;
 
+use Ram\SavonBundle\Entity\Ingredient;
 use Ram\SavonBundle\Entity\Recette;
 use Ram\SavonBundle\Form\RecetteType;
 use Ram\SavonBundle\Entity\RecetteIngredient;
@@ -111,6 +112,29 @@ class RecetteController extends Controller
 			'recette' => $recette,
 			'form'    => $form->createView()
 			));	
+	}
+
+	/**
+	 * @ParamConverter("recetteIngredient", options={"mapping": {"recette_id": "recette", "ingredient_id": "ingredient"}})
+	 */	
+	public function deleteIngredientAction(RecetteIngredient $recetteIngredient, Request $request)
+	{
+		$form = $this->createFormBuilder()->getForm();
+		if ($form->handleRequest($request)->isValid()) 
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->remove($recetteIngredient);
+			$em->flush();
+
+			$request->getSession()->getFlashBag()->add('info', "La recette a bien été supprimée.");
+
+			return $this->redirect($this->generateUrl('ram_recette_view', array('recette_id' => $recetteIngredient->getRecette()->getId())));
+		}
+
+		return $this->render('RamSavonBundle:Recette:deleteIngredient.html.twig', array(
+			'recetteIngredient' => $recetteIngredient,
+			'form'    => $form->createView()
+			));
 	}
 
 	public function menuAction($limit)

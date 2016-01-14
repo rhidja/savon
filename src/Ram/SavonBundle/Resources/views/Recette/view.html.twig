@@ -93,16 +93,15 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>#</th>
 										<th>Ingrédient</th>
 										<th>Quantité</th>
 										<th>Unité</th>
+										<th class="text-right">Action</th>
 									</tr>
 								</thead>
 								<tbody> 
 									{% for compo in recette.recetteIngredient %}
 									<tr> 
-										<td></td>
 										<td>
 											<a href="{{ path('ram_ingredient_view', {'ingredient_id': compo.ingredient.id}) }}"> 
 												{{ compo.ingredient.nom }}
@@ -111,6 +110,16 @@
 										</td>
 										<td>{{ compo.quantity }}</td>
 										<td>{{ compo.unite }}</td>
+										<td>
+											<div class="btn-group pull-right" role="group" aria-label="...">
+												<a href="{{ path('ram_recette_edit', {'recette_id': recette.id}) }}" class="btn btn-xs btn-default" title="Modifier une recette">
+													<i class="glyphicon glyphicon-edit"></i>
+												</a>
+												<a href="{{ path('ram_recette_ingredient_delete', {'recette_id': compo.recette.id, 'ingredient_id' : compo.ingredient.id}) }}" class="btn btn-xs btn-danger" title="Supprimer cet ingrédient de la recette">
+													<i class="glyphicon glyphicon-trash"></i>
+												</a> 
+											</div>
+										</td>
 									</tr>
 									{% else %}
 									<tr>Pas (encore !) de recettes</tr>
