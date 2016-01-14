@@ -112,9 +112,9 @@
 										<td>{{ compo.unite }}</td>
 										<td>
 											<div class="btn-group pull-right" role="group" aria-label="...">
-												<a href="{{ path('ram_recette_edit', {'recette_id': recette.id}) }}" class="btn btn-xs btn-default" title="Modifier une recette">
+												<a href="{{ path('ram_recette_ingredient_edit', {'recette_id': compo.recette.id, 'ingredient_id' : compo.ingredient.id}) }}" class="btn btn-xs btn-default" title="Supprimer cet ingrédient de la recette">
 													<i class="glyphicon glyphicon-edit"></i>
-												</a>
+												</a> 												
 												<a href="{{ path('ram_recette_ingredient_delete', {'recette_id': compo.recette.id, 'ingredient_id' : compo.ingredient.id}) }}" class="btn btn-xs btn-danger" title="Supprimer cet ingrédient de la recette">
 													<i class="glyphicon glyphicon-trash"></i>
 												</a> 

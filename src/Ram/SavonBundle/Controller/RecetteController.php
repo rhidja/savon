@@ -50,7 +50,6 @@ class RecetteController extends Controller
 			$request->getSession()->getFlashBag()->add('notice', 'Recette bien enregistrée.');
 			return $this->redirect($this->generateUrl('ram_recette_view', array('recette_id' => $recette->getId())));
 		}
-
 		return $this->render('RamSavonBundle:Recette:add.html.twig', array('form' => $form->createView()));
 	}
 
@@ -67,7 +66,6 @@ class RecetteController extends Controller
 			$request->getSession()->getFlashBag()->add('notice', 'Recette bien enregistrée.');
 			return $this->redirect($this->generateUrl('ram_recette_view', array('recette_id' => $recetteIngredient->getRecette()->getId())));
 		}
-
 		return $this->render('RamSavonBundle:Recette:add.html.twig', array('form' => $form->createView()));
 	}
 
@@ -86,8 +84,25 @@ class RecetteController extends Controller
 			$request->getSession()->getFlashBag()->add('notice', 'Recette bien enregistrée.');
 			return $this->redirect($this->generateUrl('ram_recette_view', array('recette_id' => $recette->getId())));
 		}
-
 		return $this->render('RamSavonBundle:Recette:edit.html.twig', array('recette' => $recette,'form' => $form->createView()));
+	}
+
+	/**
+	 * @ParamConverter("recetteIngredient", options={"mapping": {"recette_id": "recette", "ingredient_id": "ingredient"}})
+	 */	
+	public function editIngredientAction(RecetteIngredient $recetteIngredient, Request $request)
+	{
+		$form = $this->get('form.factory')->create(new RecetteIngredientType(), $recetteIngredient);
+		$form->handleRequest($request);
+		if ($form->isValid()) 
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($recetteIngredient);
+			$em->flush();
+			$request->getSession()->getFlashBag()->add('notice', 'Recette bien enregistrée.');
+			return $this->redirect($this->generateUrl('ram_recette_view', array('recette_id' => $recette->getId())));
+		}
+		return $this->render('RamSavonBundle:Recette:editIngredient.html.twig', array('recetteIngredient' => $recetteIngredient,'form' => $form->createView()));
 	}
 
 	/**
@@ -96,22 +111,18 @@ class RecetteController extends Controller
 	public function deleteAction(Recette $recette, Request $request)
 	{
 		$form = $this->createFormBuilder()->getForm();
-
 		if ($form->handleRequest($request)->isValid()) 
 		{
 			$em = $this->getDoctrine()->getManager();
 			$em->remove($recette);
 			$em->flush();
-
 			$request->getSession()->getFlashBag()->add('info', "La recette a bien été supprimée.");
-
 			return $this->redirect($this->generateUrl('ram_recette_home'));
 		}
-
 		return $this->render('RamSavonBundle:Recette:delete.html.twig', array(
 			'recette' => $recette,
 			'form'    => $form->createView()
-			));	
+			));
 	}
 
 	/**
@@ -125,12 +136,9 @@ class RecetteController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$em->remove($recetteIngredient);
 			$em->flush();
-
 			$request->getSession()->getFlashBag()->add('info', "La recette a bien été supprimée.");
-
 			return $this->redirect($this->generateUrl('ram_recette_view', array('recette_id' => $recetteIngredient->getRecette()->getId())));
 		}
-
 		return $this->render('RamSavonBundle:Recette:deleteIngredient.html.twig', array(
 			'recetteIngredient' => $recetteIngredient,
 			'form'    => $form->createView()
@@ -144,7 +152,6 @@ class RecetteController extends Controller
 			array('id' => 5, 'title' => 'Savon Palmolive'),
 			array('id' => 9, 'title' => 'Savon vaisselle')
 			);
-
 		return $this->render('RamSavonBundle:Recette:menu.html.twig', array( 'listRecettes' => $listRecettes	));
 	}
 }
