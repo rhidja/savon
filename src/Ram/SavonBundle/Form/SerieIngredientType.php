@@ -15,9 +15,16 @@ class SerieIngredientType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('serie')
-            ->add('ingredient')
+            ->add('serie', 'entity', array(
+                'class'    => 'RamSavonBundle:Serie',
+                'property' => 'numSerie',
+            ))
+            ->add('ingredient', 'entity', array(
+                'class'    => 'RamSavonBundle:Ingredient',
+                'property' => 'nom',
+            ))
             ->add('quantity')
+            ->add('save',      'submit')
         ;
     }
     

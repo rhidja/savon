@@ -28,8 +28,10 @@ class SerieController extends Controller
  	 * @ParamConverter("serie", options={"mapping": {"serie_id": "id"}})
  	 */
 	public function viewAction(Serie $serie)
-	{	
-		return $this->render('RamSavonBundle:Serie:view.html.twig', array( 'serie' => $serie));
+	{
+		$serieIngredient = new SerieIngredient();
+		$form = $this->get('form.factory')->create(new SerieIngredientType(), $serieIngredient);
+		return $this->render('RamSavonBundle:Serie:view.html.twig', array( 'serie' => $serie, 'form' => $form->createView() ));
 	}
 
 	public function addAction(Request $request)
@@ -44,6 +46,23 @@ class SerieController extends Controller
 			$em->flush();
 			$request->getSession()->getFlashBag()->add('notice', 'Serie bien enregistrée.');
 			return $this->redirect($this->generateUrl('ram_serie_view', array('serie_id' => $serie->getId())));
+		}
+
+		return $this->render('RamSavonBundle:Serie:add.html.twig', array('form' => $form->createView()));
+	}
+
+	public function addIngredientAction(Request $request)
+	{
+		$serieIngredient = new SerieIngredient();
+		$form = $this->get('form.factory')->create(new SerieIngredientType(), $serieIngredient);
+		$form->handleRequest($request);
+		if ($form->isValid()) 
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($serieIngredient);
+			$em->flush();
+			$request->getSession()->getFlashBag()->add('notice', 'Serie bien enregistrée.');
+			return $this->redirect($this->generateUrl('ram_serie_view', array('serie_id' => $serieIngredient->getSerie()->getId())));
 		}
 
 		return $this->render('RamSavonBundle:Serie:add.html.twig', array('form' => $form->createView()));
