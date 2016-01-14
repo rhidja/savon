@@ -64,8 +64,7 @@ class SerieController extends Controller
 			$request->getSession()->getFlashBag()->add('notice', 'Serie bien enregistrée.');
 			return $this->redirect($this->generateUrl('ram_serie_view', array('serie_id' => $serieIngredient->getSerie()->getId())));
 		}
-
-		return $this->render('RamSavonBundle:Serie:add.html.twig', array('form' => $form->createView()));
+		return $this->render('RamSavonBundle:Serie:addIngredient.html.twig', array('form' => $form->createView()));
 	}
 
 	/**
@@ -88,27 +87,61 @@ class SerieController extends Controller
 	}
 
 	/**
+	 * @ParamConverter("serieIngredient", options={"mapping": {"serie_id": "serie", "ingredient_id": "ingredient"}})
+	 */	
+	public function editIngredientAction(SerieIngredient $serieIngredient, Request $request)
+	{
+		$form = $this->get('form.factory')->create(new SerieIngredientType(), $serieIngredient);
+		$form->handleRequest($request);
+		if ($form->isValid()) 
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($serieIngredient);
+			$em->flush();
+			$request->getSession()->getFlashBag()->add('notice', 'Serie bien enregistrée.');
+			return $this->redirect($this->generateUrl('ram_serie_view', array('serie_id' => $serie->getId())));
+		}
+		return $this->render('RamSavonBundle:Serie:editIngredient.html.twig', array('serieIngredient' => $serieIngredient,'form' => $form->createView()));
+	}
+	
+	/**
  	 * @ParamConverter("serie", options={"mapping": {"serie_id": "id"}})
  	 */
 	public function deleteAction(Serie $serie, Request $request)
 	{
 		$form = $this->createFormBuilder()->getForm();
-
 		if ($form->handleRequest($request)->isValid()) 
 		{
 			$em = $this->getDoctrine()->getManager();
 			$em->remove($serie);
 			$em->flush();
-
 			$request->getSession()->getFlashBag()->add('info', "La serie a bien été supprimée.");
-
 			return $this->redirect($this->generateUrl('ram_serie_home'));
 		}
-
 		return $this->render('RamSavonBundle:Serie:delete.html.twig', array(
 			'serie' => $serie,
 			'form'    => $form->createView()
 			));	
+	}
+
+	/**
+	 * @ParamConverter("serieIngredient", options={"mapping": {"serie_id": "serie", "ingredient_id": "ingredient"}})
+	 */	
+	public function deleteIngredientAction(SerieIngredient $serieIngredient, Request $request)
+	{
+		$form = $this->createFormBuilder()->getForm();
+		if ($form->handleRequest($request)->isValid()) 
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->remove($serieIngredient);
+			$em->flush();
+			$request->getSession()->getFlashBag()->add('info', "La serie a bien été supprimée.");
+			return $this->redirect($this->generateUrl('ram_serie_view', array('serie_id' => $serieIngredient->getSerie()->getId())));
+		}
+		return $this->render('RamSavonBundle:Serie:deleteIngredient.html.twig', array(
+			'serieIngredient' => $serieIngredient,
+			'form'    => $form->createView()
+			));
 	}
 
 	public function menuAction($limit)

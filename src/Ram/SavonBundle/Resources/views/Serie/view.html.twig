@@ -103,7 +103,30 @@
 									</tr>
 								</thead>
 								<tbody>
+									{% for compo in serie.ingredients %}
+									<tr> 
+										<td>
+											<a href="{{ path('ram_ingredient_view', {'ingredient_id': compo.ingredient.id}) }}"> 
+												{{ compo.ingredient.nom }}
+											</a>
 
+										</td>
+										<td>{{ compo.quantity }}</td>
+										<td>{{ compo.unite }}</td>
+										<td>
+											<div class="btn-group pull-right" role="group" aria-label="...">
+												<a href="{{ path('ram_serie_ingredient_edit', {'serie_id': compo.serie.id, 'ingredient_id' : compo.ingredient.id}) }}" class="btn btn-xs btn-default" title="Supprimer cet ingrédient de la serie">
+													<i class="glyphicon glyphicon-edit"></i>
+												</a> 												
+												<a href="{{ path('ram_serie_ingredient_delete', {'serie_id': compo.serie.id, 'ingredient_id' : compo.ingredient.id}) }}" class="btn btn-xs btn-danger" title="Supprimer cet ingrédient de la serie">
+													<i class="glyphicon glyphicon-trash"></i>
+												</a> 
+											</div>
+										</td>
+									</tr>
+									{% else %}
+									<tr>Pas (encore !) de series</tr>
+									{% endfor %}
 								</tbody>
 							</table>
 						</div>

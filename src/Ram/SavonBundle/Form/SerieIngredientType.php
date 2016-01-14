@@ -24,6 +24,7 @@ class SerieIngredientType extends AbstractType
                 'property' => 'nom',
             ))
             ->add('quantity')
+            ->add('unite')
             ->add('save',      'submit')
         ;
     }
