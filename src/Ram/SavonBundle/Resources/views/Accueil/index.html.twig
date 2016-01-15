@@ -550,3 +550,11 @@
     </div>
 <!-- /#page-wrapper -->
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- Morris Charts JavaScript -->
+    <script src="{{ asset('assets/vendor/raphael/raphael-min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/morris.js/morris.min.js') }}"></script>
+    <script src="{{ asset('assets/js/morris-data.js') }}"></script>
+{% endblock %}
