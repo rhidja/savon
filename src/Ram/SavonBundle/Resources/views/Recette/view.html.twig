@@ -1,6 +1,6 @@
 {# src/Ram/SavonBundle/Resources/view/Recette/view.html.twig #}
 
-{% extends "::admin_layout.html.twig" %}
+{% extends "::layout.html.twig" %}
 
 {% block title %}
 	Fiche de recette
@@ -136,6 +136,35 @@
 			<!-- /.col-lg-6 -->
 		</div>
 		<!-- /.row -->
+		<div class="row">
+			<!-- /.col-lg-16 -->
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+			<!-- /.col-lg-6 -->
+			<!-- /.col-lg-16 -->
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">	
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<div class="flot-chart-content" id="flot-pie-chart"></div>
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+			<!-- /.col-lg-6 -->
+		</div>
 
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -177,6 +206,15 @@
 	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 	<script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
 
+    <!-- Flot Charts JavaScript -->
+    <script src="{{ asset('assets/vendor/flot/excanvas.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/flot/jquery.flot.js') }}"></script>
+    <script src="{{ asset('assets/vendor/flot/jquery.flot.pie.js') }}"></script>
+    <script src="{{ asset('assets/vendor/flot/jquery.flot.resize.js') }}"></script>
+    <script src="{{ asset('assets/vendor/flot/jquery.flot.time.js') }}"></script>
+    <script src="{{ asset('assets/vendor/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>	
+    <script src="{{ asset('assets/vendor/js/flot-data.js') }}"></script>	
+
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	<script>
 		$(document).ready(function() {
@@ -184,5 +222,46 @@
 				responsive: true
 			});
 		});
+
+
+		//Flot Pie Chart
+		$(function() {
+
+			var data = [{
+				label: "Series 0",
+				data: 1
+			}, {
+				label: "Series 1",
+				data: 3
+			}, {
+				label: "Series 2",
+				data: 9
+			}, {
+				label: "Series 3",
+				data: 20
+			}];
+
+			var plotObj = $.plot($("#flot-pie-chart"), data, {
+				series: {
+					pie: {
+						show: true
+					}
+				},
+				grid: {
+					hoverable: true
+				},
+				tooltip: true,
+				tooltipOpts: {
+					content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+					shifts: {
+						x: 20,
+						y: 0
+					},
+					defaultTheme: false
+				}
+			});
+
+		});
+
 	</script>
 {% endblock %}
