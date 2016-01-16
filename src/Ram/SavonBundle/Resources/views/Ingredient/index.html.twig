@@ -130,3 +130,14 @@
 	</div>
 	<!-- /#page-wrapper -->
 {% endblock %}
+
+{% block javascripts %}
+	{{ parent()}}
+	<script>
+		$(document).ready(function() {
+			$('#dataTables-example').DataTable({
+				responsive: true
+			});
+		});
+	</script>
+{% endblock %}
