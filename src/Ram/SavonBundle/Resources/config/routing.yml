@@ -83,6 +83,13 @@ ram_recette_ingredient_delete:
         recette_id: \d+
         ingredient_id : \d+
 
+# ========
+ram_recette_ingredient_charts:
+    path:      /recette/ingredient/charts/{recette_id}
+    defaults:  { _controller: RamSavonBundle:Recette:charts}
+    requirements:
+        recette_id: \d+
+
 # ===========================================================
 
 ram_ingredient_home:

@@ -10,6 +10,7 @@ use Ram\SavonBundle\Form\RecetteIngredientType;
 use Ram\SavonBundle\Form\RecetteEditType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
@@ -28,8 +29,8 @@ class RecetteController extends Controller
 	}
 
 	/**
- 	 * @ParamConverter("recette", options={"mapping": {"recette_id": "id"}})
- 	 */
+	 * @ParamConverter("recette", options={"mapping": {"recette_id": "id"}})
+	 */
 	public function viewAction(Recette $recette)
 	{	
 		$recetteIngredient = new RecetteIngredient();
@@ -70,8 +71,8 @@ class RecetteController extends Controller
 	}
 
 	/**
- 	 * @ParamConverter("recette", options={"mapping": {"recette_id": "id"}})
- 	 */
+	 * @ParamConverter("recette", options={"mapping": {"recette_id": "id"}})
+	 */
 	public function editAction(Recette $recette, Request $request)
 	{
 		$form = $this->get('form.factory')->create(new RecetteEditType(), $recette);
@@ -106,8 +107,8 @@ class RecetteController extends Controller
 	}
 
 	/**
- 	 * @ParamConverter("recette", options={"mapping": {"recette_id": "id"}})
- 	 */
+	 * @ParamConverter("recette", options={"mapping": {"recette_id": "id"}})
+	 */
 	public function deleteAction(Recette $recette, Request $request)
 	{
 		$form = $this->createFormBuilder()->getForm();
@@ -143,6 +144,26 @@ class RecetteController extends Controller
 			'recetteIngredient' => $recetteIngredient,
 			'form'    => $form->createView()
 			));
+	}
+
+	/**
+	 * @ParamConverter("recette", options={"mapping": {"recette_id": "id"}})
+	 */
+	public function chartsAction(Recette $recette)
+	{
+		$ingredients = $recette->getRecetteIngredient();
+
+		$data = array();
+		foreach ($ingredients as $ingredient) {
+			$data[] = array(
+				'label' => $ingredient->getIngredient()->getNom(),
+				'data' => $ingredient->getQuantity()
+				);
+		}
+		
+		$response = new Response(json_encode($data));
+		$response->headers->set('Content-Type', 'application/json');
+		return $response;
 	}
 
 	public function menuAction($limit)
