@@ -62,6 +62,11 @@ class Recette
     private $ingredients;
 
     /**
+     * @ORM\OneToMany(targetEntity="Ram\SavonBundle\Entity\RecetteEtape", mappedBy="recette", cascade={"persist"})
+     */
+    private $etapes;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="d_cre", type="datetimetz")
@@ -87,7 +92,9 @@ class Recette
         // Par défaut, la date de l'annonce est la date d'aujourd'hui
         $this->dCre = new \Datetime();
         $this->ingredients = new ArrayCollection();
+        $this->etapes = new ArrayCollection();
     }
+
 
     /**
      * Get id
@@ -323,5 +330,39 @@ class Recette
     public function getIngredients()
     {
         return $this->ingredients;
+    }
+
+    /**
+     * Add etape
+     *
+     * @param \Ram\SavonBundle\Entity\RecetteEtape $etape
+     *
+     * @return Recette
+     */
+    public function addEtape(\Ram\SavonBundle\Entity\RecetteEtape $etape)
+    {
+        $this->etapes[] = $etape;
+
+        return $this;
+    }
+
+    /**
+     * Remove etape
+     *
+     * @param \Ram\SavonBundle\Entity\RecetteEtape $etape
+     */
+    public function removeEtape(\Ram\SavonBundle\Entity\RecetteEtape $etape)
+    {
+        $this->etapes->removeElement($etape);
+    }
+
+    /**
+     * Get etapes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEtapes()
+    {
+        return $this->etapes;
     }
 }
