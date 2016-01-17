@@ -1,0 +1,39 @@
+<div class="panel panel-default">
+	<div class="panel-heading clearfix">
+		<div class="col-md-6"><h4>Fiche recette</h4></div>
+		<div class="col-md-6">
+			<div class="pull-right">
+				<div class="btn-group" role="group" aria-label="...">
+					<a href="{{ path('ram_recette_home') }}" class="btn btn-default" title="Retour à la liste">
+						<i class="glyphicon glyphicon-list"></i>	
+					</a>
+					<a href="{{ path('ram_recette_edit', {'recette_id': recette.id}) }}" class="btn btn-default" title="Modifier une recette">
+						<i class="glyphicon glyphicon-edit"></i>
+					</a>
+					<a href="{{ path('ram_recette_delete', {'recette_id': recette.id}) }}" class="btn btn-danger" title="Supprimer une recette">
+						<i class="glyphicon glyphicon-trash"></i>
+					</a> 
+				</div>
+			</div>
+		</div>		
+	</div>
+	<!-- /.panel-heading -->
+	<div class="panel-body">
+		<!-- /.table-responsive -->
+		<div class="well">
+			<h3>{{ recette.nom }}</h3>
+			<dl>
+				<dt><i>Crée le : {{ recette.dCre|date('d/m/Y') }}</dt>
+				<dt>
+					Le produit : <a href="{{ path('ram_produit_view', {'produit_id': recette.produit.id}) }}" title="Supprimer une recette">{{ recette.produit.nom }}</a>
+				</dt>
+				<dt>Durée de sponification : {{ recette.dureeSponification }}</dt>
+				<dt>Durée de cure : {{ recette.dureeCure }}</dt>
+			</dl>
+			<h4>Description : </h4>
+			<p> {{ recette.description }}</p>
+		</div>
+	</div>
+	<!-- /.panel-body -->
+</div>
+<!-- /.panel -->
