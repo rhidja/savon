@@ -99,7 +99,7 @@ class SerieController extends Controller
 			$em->persist($serieIngredient);
 			$em->flush();
 			$request->getSession()->getFlashBag()->add('notice', 'Serie bien enregistrée.');
-			return $this->redirect($this->generateUrl('ram_serie_view', array('serie_id' => $serie->getId())));
+			return $this->redirect($this->generateUrl('ram_serie_view', array('serie_id' => $serieIngredient->getSerie()->getId())));
 		}
 		return $this->render('RamSavonBundle:Serie:editIngredient.html.twig', array('serieIngredient' => $serieIngredient,'form' => $form->createView()));
 	}
