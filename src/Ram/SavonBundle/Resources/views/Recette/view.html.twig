@@ -156,7 +156,7 @@
 									</tr>
 								</thead>
 								<tbody> 
-									{% for compo in recette.recetteIngredient %}
+									{% for compo in recette.ingredients %}
 									<tr> 
 										<td>
 											<a href="{{ path('ram_ingredient_view', {'ingredient_id': compo.ingredient.id}) }}"> 

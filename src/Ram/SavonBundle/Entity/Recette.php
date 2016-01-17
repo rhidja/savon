@@ -59,7 +59,7 @@ class Recette
     /**
      * @ORM\OneToMany(targetEntity="Ram\SavonBundle\Entity\RecetteIngredient", mappedBy="recette", cascade={"persist"})
      */
-    private $recetteIngredient;
+    private $ingredients;
 
     /**
      * @var \DateTime
@@ -86,10 +86,8 @@ class Recette
     {
         // Par défaut, la date de l'annonce est la date d'aujourd'hui
         $this->dCre = new \Datetime();
-        $this->composition = new ArrayCollection();
+        $this->ingredients = new ArrayCollection();
     }
-
-
 
     /**
      * Get id
@@ -294,36 +292,36 @@ class Recette
     }
 
     /**
-     * Add recetteIngredient
+     * Add ingredient
      *
-     * @param \Ram\SavonBundle\Entity\RecetteIngredient $recetteIngredient
+     * @param \Ram\SavonBundle\Entity\RecetteIngredient $ingredient
      *
      * @return Recette
      */
-    public function addRecetteIngredient(\Ram\SavonBundle\Entity\RecetteIngredient $recetteIngredient)
+    public function addIngredient(\Ram\SavonBundle\Entity\RecetteIngredient $ingredient)
     {
-        $this->recetteIngredient[] = $recetteIngredient;
+        $this->ingredients[] = $ingredient;
 
         return $this;
     }
 
     /**
-     * Remove recetteIngredient
+     * Remove ingredient
      *
-     * @param \Ram\SavonBundle\Entity\RecetteIngredient $recetteIngredient
+     * @param \Ram\SavonBundle\Entity\RecetteIngredient $ingredient
      */
-    public function removeRecetteIngredient(\Ram\SavonBundle\Entity\RecetteIngredient $recetteIngredient)
+    public function removeIngredient(\Ram\SavonBundle\Entity\RecetteIngredient $ingredient)
     {
-        $this->recetteIngredient->removeElement($recetteIngredient);
+        $this->ingredients->removeElement($ingredient);
     }
 
     /**
-     * Get recetteIngredient
+     * Get ingredients
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getRecetteIngredient()
+    public function getIngredients()
     {
-        return $this->recetteIngredient;
+        return $this->ingredients;
     }
 }

@@ -151,7 +151,7 @@ class RecetteController extends Controller
 	 */
 	public function chartsAction(Recette $recette)
 	{
-		$ingredients = $recette->getRecetteIngredient();
+		$ingredients = $recette->getIngredients();
 
 		$data = array();
 		foreach ($ingredients as $ingredient) {
