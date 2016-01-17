@@ -1,0 +1,49 @@
+{# src/Ram/SavonBundle/Resources/views/Recette/formEtape.html.twig #}
+
+<div class="well">
+	{{ form_start(formEtape, {'action' : path('ram_recette_etape_add'), 'attr': {'class': 'form-horizontal'}}) }}
+
+	{{ form_errors(formEtape) }}
+
+	<div class="form-group">
+		{{ form_label(formEtape.recette, "Nom de la recette", {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+		{{ form_errors(formEtape.recette) }}
+		<div class="col-md-9">
+			{{ form_widget(formEtape.recette, {'attr': {'class': 'form-control'}}) }}
+		</div>
+	</div>
+
+	<div class="form-group">
+		{{ form_label(formEtape.titre, "Le titre", {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+		{{ form_errors(formEtape.titre) }}
+		<div class="col-sm-9">
+			{{ form_widget(formEtape.titre, {'attr': {'class': 'form-control'}}) }}
+		</div>
+	</div>
+
+	<div class="form-group">
+		{{ form_label(formEtape.duree, "La durée", {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+		{{ form_errors(formEtape.duree) }}
+		<div class="col-sm-9">
+			{{ form_widget(formEtape.duree, {'attr': {'class': 'form-control'}}) }}
+		</div>
+	</div>
+
+	<div class="form-group">
+		{{ form_label(formEtape.description, "Description", {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+		{{ form_errors(formEtape.description) }}
+		<div class="col-md-9">
+			{{ form_widget(formEtape.description, {'attr': {'class': 'form-control', 'rows' : 8}}) }}
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-12">
+			{{ form_widget(formEtape.save, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
+		</div>
+	</div>
+
+	{{ form_rest(formEtape) }}
+
+	{{ form_end(formEtape) }}
+</div>
