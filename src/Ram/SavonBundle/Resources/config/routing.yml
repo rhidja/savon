@@ -64,6 +64,8 @@ ram_recette_delete:
     requirements:
         recette_id: \d+
 
+# ========================================================
+
 # Ingrédients
 ram_recette_ingredient_add:
     path:      /recette/ingredient_add
@@ -82,6 +84,14 @@ ram_recette_ingredient_delete:
     requirements:
         recette_id: \d+
         ingredient_id : \d+
+
+# ===========================================================
+# Etapes
+ram_recette_etape_add:
+    path:      /recette/etape/add
+    defaults:  { _controller: RamSavonBundle:Recette:addEtape }
+
+# ===========================================================
 
 # charts
 ram_recette_ingredient_charts:

@@ -4,16 +4,17 @@ namespace Ram\SavonBundle\Controller;
 
 use Ram\SavonBundle\Entity\Ingredient;
 use Ram\SavonBundle\Entity\Recette;
-use Ram\SavonBundle\Form\RecetteType;
 use Ram\SavonBundle\Entity\RecetteIngredient;
+use Ram\SavonBundle\Entity\RecetteEtape;
+use Ram\SavonBundle\Form\RecetteType;
 use Ram\SavonBundle\Form\RecetteIngredientType;
+use Ram\SavonBundle\Form\RecetteEtapeType;
 use Ram\SavonBundle\Form\RecetteEditType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-
 
 class RecetteController extends Controller
 {
@@ -34,8 +35,10 @@ class RecetteController extends Controller
 	public function viewAction(Recette $recette)
 	{	
 		$recetteIngredient = new RecetteIngredient();
+		$recetteEtape = new RecetteEtape();
 		$form = $this->get('form.factory')->create(new RecetteIngredientType(), $recetteIngredient);
-		return $this->render('RamSavonBundle:Recette:view.html.twig', array( 'recette' => $recette, 'form' => $form->createView()));
+		$formEtape = $this->get('form.factory')->create(new RecetteEtapeType(), $recetteEtape);
+		return $this->render('RamSavonBundle:Recette:view.html.twig', array( 'recette' => $recette, 'form' => $form->createView(), 'formEtape' => $formEtape->createView()));
 	}
 
 	public function addAction(Request $request)
@@ -66,6 +69,22 @@ class RecetteController extends Controller
 			$em->flush();
 			$request->getSession()->getFlashBag()->add('notice', 'Recette bien enregistrée.');
 			return $this->redirect($this->generateUrl('ram_recette_view', array('recette_id' => $recetteIngredient->getRecette()->getId())));
+		}
+		return $this->render('RamSavonBundle:Recette:add.html.twig', array('form' => $form->createView()));
+	}
+
+	public function addEtapeAction(Request $request)
+	{
+		$recetteEtape = new RecetteEtape();
+		$form = $this->get('form.factory')->create(new RecetteEtapeType(), $recetteEtape);
+		$form->handleRequest($request);
+		if ($form->isValid()) 
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($recetteEtape);
+			$em->flush();
+			$request->getSession()->getFlashBag()->add('notice', 'Recette bien enregistrée.');
+			return $this->redirect($this->generateUrl('ram_recette_view', array('recette_id' => $recetteEtape->getRecette()->getId())));
 		}
 		return $this->render('RamSavonBundle:Recette:add.html.twig', array('form' => $form->createView()));
 	}
@@ -104,6 +123,24 @@ class RecetteController extends Controller
 			return $this->redirect($this->generateUrl('ram_recette_view', array('recette_id' => $recetteIngredient->getRecette()->getId())));
 		}
 		return $this->render('RamSavonBundle:Recette:editIngredient.html.twig', array('recetteIngredient' => $recetteIngredient,'form' => $form->createView()));
+	}
+
+	/**
+	 * @ParamConverter("recetteEtape", options={"mapping": {"recette_id": "recette", "etape_id": "etape"}})
+	 */	
+	public function editEtapeAction(RecetteEtape $recetteEtape, Request $request)
+	{
+		$form = $this->get('form.factory')->create(new RecetteEtapeType(), $recetteEtape);
+		$form->handleRequest($request);
+		if ($form->isValid()) 
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($recetteEtape);
+			$em->flush();
+			$request->getSession()->getFlashBag()->add('notice', 'Etape bien enregistrée.');
+			return $this->redirect($this->generateUrl('ram_recette_view', array('recette_id' => $recetteEtape->getRecette()->getId())));
+		}
+		return $this->render('RamSavonBundle:Recette:editEtape.html.twig', array('recetteEtape' => $recetteEtape,'form' => $form->createView()));
 	}
 
 	/**
