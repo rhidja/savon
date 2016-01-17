@@ -17,7 +17,7 @@ class SerieType extends AbstractType
         $builder
             ->add('numSerie')
             ->add('quantity')
-            ->add('description')
+            ->add('description', 'ckeditor')
             ->add('produit', 'entity', array(
                 'class'    => 'RamSavonBundle:Produit',
                 'property' => 'nom',

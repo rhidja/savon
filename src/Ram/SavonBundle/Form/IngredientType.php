@@ -18,7 +18,7 @@ class IngredientType extends AbstractType
         ->add('nom',   'text')
         ->add('type',  'text')
         ->add('unite', 'text')
-        ->add('description', 'textarea')
+        ->add('description', 'ckeditor')
         ->add('categorie', 'entity', array(
             'class'    => 'RamSavonBundle:Categorie',
             'property' => 'nom',

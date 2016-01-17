@@ -18,7 +18,23 @@ class ProduitType extends AbstractType
             ->add('nom',     'text')
             ->add('type',    'text')
             ->add('typePeaux',    'text')
-            ->add('description',   'textarea')
+            ->add('description',   'ckeditor'/*, array(
+                'config' => array(
+                    'toolbar' => array(
+                        array(
+                            'name'  => 'document',
+                            'items' => array('Source', '-', 'Save', 'NewPage', 'DocProps', 'Preview', 'Print', '-', 'Templates'),
+                            ),
+                        '/',
+                        array(
+                            'name'  => 'basicstyles',
+                            'items' => array('Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'),
+                            ),
+                        ),
+                    'uiColor' => '#ffffff',
+                    )
+                )*/
+            )
             ->add('save',      'submit');
     }
     
