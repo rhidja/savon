@@ -58,6 +58,74 @@
 					<!-- /.panel-body -->
 				</div>
 				<!-- /.panel -->
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						<div class="col-md-6"><h5>Les étapes</5></div>
+						<div class="col-md-6">
+							<div class="pull-right">
+								<div class="btn-group" role="group" aria-label="...">
+									<a id="recetteAddButton" href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal" title="Ajouter une nouvelle recette">
+										<i class="glyphicon glyphicon-plus"></i>
+									</a>
+								</div>
+							</div>
+						</div>	
+					</div>
+	                <!-- /.panel-heading -->
+	                <div class="panel-body">
+	                    <div class="list-group">
+	                        <a href="#" class="list-group-item">
+	                            <i class="fa fa-comment fa-fw"></i> New Comment
+	                            <span class="pull-right text-muted small"><em>4 minutes ago</em>
+	                            </span>
+	                        </a>
+	                        <a href="#" class="list-group-item">
+	                            <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+	                            <span class="pull-right text-muted small"><em>12 minutes ago</em>
+	                            </span>
+	                        </a>
+	                        <a href="#" class="list-group-item">
+	                            <i class="fa fa-envelope fa-fw"></i> Message Sent
+	                            <span class="pull-right text-muted small"><em>27 minutes ago</em>
+	                            </span>
+	                        </a>
+	                        <a href="#" class="list-group-item">
+	                            <i class="fa fa-tasks fa-fw"></i> New Task
+	                            <span class="pull-right text-muted small"><em>43 minutes ago</em>
+	                            </span>
+	                        </a>
+	                        <a href="#" class="list-group-item">
+	                            <i class="fa fa-upload fa-fw"></i> Server Rebooted
+	                            <span class="pull-right text-muted small"><em>11:32 AM</em>
+	                            </span>
+	                        </a>
+	                        <a href="#" class="list-group-item">
+	                            <i class="fa fa-bolt fa-fw"></i> Server Crashed!
+	                            <span class="pull-right text-muted small"><em>11:13 AM</em>
+	                            </span>
+	                        </a>
+	                        <a href="#" class="list-group-item">
+	                            <i class="fa fa-warning fa-fw"></i> Server Not Responding
+	                            <span class="pull-right text-muted small"><em>10:57 AM</em>
+	                            </span>
+	                        </a>
+	                        <a href="#" class="list-group-item">
+	                            <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
+	                            <span class="pull-right text-muted small"><em>9:49 AM</em>
+	                            </span>
+	                        </a>
+	                        <a href="#" class="list-group-item">
+	                            <i class="fa fa-money fa-fw"></i> Payment Received
+	                            <span class="pull-right text-muted small"><em>Yesterday</em>
+	                            </span>
+	                        </a>
+	                    </div>
+	                    <!-- /.list-group -->
+	                    <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+	                </div>
+	                <!-- /.panel-body -->
+            	</div>
+            	<!-- /.panel -->				
 			</div>
 			<!-- /.col-lg-6 -->
 			<div class="col-md-6">
@@ -119,26 +187,89 @@
 					<!-- /.panel-body -->
 				</div>
 				<!-- /.panel -->
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						<i class="fa fa-bar-chart-o fa-fw"></i>Ingrédients en pourcentage
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<div class="flot-chart">
+							<div class="flot-chart-content" id="flot-pie-chart"></div>
+						</div>
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
 			</div>
 			<!-- /.col-lg-6 -->
 		</div>
 		<!-- /.row -->
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="myModalLabel">Ajouter un ingrédient</h4>
-					</div>
-					<div class="modal-body">
-						<!-- Formulaire ajout nouvelle recette. -->
-						{{ include("RamSavonBundle:Serie:formIngredient.html.twig") }}
-					</div>
+	</div>
+	<!-- /#page-wrapper -->
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Ajouter un ingrédient</h4>
+				</div>
+				<div class="modal-body">
+					<!-- Formulaire ajout nouvelle recette. -->
+					{{ include("RamSavonBundle:Serie:formIngredient.html.twig") }}
 				</div>
 			</div>
 		</div>
-		<!-- / Modal -->
 	</div>
-	<!-- /#page-wrapper -->
+	<!-- / Modal -->
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+    <!-- Flot Charts JavaScript -->
+    <script src="{{ asset('assets/vendor/flot/excanvas.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/flot/jquery.flot.js') }}"></script>
+    <script src="{{ asset('assets/vendor/flot/jquery.flot.pie.js') }}"></script>
+    <script src="{{ asset('assets/vendor/flot/jquery.flot.resize.js') }}"></script>
+    <script src="{{ asset('assets/vendor/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
+
+	<script>
+		$(function()
+		{
+			$.ajax({
+				url : "{{ path('ram_serie_ingredient_charts', {'serie_id': serie.id}) }}",
+				type : 'GET',
+				dataType : 'json', 
+				success : function(data, statut)
+				{
+					var plotObj = $.plot($("#flot-pie-chart"), data, {
+						series: {
+							pie: {
+								show: true
+							}
+						},
+						grid: {
+							hoverable: true
+						},
+						tooltip: true,
+						tooltipOpts: {
+							content: "%p.0%, %s",
+							shifts: {
+								x: 20,
+								y: 0
+							},
+							defaultTheme: false
+						}
+					});
+				}
+			});
+		});
+
+		$(document).ready(function() {
+			$('#dataTables-example').DataTable({
+				responsive: true
+			});
+		});
+	</script>
 {% endblock %}

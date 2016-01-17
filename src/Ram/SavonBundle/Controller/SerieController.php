@@ -8,6 +8,7 @@ use Ram\SavonBundle\Entity\SerieIngredient;
 use Ram\SavonBundle\Form\SerieIngredientType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
@@ -142,6 +143,26 @@ class SerieController extends Controller
 			'serieIngredient' => $serieIngredient,
 			'form'    => $form->createView()
 			));
+	}
+
+	/**
+	 * @ParamConverter("serie", options={"mapping": {"serie_id": "id"}})
+	 */
+	public function chartsAction(Serie $serie)
+	{
+		$ingredients = $serie->getIngredients();
+
+		$data = array();
+		foreach ($ingredients as $ingredient) {
+			$data[] = array(
+				'label' => $ingredient->getIngredient()->getNom(),
+				'data' => $ingredient->getQuantity()
+				);
+		}
+		
+		$response = new Response(json_encode($data));
+		$response->headers->set('Content-Type', 'application/json');
+		return $response;
 	}
 
 	public function menuAction($limit)
