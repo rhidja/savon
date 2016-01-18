@@ -12,176 +12,176 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class RecetteEtape
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+	/**
+	 * @var integer
+	 *
+	 * @ORM\Column(name="id", type="integer")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 */
+	private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Ram\SavonBundle\Entity\Recette")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $recette;
+	/**
+	 * @ORM\ManyToOne(targetEntity="Ram\SavonBundle\Entity\Recette")
+	 * @ORM\JoinColumn(nullable=false)
+	 */
+	private $recette;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="titre", type="string", length=255)
-     */
-    private $titre;
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="titre", type="string", length=255)
+	 */
+	private $titre;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text")
-     */
-    private $description;
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="description", type="text")
+	 */
+	private $description;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="duree", type="integer")
-     */
-    private $duree;
+	/**
+	 * @var integer
+	 *
+	 * @ORM\Column(name="duree", type="integer")
+	 */
+	private $duree;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="ordre", type="integer")
-     */
-    private $ordre;
+	/**
+	 * @var integer
+	 *
+	 * @ORM\Column(name="ordre", type="integer")
+	 */
+	private $ordre;
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+	/**
+	 * Get id
+	 *
+	 * @return integer
+	 */
+	public function getId()
+	{
+		return $this->id;
+	}
 
-    /**
-     * Set titre
-     *
-     * @param string $titre
-     *
-     * @return RecetteEtape
-     */
-    public function setTitre($titre)
-    {
-        $this->titre = $titre;
+	/**
+	 * Set titre
+	 *
+	 * @param string $titre
+	 *
+	 * @return RecetteEtape
+	 */
+	public function setTitre($titre)
+	{
+		$this->titre = $titre;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get titre
-     *
-     * @return string
-     */
-    public function getTitre()
-    {
-        return $this->titre;
-    }
+	/**
+	 * Get titre
+	 *
+	 * @return string
+	 */
+	public function getTitre()
+	{
+		return $this->titre;
+	}
 
-    /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return RecetteEtape
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
+	/**
+	 * Set description
+	 *
+	 * @param string $description
+	 *
+	 * @return RecetteEtape
+	 */
+	public function setDescription($description)
+	{
+		$this->description = $description;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
+	/**
+	 * Get description
+	 *
+	 * @return string
+	 */
+	public function getDescription()
+	{
+		return $this->description;
+	}
 
-    /**
-     * Set duree
-     *
-     * @param integer $duree
-     *
-     * @return RecetteEtape
-     */
-    public function setDuree($duree)
-    {
-        $this->duree = $duree;
+	/**
+	 * Set duree
+	 *
+	 * @param integer $duree
+	 *
+	 * @return RecetteEtape
+	 */
+	public function setDuree($duree)
+	{
+		$this->duree = $duree;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get duree
-     *
-     * @return integer
-     */
-    public function getDuree()
-    {
-        return $this->duree;
-    }
+	/**
+	 * Get duree
+	 *
+	 * @return integer
+	 */
+	public function getDuree()
+	{
+		return $this->duree;
+	}
 
-    /**
-     * Set ordre
-     *
-     * @param integer $ordre
-     *
-     * @return RecetteEtape
-     */
-    public function setOrdre($ordre)
-    {
-        $this->ordre = $ordre;
+	/**
+	 * Set ordre
+	 *
+	 * @param integer $ordre
+	 *
+	 * @return RecetteEtape
+	 */
+	public function setOrdre($ordre)
+	{
+		$this->ordre = $ordre;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get ordre
-     *
-     * @return integer
-     */
-    public function getOrdre()
-    {
-        return $this->ordre;
-    }
+	/**
+	 * Get ordre
+	 *
+	 * @return integer
+	 */
+	public function getOrdre()
+	{
+		return $this->ordre;
+	}
 
-    /**
-     * Set recette
-     *
-     * @param \Ram\SavonBundle\Entity\Recette $recette
-     *
-     * @return RecetteEtape
-     */
-    public function setRecette(\Ram\SavonBundle\Entity\Recette $recette)
-    {
-        $this->recette = $recette;
+	/**
+	 * Set recette
+	 *
+	 * @param \Ram\SavonBundle\Entity\Recette $recette
+	 *
+	 * @return RecetteEtape
+	 */
+	public function setRecette(\Ram\SavonBundle\Entity\Recette $recette)
+	{
+		$this->recette = $recette;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get recette
-     *
-     * @return \Ram\SavonBundle\Entity\Recette
-     */
-    public function getRecette()
-    {
-        return $this->recette;
-    }
+	/**
+	 * Get recette
+	 *
+	 * @return \Ram\SavonBundle\Entity\Recette
+	 */
+	public function getRecette()
+	{
+		return $this->recette;
+	}
 }

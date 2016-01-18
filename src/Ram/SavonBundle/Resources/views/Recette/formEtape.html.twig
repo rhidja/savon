@@ -22,6 +22,14 @@
 	</div>
 
 	<div class="form-group">
+		{{ form_label(formEtape.ordre, "L'ordre de l'étape", {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+		{{ form_errors(formEtape.ordre) }}
+		<div class="col-sm-9">
+			{{ form_widget(formEtape.ordre, {'attr': {'class': 'form-control'}}) }}
+		</div>
+	</div>
+
+	<div class="form-group">
 		{{ form_label(formEtape.duree, "La durée", {'label_attr': {'class': 'col-md-3 control-label'}}) }}
 		{{ form_errors(formEtape.duree) }}
 		<div class="col-sm-9">
