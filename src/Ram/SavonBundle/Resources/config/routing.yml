@@ -185,3 +185,9 @@ ram_serie_ingredient_charts:
     defaults:  { _controller: RamSavonBundle:Serie:charts}
     requirements:
         serie_id: \d+
+
+# ===========================================================
+# Etapes
+ram_serie_etape_add:
+    path:      /serie/etape/add
+    defaults:  { _controller: RamSavonBundle:Serie:addEtape }

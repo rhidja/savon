@@ -3,8 +3,10 @@
 namespace Ram\SavonBundle\Controller;
 
 use Ram\SavonBundle\Entity\Serie;
-use Ram\SavonBundle\Form\SerieType;
+use Ram\SavonBundle\Entity\SerieEtape;
 use Ram\SavonBundle\Entity\SerieIngredient;
+use Ram\SavonBundle\Form\SerieType;
+use Ram\SavonBundle\Form\SerieEtapeType;
 use Ram\SavonBundle\Form\SerieIngredientType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,7 +34,9 @@ class SerieController extends Controller
 	{
 		$serieIngredient = new SerieIngredient();
 		$form = $this->get('form.factory')->create(new SerieIngredientType(), $serieIngredient);
-		return $this->render('RamSavonBundle:Serie:view.html.twig', array( 'serie' => $serie, 'form' => $form->createView() ));
+		$serieEtape = new SerieEtape();
+		$formEtape = $this->get('form.factory')->create(new SerieEtapeType(), $serieEtape);
+		return $this->render('RamSavonBundle:Serie:view.html.twig', array( 'serie' => $serie, 'form' => $form->createView(), 'formEtape' => $formEtape->createView()));
 	}
 
 	public function addAction(Request $request)
@@ -88,6 +92,22 @@ class SerieController extends Controller
 		return $this->render('RamSavonBundle:Serie:addIngredient.html.twig', array('form' => $form->createView()));
 	}
 
+	public function addEtapeAction(Request $request)
+	{
+		$serieEtape = new SerieEtape();
+		$form = $this->get('form.factory')->create(new SerieEtapeType(), $serieEtape);
+		$form->handleRequest($request);
+		if ($form->isValid()) 
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($serieEtape);
+			$em->flush();
+			$request->getSession()->getFlashBag()->add('notice', 'Serie bien enregistrée.');
+			return $this->redirect($this->generateUrl('ram_serie_view', array('serie_id' => $serieEtape->getSerie()->getId())));
+		}
+		return $this->render('RamSavonBundle:Serie:add.html.twig', array('form' => $form->createView()));
+	}
+	
 	/**
  	 * @ParamConverter("serie", options={"mapping": {"serie_id": "id"}})
  	 */
