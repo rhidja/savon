@@ -49,6 +49,13 @@ class RecetteEtape
     private $duree;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="ordre", type="integer")
+     */
+    private $ordre;
+
+    /**
      * Get id
      *
      * @return integer
@@ -128,6 +135,30 @@ class RecetteEtape
     public function getDuree()
     {
         return $this->duree;
+    }
+
+    /**
+     * Set ordre
+     *
+     * @param integer $ordre
+     *
+     * @return RecetteEtape
+     */
+    public function setOrdre($ordre)
+    {
+        $this->ordre = $ordre;
+
+        return $this;
+    }
+
+    /**
+     * Get ordre
+     *
+     * @return integer
+     */
+    public function getOrdre()
+    {
+        return $this->ordre;
     }
 
     /**
