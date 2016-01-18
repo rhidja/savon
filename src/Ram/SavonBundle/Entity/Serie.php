@@ -68,12 +68,18 @@ class Serie
     private $ingredients;
 
     /**
+     * @ORM\OneToMany(targetEntity="Ram\SavonBundle\Entity\SerieEtape", mappedBy="serie", cascade={"persist"})
+     */
+    private $etapes;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->dCre = new \Datetime();
         $this->ingredients = new ArrayCollection();
+        $this->etapes = new ArrayCollection();
     }
 
     /**
@@ -137,7 +143,7 @@ class Serie
     /**
      * Set dCre
      *
-     * @param string $dCre
+     * @param \DateTime $dCre
      *
      * @return Serie
      */
@@ -151,7 +157,7 @@ class Serie
     /**
      * Get dCre
      *
-     * @return string
+     * @return \DateTime
      */
     public function getDCre()
     {
@@ -262,5 +268,39 @@ class Serie
     public function getIngredients()
     {
         return $this->ingredients;
+    }
+
+    /**
+     * Add etape
+     *
+     * @param \Ram\SavonBundle\Entity\SerieEtape $etape
+     *
+     * @return Serie
+     */
+    public function addEtape(\Ram\SavonBundle\Entity\SerieEtape $etape)
+    {
+        $this->etapes[] = $etape;
+
+        return $this;
+    }
+
+    /**
+     * Remove etape
+     *
+     * @param \Ram\SavonBundle\Entity\SerieEtape $etape
+     */
+    public function removeEtape(\Ram\SavonBundle\Entity\SerieEtape $etape)
+    {
+        $this->etapes->removeElement($etape);
+    }
+
+    /**
+     * Get etapes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEtapes()
+    {
+        return $this->etapes;
     }
 }
