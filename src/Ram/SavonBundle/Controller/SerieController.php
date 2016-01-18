@@ -42,10 +42,30 @@ class SerieController extends Controller
 		$form->handleRequest($request);
 		if ($form->isValid()) 
 		{
+			// Sauver la nouvelle recette.
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($serie);
+
+			// Récuperer les ingrédients de la recette.
+			$ingredients = $serie->getRecette()->getIngredients();
+			foreach ($ingredients as $ingredient)
+			{
+				$serieIngredient = new SerieIngredient();
+				$serieIngredient->setSerie($serie);
+				$serieIngredient->setIngredient($ingredient->getIngredient());
+				
+				// Calcul de la quantité.
+				$quantity = ($ingredient->getQuantity() * $serie->getQuantity())/1000;
+				$serieIngredient->setQuantity($quantity);
+				$serieIngredient->setUnite($ingredient->getUnite());
+				
+				$em->persist($serieIngredient);
+			}
+			
+			// Enrigistrer.
 			$em->flush();
-			$request->getSession()->getFlashBag()->add('notice', 'Serie bien enregistrée.');
+
+			$request->getSession()->getFlashBag()->add('info', 'Série ajoutée.');
 			return $this->redirect($this->generateUrl('ram_serie_view', array('serie_id' => $serie->getId())));
 		}
 
@@ -62,7 +82,7 @@ class SerieController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($serieIngredient);
 			$em->flush();
-			$request->getSession()->getFlashBag()->add('notice', 'Serie bien enregistrée.');
+			$request->getSession()->getFlashBag()->add('info', "Ingrédient ajouté.");
 			return $this->redirect($this->generateUrl('ram_serie_view', array('serie_id' => $serieIngredient->getSerie()->getId())));
 		}
 		return $this->render('RamSavonBundle:Serie:addIngredient.html.twig', array('form' => $form->createView()));
@@ -80,7 +100,7 @@ class SerieController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($serie);
 			$em->flush();
-			$request->getSession()->getFlashBag()->add('notice', 'Serie bien enregistrée.');
+			$request->getSession()->getFlashBag()->add('info', 'Série modifiée.');
 			return $this->redirect($this->generateUrl('ram_serie_view', array('serie_id' => $serie->getId())));
 		}
 
@@ -99,7 +119,7 @@ class SerieController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($serieIngredient);
 			$em->flush();
-			$request->getSession()->getFlashBag()->add('notice', 'Serie bien enregistrée.');
+			$request->getSession()->getFlashBag()->add('info', 'Ingrédient modifié.');
 			return $this->redirect($this->generateUrl('ram_serie_view', array('serie_id' => $serieIngredient->getSerie()->getId())));
 		}
 		return $this->render('RamSavonBundle:Serie:editIngredient.html.twig', array('serieIngredient' => $serieIngredient,'form' => $form->createView()));
@@ -116,7 +136,7 @@ class SerieController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$em->remove($serie);
 			$em->flush();
-			$request->getSession()->getFlashBag()->add('info', "La serie a bien été supprimée.");
+			$request->getSession()->getFlashBag()->add('info', "Série supprimée.");
 			return $this->redirect($this->generateUrl('ram_serie_home'));
 		}
 		return $this->render('RamSavonBundle:Serie:delete.html.twig', array(
@@ -136,7 +156,7 @@ class SerieController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$em->remove($serieIngredient);
 			$em->flush();
-			$request->getSession()->getFlashBag()->add('info', "La serie a bien été supprimée.");
+			$request->getSession()->getFlashBag()->add('info', "Ingrédient supprimé.");
 			return $this->redirect($this->generateUrl('ram_serie_view', array('serie_id' => $serieIngredient->getSerie()->getId())));
 		}
 		return $this->render('RamSavonBundle:Serie:deleteIngredient.html.twig', array(
@@ -163,16 +183,5 @@ class SerieController extends Controller
 		$response = new Response(json_encode($data));
 		$response->headers->set('Content-Type', 'application/json');
 		return $response;
-	}
-
-	public function menuAction($limit)
-	{
-		$listSeries = array(
-			array('id' => 2, 'title' => 'Savon Marseille'),
-			array('id' => 5, 'title' => 'Savon Palmolive'),
-			array('id' => 9, 'title' => 'Savon vaisselle')
-			);
-
-		return $this->render('RamSavonBundle:Serie:menu.html.twig', array( 'listSeries' => $listSeries	));
 	}
 }
