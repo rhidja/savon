@@ -25,9 +25,9 @@ class Serie
     /**
      * @var string
      *
-     * @ORM\Column(name="num_serie", type="string", length=13)
+     * @ORM\Column(name="numero", type="string", length=13)
      */
-    private $numSerie;
+    private $numero;
 
     /**
      * @var string
@@ -93,27 +93,27 @@ class Serie
     }
 
     /**
-     * Set numSerie
+     * Set numero
      *
-     * @param string $numSerie
+     * @param string $numero
      *
      * @return Serie
      */
-    public function setNumSerie($numSerie)
+    public function setNumero($numero)
     {
-        $this->numSerie = $numSerie;
+        $this->numero = $numero;
 
         return $this;
     }
 
     /**
-     * Get numSerie
+     * Get numero
      *
      * @return string
      */
-    public function getNumSerie()
+    public function getNumero()
     {
-        return $this->numSerie;
+        return $this->numero;
     }
 
     /**

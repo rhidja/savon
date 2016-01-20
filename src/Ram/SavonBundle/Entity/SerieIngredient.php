@@ -44,9 +44,9 @@ class SerieIngredient
     /**
      * @var string
      *
-     * @ORM\Column(name="Unite", type="string", length=255)
+     * @ORM\Column(name="Unit", type="string", length=255)
      */
-    private $unite;
+    private $unit;
 
     /**
      * Get id
@@ -83,27 +83,27 @@ class SerieIngredient
     }
 
     /**
-     * Set unite
+     * Set unit
      *
-     * @param string $unite
+     * @param string $unit
      *
      * @return SerieIngredient
      */
-    public function setUnite($unite)
+    public function setUnit($unit)
     {
-        $this->unite = $unite;
+        $this->unit = $unit;
 
         return $this;
     }
 
     /**
-     * Get unite
+     * Get unit
      *
      * @return string
      */
-    public function getUnite()
+    public function getUnit()
     {
-        return $this->unite;
+        return $this->unit;
     }
 
     /**

@@ -17,14 +17,14 @@ class SerieIngredientType extends AbstractType
         $builder
             ->add('serie', 'entity', array(
                 'class'    => 'RamSavonBundle:Serie',
-                'property' => 'numSerie',
+                'property' => 'numero',
             ))
             ->add('ingredient', 'entity', array(
                 'class'    => 'RamSavonBundle:Ingredient',
                 'property' => 'nom',
             ))
             ->add('quantity')
-            ->add('unite')
+            ->add('unit')
             ->add('save',      'submit')
         ;
     }

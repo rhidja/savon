@@ -15,7 +15,7 @@ class SerieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('numSerie')
+            ->add('numero')
             ->add('quantity')
             ->add('description', 'ckeditor')
             ->add('produit', 'entity', array(

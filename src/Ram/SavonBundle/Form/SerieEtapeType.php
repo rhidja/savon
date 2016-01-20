@@ -21,7 +21,7 @@ class SerieEtapeType extends AbstractType
             ->add('ordre')
             ->add('serie', 'entity', array(
                 'class'    => 'RamSavonBundle:Serie',
-                'property' => 'numSerie',
+                'property' => 'numero',
             ))
             ->add('save',      'submit')          
         ;
