@@ -59,13 +59,26 @@ class SerieController extends Controller
 				$serieIngredient->setIngredient($ingredient->getIngredient());
 				
 				// Calcul de la quantité.
-				$quantity = ($ingredient->getQuantity() * $serie->getQuantity())/1000;
+				$quantity = ($ingredient->getQuantity() * $serie->getQuantity())/100;
 				$serieIngredient->setQuantity($quantity);
 				$serieIngredient->setUnite($ingredient->getUnite());
 				
 				$em->persist($serieIngredient);
 			}
-			
+
+			// Récuperer les étapes de la recette.
+			$etapes = $serie->getRecette()->getEtapes();
+			foreach ($etapes as $etape)
+			{
+				$SerieEtape = new SerieEtape();
+				$SerieEtape->setSerie($serie);
+				$SerieEtape->setTitre($etape->getTitre());
+				$SerieEtape->setOrdre($etape->getOrdre());
+				$SerieEtape->setDuree($etape->getDuree());
+				$SerieEtape->setDescription($etape->getDescription());
+				$em->persist($SerieEtape);
+			}
+
 			// Enrigistrer.
 			$em->flush();
 
