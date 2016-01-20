@@ -36,9 +36,7 @@
 									<tr>
 										<th>#</th>
 										<th>Nom de l'ingrédient</th>
-										<th>Unité</th>
-										<th>Type</th>
-										<th>Date</th>
+										<th>Coefficient</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -50,9 +48,7 @@
 													{{ ingredient.nom }}
 												</a>
 											</td>
-											<td>{{ ingredient.unite }}</td>
-											<td>{{ ingredient.type }}</td>
-											<td></td>
+											<td>{{ ingredient.coefficient }}</td>
 										</tr>
 									{% else %}
 										<tr>Pas (encore !) de ingredients</tr>

@@ -16,14 +16,12 @@ class IngredientType extends AbstractType
     {
         $builder
         ->add('nom',   'text')
-        ->add('type',  'text')
-        ->add('unite', 'text')
+        ->add('coefficient',  'text')
         ->add('description', 'ckeditor')
         ->add('categorie', 'entity', array(
             'class'    => 'RamSavonBundle:Categorie',
             'property' => 'nom',
             ))
-
         ->add('save',  'submit');
     }
     
