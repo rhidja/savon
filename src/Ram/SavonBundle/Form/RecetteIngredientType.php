@@ -25,8 +25,7 @@ class RecetteIngredientType extends AbstractType
 			'class'    => 'RamSavonBundle:Recette',
 			'property' => 'nom',
 			))
-		->add('quantity')
-		->add('unite')
+		->add('pourcentage')
 		->add('save',      'submit')
 		;
 	}

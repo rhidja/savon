@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	<div class="panel-heading clearfix">
-		<div class="col-md-6"><h4>Liste de ingrédients</h4></div>
+		<div class="col-md-6"><h4>Composition (Sur 100g)</h4></div>
 		<div class="col-md-6">
 			<div class="pull-right">
 				<div class="btn-group" role="group" aria-label="...">
@@ -18,8 +18,8 @@
 				<thead>
 					<tr>
 						<th>Ingrédient</th>
-						<th>Quantité</th>
-						<th>Unité</th>
+						<th>Pourcentage</th>
+						<th>Qauntité</th>
 						<th class="text-right">Action</th>
 					</tr>
 				</thead>
@@ -31,8 +31,8 @@
 								{{ compo.ingredient.nom }}
 							</a>
 						</td>
-						<td>{{ compo.quantity }}</td>
-						<td>{{ compo.unite }}</td>
+						<td>{{ compo.pourcentage }}%</td>
+						<td>{{ compo.pourcentage }}g</td>
 						<td>
 							<div class="btn-group pull-right" role="group" aria-label="...">
 								<a href="{{ path('ram_recette_ingredient_edit', {'recette_id': compo.recette.id, 'ingredient_id' : compo.ingredient.id}) }}" class="btn btn-xs btn-default" title="Supprimer cet ingrédient de la recette">

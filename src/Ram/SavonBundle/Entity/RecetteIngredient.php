@@ -36,17 +36,9 @@ class RecetteIngredient
     /**
      * @var float
      *
-     * @ORM\Column(name="Quantity", type="float")
+     * @ORM\Column(name="Pourcentage", type="float")
      */
-    private $quantity;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Unite", type="string", length=255)
-     */
-    private $unite;
-
+    private $pourcentage;
 
     /**
      * Get id
@@ -59,51 +51,27 @@ class RecetteIngredient
     }
 
     /**
-     * Set quantity
+     * Set pourcentage
      *
-     * @param float $quantity
+     * @param float $pourcentage
      *
      * @return RecetteIngredient
      */
-    public function setQuantity($quantity)
+    public function setPourcentage($pourcentage)
     {
-        $this->quantity = $quantity;
+        $this->pourcentage = $pourcentage;
 
         return $this;
     }
 
     /**
-     * Get quantity
+     * Get pourcentage
      *
      * @return float
      */
-    public function getQuantity()
+    public function getPourcentage()
     {
-        return $this->quantity;
-    }
-
-    /**
-     * Set unite
-     *
-     * @param string $unite
-     *
-     * @return RecetteIngredient
-     */
-    public function setUnite($unite)
-    {
-        $this->unite = $unite;
-
-        return $this;
-    }
-
-    /**
-     * Get unite
-     *
-     * @return string
-     */
-    public function getUnite()
-    {
-        return $this->unite;
+        return $this->pourcentage;
     }
 
     /**
