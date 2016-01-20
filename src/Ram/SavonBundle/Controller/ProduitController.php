@@ -107,16 +107,4 @@ class ProduitController extends Controller
 			'form'   => $form->createView()
 			));	
 	}
-
-
-	public function menuAction($limit)
-	{
-		$listProduits = array(
-			array('id' => 2, 'title' => 'Savon Marseille'),
-			array('id' => 5, 'title' => 'Savon Palmolive'),
-			array('id' => 9, 'title' => 'Savon vaisselle')
-			);
-
-		return $this->render('RamSavonBundle:Produit:menu.html.twig', array( 'listProduits' => $listProduits	));
-	}
 }

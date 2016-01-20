@@ -65,9 +65,9 @@
 					<div class="panel-heading">
 						<i class="fa fa-list"> Liste des recettes</i>
 						<div class="pull-right">
-						<div class="btn-group" role="group" aria-label="...">
-							<a href="#" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal" title="Ajouter une nouvelle recette"><i class="glyphicon glyphicon-plus"></i></a>
-						</div>
+							<div class="btn-group" role="group" aria-label="...">
+								<a href="{{ path('ram_recette_add') }}" class="btn btn-xs btn-primary" title="Ajouter une nouvelle recette"><i class="glyphicon glyphicon-plus"></i></a>
+							</div>
 						</div>
 					</div>
 					<!-- /.panel-heading -->
@@ -110,7 +110,12 @@
 			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Liste des séries
+						<i class="fa fa-list"> Liste des series</i>
+						<div class="pull-right">
+							<div class="btn-group" role="group" aria-label="...">
+								<a href="{{ path('ram_serie_add') }}" class="btn btn-xs btn-primary" title="Ajouter une nouvelle recette"><i class="glyphicon glyphicon-plus"></i></a>
+							</div>
+						</div>
 					</div>
 					<!-- /.panel-heading -->
 					<div class="panel-body">
@@ -125,12 +130,20 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr class="success">
-										<td>1</td>
-										<td>Mark</td>
-										<td>Otto</td>
-										<td>@mdo</td>
-									</tr>
+									{% for serie in produit.series %}
+										<tr> 
+											<td>{{ serie.id }}</td> 
+											<td> 
+												<a href="{{ path('ram_serie_view', {'serie_id': serie.id}) }}"> 
+													{{ serie.numero }}
+												</a>
+											</td>
+											<td>{{ serie.quantity }}</td>
+											<td></td>
+										</tr>
+									{% else %}
+										<tr>Pas (encore !) de recettes</tr>
+									{% endfor %}
 								</tbody>
 							</table>
 						</div>
@@ -139,22 +152,6 @@
 					<!-- /.panel-body -->
 				</div>
 				<!-- /.panel -->
-
-				<!-- Modal -->
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-				  <div class="modal-dialog" role="document">
-					<div class="modal-content">
-					  <div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="myModalLabel">Ajouter une recette</h4>
-					  </div>
-					  <div class="modal-body">
-							<!-- Formulaire ajout nouvelle recette. -->
-							{{ include("RamSavonBundle:Recette:form.html.twig") }}
-					  </div>
-					</div>
-				  </div>
-				</div>
 			</div>
 			<!-- /.col-lg-6 -->
 		</div>

@@ -56,6 +56,11 @@ class Produit
     private $recettes;
 
     /**
+     * @ORM\OneToMany(targetEntity="Ram\SavonBundle\Entity\Serie", mappedBy="produit")
+     */
+    private $series;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="d_cre", type="datetimetz")
@@ -82,8 +87,8 @@ class Produit
         // Par défaut, la date de l'annonce est la date d'aujourd'hui
         $this->dCre = new \Datetime();
         $this->recettes = new ArrayCollection();
+        $this->series = new ArrayCollection();
     }
-
 
     /**
      * Get id
@@ -295,5 +300,39 @@ class Produit
     public function getRecettes()
     {
         return $this->recettes;
+    }
+
+    /**
+     * Add series
+     *
+     * @param \Ram\SavonBundle\Entity\Serie $series
+     *
+     * @return Produit
+     */
+    public function addSeries(\Ram\SavonBundle\Entity\Serie $series)
+    {
+        $this->series[] = $series;
+
+        return $this;
+    }
+
+    /**
+     * Remove series
+     *
+     * @param \Ram\SavonBundle\Entity\Serie $series
+     */
+    public function removeSeries(\Ram\SavonBundle\Entity\Serie $series)
+    {
+        $this->series->removeElement($series);
+    }
+
+    /**
+     * Get series
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSeries()
+    {
+        return $this->series;
     }
 }
