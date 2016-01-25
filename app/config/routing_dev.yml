@@ -23,3 +23,6 @@ ram_savon_translation:
 ram_savon_paramconverter:
     path: /test/{json}
     defaults: { _controller: "RamSavonBundle:Accueil:ParamConverter" }
+
+_console:
+    resource: "@CoreSphereConsoleBundle/Resources/config/routing.yml"

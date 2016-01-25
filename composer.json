@@ -21,7 +21,8 @@
         "doctrine/doctrine-fixtures-bundle": "~2.2",
         "friendsofsymfony/user-bundle": "dev-master",
         "friendsofsymfony/jsrouting-bundle": "^1.5",
-        "egeloen/ckeditor-bundle": "^4.0"
+        "egeloen/ckeditor-bundle": "^4.0",
+        "coresphere/console-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
