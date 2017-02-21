@@ -61,6 +61,11 @@ class Produit
     private $series;
 
     /**
+     * @ORM\OneToOne(targetEntity="Ram\SavonBundle\Entity\Image", cascade={"persist"})
+     */
+    private $image;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="d_cre", type="datetimetz")
@@ -334,5 +339,29 @@ class Produit
     public function getSeries()
     {
         return $this->series;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \Ram\SavonBundle\Entity\Image $image
+     *
+     * @return Produit
+     */
+    public function setImage(\Ram\SavonBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Ram\SavonBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }
