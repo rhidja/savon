@@ -1,7 +1,7 @@
 # src/Ram/SavonBundle/Resources/config/routing.yml
 
 ram_accueil:
-    path:      /accueil
+    path:      /
     defaults: { _controller: RamSavonBundle:Accueil:index}
 
 # ========================================================
