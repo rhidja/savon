@@ -10,16 +10,15 @@
 
 	<title>
 		{% block title %}
-			<!-- Block titre --> 
+			<!-- Block titre -->
 		{% endblock %}
 	</title>
 
 	{% block stylesheets %}
-
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 		{% stylesheets
 			filter='cssrewrite'
 			'assets/vendor/bootstrap/dist/css/bootstrap.min.css'
-			'assets/vendor/font-awesome/css/font-awesome.min.css'
 			'assets/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css'
 			'assets/vendor/datatables-responsive/css/responsive.dataTables.css'
 			'assets/vendor/metisMenu/dist/metisMenu.min.css'
@@ -267,7 +266,7 @@
 						</ul>
 						<!-- /.navbar-top-links -->
 					{% endblock %}
-					
+
 					{% block sidebar %}
 						<div class="navbar-default sidebar" role="navigation">
 						<div class="sidebar-nav navbar-collapse">
@@ -294,7 +293,7 @@
 										</li>
 										<li>
 											<a href="{{ path('ram_produit_add') }}"><i class="fa fa-plus-circle"></i> Ajouter un produit</a>
-										</li>                                        
+										</li>
 									</ul>
 									<!-- /.nav-second-level -->
 								</li>
@@ -306,7 +305,7 @@
 										</li>
 										<li>
 											<a href="{{ path('ram_ingredient_add') }}"><i class="fa fa-plus-circle"></i> Ajouter un ingrédient</a>
-										</li>                                        
+										</li>
 									</ul>
 									<!-- /.nav-second-level -->
 								</li>
@@ -318,7 +317,7 @@
 										</li>
 										<li>
 											<a href="{{ path('ram_recette_add') }}"><i class="fa fa-plus-circle"></i> Ajouter une recette</a>
-										</li>                                       
+										</li>
 									</ul>
 									<!-- /.nav-second-level -->
 								</li>
@@ -330,10 +329,10 @@
 										</li>
 										<li>
 											<a href="{{ path('ram_serie_add') }}"><i class="fa fa-plus-circle"></i> Ajouter une serie</a>
-										</li>                                       
+										</li>
 									</ul>
 									<!-- /.nav-second-level -->
-								</li>                                                      
+								</li>
 							</ul>
 						</div>
 						<!-- /.sidebar-collapse -->
@@ -348,7 +347,7 @@
 		</div>
 		<!-- /#wrapper -->
 	{% endblock %}
-	
+
 	{% block javascripts %}
 		{% javascripts
 			'assets/vendor/jquery/dist/jquery.min.js'
