@@ -7,4 +7,6 @@ Gestion de recettes et du stock des ingrédients de la fabrication artisanales d
 2- Installer les composants avec composer 
 `composer install`
 
+2.1- Use Jenkins
+
 3- A Symfony project created on November 24, 2015, 9:02 pm.
