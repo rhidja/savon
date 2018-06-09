@@ -1,4 +1,4 @@
-Gestion de recettes et du stock des ingrédients de la fabrication artisanales du savon
+Gestion de recettes et du stock des ingrédients de la fabrication artisanales du savon.
 
 # Installation
 1- Cloner le dépôt
